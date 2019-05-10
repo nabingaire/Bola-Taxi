@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 02, 2019 at 10:52 AM
+-- Generation Time: May 10, 2019 at 01:01 PM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.1.28
 
@@ -25,60 +25,102 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `completed_rides`
+-- Table structure for table `completed_request`
 --
 
-CREATE TABLE `completed_rides` (
-  `completed_ride_id` int(11) NOT NULL,
-  `user_id` int(11) DEFAULT NULL,
-  `taxi_id` int(11) DEFAULT NULL,
-  `origin` varchar(20) NOT NULL,
-  `destination` varchar(20) NOT NULL,
-  `fare` int(5) DEFAULT NULL
+CREATE TABLE `completed_request` (
+  `completed_request_id` int(10) NOT NULL,
+  `t_id` int(10) DEFAULT NULL,
+  `u_id` int(10) DEFAULT NULL,
+  `origin` varchar(30) DEFAULT NULL,
+  `destination` varchar(30) DEFAULT NULL,
+  `completed_time` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `locations`
+-- Table structure for table `drivers`
 --
 
-CREATE TABLE `locations` (
-  `location_id` int(11) NOT NULL,
-  `longitude` decimal(10,8) NOT NULL,
-  `latitide` decimal(11,8) NOT NULL
+CREATE TABLE `drivers` (
+  `d_id` int(10) NOT NULL,
+  `name` varchar(50) DEFAULT NULL,
+  `phone` varchar(15) DEFAULT NULL,
+  `password` varchar(20) DEFAULT NULL,
+  `current_loc` int(20) DEFAULT NULL,
+  `taxi_id` int(10) DEFAULT NULL,
+  `gender` varchar(20) DEFAULT NULL,
+  `review_id` int(10) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `rides`
+-- Table structure for table `location`
 --
 
-CREATE TABLE `rides` (
-  `ride_id` int(11) NOT NULL,
-  `taxi_id` int(11) DEFAULT NULL,
-  `origin` varchar(50) DEFAULT NULL,
-  `destination` varchar(50) DEFAULT NULL,
-  `current_location` varchar(50) DEFAULT NULL,
-  `remaining_seats` int(2) DEFAULT NULL,
-  `users_ride_id` int(11) DEFAULT NULL
+CREATE TABLE `location` (
+  `l_id` int(20) NOT NULL,
+  `latitude` decimal(10,8) DEFAULT NULL,
+  `longitude` decimal(11,8) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `taxis`
+-- Table structure for table `request`
 --
 
-CREATE TABLE `taxis` (
-  `taxi_id` int(11) NOT NULL,
-  `driver_name` varchar(30) NOT NULL,
-  `driver_phone` varchar(15) NOT NULL,
-  `taxi_no` varchar(15) NOT NULL,
-  `active_status` bit(1) DEFAULT NULL,
-  `ride_status` bit(1) DEFAULT NULL,
-  `ride_id` int(11) DEFAULT NULL
+CREATE TABLE `request` (
+  `request_id` int(10) NOT NULL,
+  `u_id` int(10) DEFAULT NULL,
+  `origin` varchar(30) DEFAULT NULL,
+  `destination` varchar(30) DEFAULT NULL,
+  `request_time` datetime DEFAULT NULL,
+  `status` varchar(15) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `review`
+--
+
+CREATE TABLE `review` (
+  `review_id` int(10) NOT NULL,
+  `review_date` datetime DEFAULT NULL,
+  `review_star` int(1) DEFAULT NULL,
+  `review_comment` varchar(8000) DEFAULT NULL,
+  `reviewer_id` int(5) DEFAULT NULL,
+  `reviewer_type` varchar(20) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `ride`
+--
+
+CREATE TABLE `ride` (
+  `r_id` int(10) NOT NULL,
+  `started_time` datetime DEFAULT NULL,
+  `d_id` int(10) DEFAULT NULL,
+  `t_id` int(10) DEFAULT NULL,
+  `origin` varchar(30) DEFAULT NULL,
+  `destination` varchar(30) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `taxi_info`
+--
+
+CREATE TABLE `taxi_info` (
+  `t_id` int(5) NOT NULL,
+  `taxi_no` varchar(20) DEFAULT NULL,
+  `status` varchar(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -88,23 +130,13 @@ CREATE TABLE `taxis` (
 --
 
 CREATE TABLE `users` (
-  `user_id` int(11) NOT NULL,
-  `name` varchar(50) NOT NULL,
-  `phone` varchar(15) NOT NULL,
-  `username` varchar(30) NOT NULL,
-  `password` varchar(15) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `user_rides`
---
-
-CREATE TABLE `user_rides` (
-  `user_ride_id` int(11) NOT NULL,
-  `ride_id` int(11) DEFAULT NULL,
-  `user_id` int(11) DEFAULT NULL
+  `u_id` int(10) NOT NULL,
+  `name` varchar(50) DEFAULT NULL,
+  `phone` varchar(15) DEFAULT NULL,
+  `password` varchar(20) DEFAULT NULL,
+  `current_loc` int(20) DEFAULT NULL,
+  `gender` varchar(20) DEFAULT NULL,
+  `review_id` int(10) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -112,110 +144,152 @@ CREATE TABLE `user_rides` (
 --
 
 --
--- Indexes for table `completed_rides`
+-- Indexes for table `completed_request`
 --
-ALTER TABLE `completed_rides`
-  ADD PRIMARY KEY (`completed_ride_id`),
-  ADD KEY `user_id` (`user_id`),
-  ADD KEY `taxi_id` (`taxi_id`);
+ALTER TABLE `completed_request`
+  ADD PRIMARY KEY (`completed_request_id`),
+  ADD KEY `t_id` (`t_id`),
+  ADD KEY `u_id` (`u_id`);
 
 --
--- Indexes for table `locations`
+-- Indexes for table `drivers`
 --
-ALTER TABLE `locations`
-  ADD PRIMARY KEY (`location_id`);
+ALTER TABLE `drivers`
+  ADD PRIMARY KEY (`d_id`),
+  ADD KEY `taxi_id` (`taxi_id`),
+  ADD KEY `review_id` (`review_id`);
 
 --
--- Indexes for table `rides`
+-- Indexes for table `location`
 --
-ALTER TABLE `rides`
-  ADD PRIMARY KEY (`ride_id`),
-  ADD KEY `taxi_id` (`taxi_id`);
+ALTER TABLE `location`
+  ADD PRIMARY KEY (`l_id`);
 
 --
--- Indexes for table `taxis`
+-- Indexes for table `request`
 --
-ALTER TABLE `taxis`
-  ADD PRIMARY KEY (`taxi_id`);
+ALTER TABLE `request`
+  ADD PRIMARY KEY (`request_id`),
+  ADD KEY `u_id` (`u_id`);
+
+--
+-- Indexes for table `review`
+--
+ALTER TABLE `review`
+  ADD PRIMARY KEY (`review_id`),
+  ADD KEY `reviewer_id` (`reviewer_id`);
+
+--
+-- Indexes for table `ride`
+--
+ALTER TABLE `ride`
+  ADD PRIMARY KEY (`r_id`),
+  ADD KEY `d_id` (`d_id`),
+  ADD KEY `t_id` (`t_id`);
+
+--
+-- Indexes for table `taxi_info`
+--
+ALTER TABLE `taxi_info`
+  ADD PRIMARY KEY (`t_id`),
+  ADD UNIQUE KEY `taxi_no` (`taxi_no`);
 
 --
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
-  ADD PRIMARY KEY (`user_id`),
-  ADD UNIQUE KEY `username` (`username`);
-
---
--- Indexes for table `user_rides`
---
-ALTER TABLE `user_rides`
-  ADD PRIMARY KEY (`user_ride_id`),
-  ADD KEY `user_id` (`user_id`),
-  ADD KEY `ride_id` (`ride_id`);
+  ADD PRIMARY KEY (`u_id`),
+  ADD KEY `review_id` (`review_id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT for table `completed_rides`
+-- AUTO_INCREMENT for table `completed_request`
 --
-ALTER TABLE `completed_rides`
-  MODIFY `completed_ride_id` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `completed_request`
+  MODIFY `completed_request_id` int(10) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `locations`
+-- AUTO_INCREMENT for table `drivers`
 --
-ALTER TABLE `locations`
-  MODIFY `location_id` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `drivers`
+  MODIFY `d_id` int(10) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `rides`
+-- AUTO_INCREMENT for table `request`
 --
-ALTER TABLE `rides`
-  MODIFY `ride_id` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `request`
+  MODIFY `request_id` int(10) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `taxis`
+-- AUTO_INCREMENT for table `review`
 --
-ALTER TABLE `taxis`
-  MODIFY `taxi_id` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `review`
+  MODIFY `review_id` int(10) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `ride`
+--
+ALTER TABLE `ride`
+  MODIFY `r_id` int(10) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `taxi_info`
+--
+ALTER TABLE `taxi_info`
+  MODIFY `t_id` int(5) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `user_rides`
---
-ALTER TABLE `user_rides`
-  MODIFY `user_ride_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `u_id` int(10) NOT NULL AUTO_INCREMENT;
 
 --
 -- Constraints for dumped tables
 --
 
 --
--- Constraints for table `completed_rides`
+-- Constraints for table `completed_request`
 --
-ALTER TABLE `completed_rides`
-  ADD CONSTRAINT `completed_rides_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`),
-  ADD CONSTRAINT `completed_rides_ibfk_2` FOREIGN KEY (`taxi_id`) REFERENCES `taxis` (`taxi_id`);
+ALTER TABLE `completed_request`
+  ADD CONSTRAINT `completed_request_ibfk_1` FOREIGN KEY (`t_id`) REFERENCES `taxi_info` (`t_id`),
+  ADD CONSTRAINT `completed_request_ibfk_2` FOREIGN KEY (`u_id`) REFERENCES `users` (`u_id`);
 
 --
--- Constraints for table `rides`
+-- Constraints for table `drivers`
 --
-ALTER TABLE `rides`
-  ADD CONSTRAINT `rides_ibfk_1` FOREIGN KEY (`taxi_id`) REFERENCES `taxis` (`taxi_id`);
+ALTER TABLE `drivers`
+  ADD CONSTRAINT `drivers_ibfk_1` FOREIGN KEY (`taxi_id`) REFERENCES `taxi_info` (`t_id`),
+  ADD CONSTRAINT `drivers_ibfk_2` FOREIGN KEY (`review_id`) REFERENCES `review` (`review_id`);
 
 --
--- Constraints for table `user_rides`
+-- Constraints for table `request`
 --
-ALTER TABLE `user_rides`
-  ADD CONSTRAINT `user_rides_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`),
-  ADD CONSTRAINT `user_rides_ibfk_2` FOREIGN KEY (`ride_id`) REFERENCES `rides` (`ride_id`);
+ALTER TABLE `request`
+  ADD CONSTRAINT `request_ibfk_1` FOREIGN KEY (`u_id`) REFERENCES `users` (`u_id`);
+
+--
+-- Constraints for table `review`
+--
+ALTER TABLE `review`
+  ADD CONSTRAINT `review_ibfk_1` FOREIGN KEY (`reviewer_id`) REFERENCES `users` (`u_id`),
+  ADD CONSTRAINT `review_ibfk_2` FOREIGN KEY (`reviewer_id`) REFERENCES `drivers` (`d_id`);
+
+--
+-- Constraints for table `ride`
+--
+ALTER TABLE `ride`
+  ADD CONSTRAINT `ride_ibfk_1` FOREIGN KEY (`d_id`) REFERENCES `drivers` (`d_id`),
+  ADD CONSTRAINT `ride_ibfk_2` FOREIGN KEY (`t_id`) REFERENCES `taxi_info` (`t_id`);
+
+--
+-- Constraints for table `users`
+--
+ALTER TABLE `users`
+  ADD CONSTRAINT `users_ibfk_1` FOREIGN KEY (`review_id`) REFERENCES `review` (`review_id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
