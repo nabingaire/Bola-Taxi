@@ -25,7 +25,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
     $gender = $json_obj->gender;
 
 
-    $sql = "INSERT INTO users(name,phone,password,gender) VALUES ('$name', '$phone','$password','$gender')";
+    $passengerSignupQuery = "INSERT INTO users(name,phone,password,gender) VALUES ('$name', '$phone','$password','$gender')";
     $responseArray;
     if(mysqli_query($conn,$sql)){
         $responseArray = array('response_code'=>STATUS_OK,'message'=>'Added succesfully');

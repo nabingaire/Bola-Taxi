@@ -30,7 +30,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
     
     $responseArray;
     if(mysqli_num_rows($loginResult) == 0){
-       $responseArray = array('response_code'=>NOT_FOUND,'message'=>'User Not Found');
+       $responseArray = array('response_code'=>NOT_FOUND,'message'=>mysqli_error($conn));
     }else{
       $responseArray = array('response_code'=>STATUS_OK,'message'=>'Login Successfull');
     }

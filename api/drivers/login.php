@@ -24,15 +24,15 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
    
 
 
-    $driversloginQuery = "SELECT  * from drivers where phone='$phone' AND password= '$password'";
+    $driversLoginQuery = "SELECT  * from drivers where phone='$phone' AND password= '$password'";
 
     $loginResult = mysqli_query($conn,$driversloginQuery);
     
     $responseArray;
     if(mysqli_num_rows($loginResult) == 0){
-        $responseArray = array('response_code'=>NOT_FOUND,'message'=>'User Not Found');
+       $responseArray = array('response_code'=>NOT_FOUND,'message'=>mysqli_error($conn));
     }else{
-        $responseArray = array('response_code'=>STATUS_OK,'message'=>'Login Successfull');
+      $responseArray = array('response_code'=>STATUS_OK,'message'=>'Login Successfull');
     }
 
     header('Content-type: application/json');

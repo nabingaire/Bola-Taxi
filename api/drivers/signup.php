@@ -27,7 +27,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
     $taxi_no =$json_obj->taxi_no;
 
 
-    $driversQuery = "INSERT INTO drivers(name,phone,password,gender) VALUES ('$name', '$phone','$password','$gender')";
+    $driversSignupQuery = "INSERT INTO drivers(name,phone,password,gender) VALUES ('$name', '$phone','$password','$gender')";
     $taxiQuery = "INSERT INTO taxi_info(taxi_no) VALUES ('$taxi_no')";
 
     $responseArray;
@@ -37,7 +37,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
         $responseArray = array('response_code'=>STATUS_OK,'message'=>'Signup Successfull');
         }
     }else{
-       $responseArray = array('response_code'=>NOT_FOUND,'message'=>'Connection Not Found');
+       $responseArray = array('response_code'=>NOT_FOUND,'message'=>mysqli_error($conn));
     }
     header('Content-type: application/json');
     echo json_encode($responseArray);
