@@ -1,4 +1,4 @@
-import 'package:bola_taxi/Login.dart';
+import 'package:bola_taxi/pages/Login.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(HomePage());
