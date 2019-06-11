@@ -1,3 +1,4 @@
+import 'package:bola_taxi/Pages/SignupChoice.dart';
 import 'package:bola_taxi/pages/Login.dart';
 import 'package:flutter/material.dart';
 
@@ -13,9 +14,10 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        body: new Login(),
+        body: new SignUpChoice(),
       ),
       
     );
   }
 }
+
