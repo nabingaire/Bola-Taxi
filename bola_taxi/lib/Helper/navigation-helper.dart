@@ -10,11 +10,11 @@ class NavigationHelper {
 
   goToDriverSignup({args}) {
     Navigator.push(this.context,
-        MaterialPageRoute(builder: (context) => SignUpDriver(data: args)));
+        MaterialPageRoute(builder: (context) => SignUpDriver()));
   }
 
   goToPassengersSignUp({args}) {
     Navigator.push(this.context,
-        MaterialPageRoute(builder: (context) => SignUpPassenger(data: args)));
+        MaterialPageRoute(builder: (context) => SignUpPassenger()));
   }
 }
