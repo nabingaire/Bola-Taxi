@@ -8,6 +8,15 @@ class Login extends StatefulWidget {
 class _LoginState extends State<Login> {
   @override
   Widget build(BuildContext context) {
+    return MaterialApp(
+      home: _LoginUI(),
+    );
+  }
+}
+
+class _LoginUI extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
     return Center(
         child: Container(
       child: Column(
@@ -56,4 +65,3 @@ class _LoginState extends State<Login> {
     ));
   }
 }
-
