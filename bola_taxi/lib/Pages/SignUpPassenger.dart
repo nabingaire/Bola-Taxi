@@ -21,13 +21,20 @@ class _SignUpPassengerState extends State<SignUpPassenger> {
           ),
           backgroundColor: Colors.deepPurpleAccent[400],
         ),
-        body: _SignUpPassengerUI(),
+        body: SignUpPassengerUI(),
       ),
     );
   }
 }
 
-class _SignUpPassengerUI extends StatelessWidget {
+
+
+class SignUpPassengerUI extends StatefulWidget {
+  @override
+  _SignUpPassengerUIState createState() => _SignUpPassengerUIState();
+}
+
+class _SignUpPassengerUIState extends State<SignUpPassengerUI> {
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -78,7 +85,7 @@ class _SignUpPassengerUI extends StatelessWidget {
             ),
           ],
         ),
-        padding: EdgeInsets.fromLTRB(30,0, 30,0),
+        padding: EdgeInsets.fromLTRB(30, 0, 30, 0),
       ),
     );
   }
