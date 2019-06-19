@@ -17,4 +17,5 @@ class NavigationHelper {
     Navigator.push(this.context,
         MaterialPageRoute(builder: (context) => SignUpPassenger()));
   }
+
 }
