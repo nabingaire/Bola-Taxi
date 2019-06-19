@@ -9,12 +9,18 @@ class _LoginState extends State<Login> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: _LoginUI(),
+      home: LoginUI(),
     );
   }
 }
 
-class _LoginUI extends StatelessWidget {
+
+class LoginUI extends StatefulWidget {
+  @override
+  _LoginUIState createState() => _LoginUIState();
+}
+
+class _LoginUIState extends State<LoginUI> {
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -36,29 +42,26 @@ class _LoginUI extends StatelessWidget {
             child: SizedBox(
                 width: double.infinity,
                 child: RaisedButton(
-              onPressed: () {},
-              child: const Text(
-                'Log In',
-                style: TextStyle(fontSize: 20, color: Colors.white),
-              ),
-              color: Colors.deepPurpleAccent[400],
-            )),
+                  onPressed: () {},
+                  child: const Text(
+                    'Log In',
+                    style: TextStyle(fontSize: 20, color: Colors.white),
+                  ),
+                  color: Colors.deepPurpleAccent[400],
+                )),
             padding: EdgeInsets.fromLTRB(0, 40, 0, 0),
           ),
           Align(
-            alignment: Alignment.bottomLeft,
-            child: Row(
-              children: <Widget>[
-                Text(
-                  "New Here?"
-                ),
-                Text(
-                  " Sign Up",
-                  style: TextStyle(color: Colors.deepPurpleAccent[400]),
-                )
-              ],
-            )
-            )
+              alignment: Alignment.bottomLeft,
+              child: Row(
+                children: <Widget>[
+                  Text("New Here?"),
+                  Text(
+                    " Sign Up",
+                    style: TextStyle(color: Colors.deepPurpleAccent[400]),
+                  )
+                ],
+              ))
         ],
       ),
       padding: EdgeInsets.fromLTRB(10, 90, 10, 0),
