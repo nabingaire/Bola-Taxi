@@ -8,7 +8,30 @@ class SignUpDriver extends StatefulWidget {
 class _SignUpDriverState extends State<SignUpDriver> {
   @override
   Widget build(BuildContext context) {
-    return Center(
+    return MaterialApp(
+       home: Scaffold(
+         appBar: AppBar(
+        title: new Center(
+          child: new Text("Sign Up"),
+        
+        ),
+        leading: new IconButton(
+          icon: new Icon(Icons.arrow_back),
+          iconSize: 35,
+          color: Colors.white,
+        ),
+        backgroundColor: Colors.deepPurpleAccent[400],
+      
+      ),
+        body: _SignUpDriverUI(),
+      ),
+    );
+  }
+}
+class _SignUpDriverUI extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return  Center(
       child: Container(
         child: Column(
           children: <Widget>[
@@ -63,8 +86,10 @@ class _SignUpDriverState extends State<SignUpDriver> {
           ],
         ),
       
-      padding: EdgeInsets.fromLTRB(30, 50, 30, 30),),
+      padding: EdgeInsets.fromLTRB(30, 0, 30, 0),),
      
     );
   }
 }
+
+ 

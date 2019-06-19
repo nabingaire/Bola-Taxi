@@ -8,6 +8,14 @@ class Splash extends StatefulWidget {
 class _SplashState extends State<Splash> {
   @override
   Widget build(BuildContext context) {
+    return MaterialApp(
+    home: _SplashUI(),
+    );
+  }
+}
+class _SplashUI extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
     return Center(
       child: Container(
         child: Column(

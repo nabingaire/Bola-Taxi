@@ -8,6 +8,30 @@ class SignUpPassenger extends StatefulWidget {
 class _SignUpPassengerState extends State<SignUpPassenger> {
   @override
   Widget build(BuildContext context) {
+    return MaterialApp(
+       home: Scaffold(
+         appBar: AppBar(
+        title: new Center(
+          child: new Text("Sign Up"),
+        
+        ),
+        leading: new IconButton(
+          icon: new Icon(Icons.arrow_back),
+          iconSize: 35,
+          color: Colors.white,
+        ),
+        backgroundColor: Colors.deepPurpleAccent[400],
+      
+      ),
+        body: _SignUpPassengerUI(),
+      ),
+    );
+  }
+  }
+
+class _SignUpPassengerUI extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
     return Center(
       child: Container(
         child: Column(
@@ -64,3 +88,5 @@ class _SignUpPassengerState extends State<SignUpPassenger> {
     );
   }
 }
+
+  

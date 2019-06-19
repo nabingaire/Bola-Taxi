@@ -11,10 +11,20 @@ class _SignUpChoiceState extends State<SignUpChoice> {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        appBar: AppBar(
-          title: Text("Sign Up")
-
-        )
+         appBar: AppBar(
+        title: new Center(
+          child: new Text("Sign Up"),
+        
+        ),
+        leading: new IconButton(
+          icon: new Icon(Icons.arrow_back),
+          iconSize: 35,
+          color: Colors.white,
+        ),
+        backgroundColor: Colors.deepPurpleAccent[400],
+      
+      ),
+        body: _SignUpChoiceUI(),
       ),
     );
   }
@@ -41,7 +51,7 @@ class _SignUpChoiceState extends State<SignUpChoice> {
                     color: Colors.deepPurpleAccent[400],
                   ),
                 ),
-                padding: EdgeInsets.fromLTRB(0, 20, 0, 0),
+                padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
               ),
               Container(
                 child: SizedBox(
