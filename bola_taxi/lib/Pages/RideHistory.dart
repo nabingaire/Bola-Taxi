@@ -8,6 +8,13 @@ class RideHistory extends StatefulWidget {
 class _RideHistoryState extends State<RideHistory> {
   @override
   Widget build(BuildContext context) {
+    return _RideHistoryUI();
+  }
+}
+
+class _RideHistoryUI extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: new Center(
