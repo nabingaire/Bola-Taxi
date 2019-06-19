@@ -32,8 +32,9 @@ class _SignUpDriverUI extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return  Center(
-      child: Container(
+      child: SingleChildScrollView(
         child: Column(
+          mainAxisSize: MainAxisSize.min,
           children: <Widget>[
             
             TextField(
