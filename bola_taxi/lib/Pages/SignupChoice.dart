@@ -1,3 +1,4 @@
+import 'package:bola_taxi/Helper/navigation-helper.dart';
 import 'package:flutter/material.dart';
 
 class SignUpChoice extends StatefulWidget {
@@ -17,7 +18,9 @@ class _SignUpChoiceState extends State<SignUpChoice> {
                 child: SizedBox(
                   width: double.infinity,
                   child: RaisedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      NavigationHelper(context).goToPassengersSignUp();
+                    },
                     child: const Text(
                       'Sign Up as Passengers',
                       style: TextStyle(fontSize: 20, color: Colors.white),
@@ -31,7 +34,9 @@ class _SignUpChoiceState extends State<SignUpChoice> {
                 child: SizedBox(
                   width: double.infinity,
                   child: RaisedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      NavigationHelper(context).goToPassengersSignUp();
+                    },
                     child: const Text(
                       'Sign Up as Drivers',
                       style: TextStyle(fontSize: 20, color: Colors.white),
