@@ -8,6 +8,15 @@ class DriversHome extends StatefulWidget {
 class _DriversHomeState extends State<DriversHome> {
   @override
   Widget build(BuildContext context) {
+    return MaterialApp(
+      home: _DriversHomeUI(),
+    );
+  }
+}
+
+class _DriversHomeUI extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text("Bola Taxi"),
