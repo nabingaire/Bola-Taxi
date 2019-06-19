@@ -1,4 +1,3 @@
-
 import 'package:bola_taxi/Pages/DriversHome.dart';
 import 'package:bola_taxi/Pages/PassengersHome.dart';
 import 'package:bola_taxi/Pages/RideHistory.dart';
@@ -22,7 +21,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        body: SignUpChoice(),
+        body: Login(),
       ),
     );
   }

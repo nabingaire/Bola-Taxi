@@ -9,7 +9,20 @@ class SignUpChoice extends StatefulWidget {
 class _SignUpChoiceState extends State<SignUpChoice> {
   @override
   Widget build(BuildContext context) {
-    return Center(
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text("Sign Up")
+
+        )
+      ),
+    );
+  }
+}
+  class _SignUpChoiceUI extends StatelessWidget {
+    @override
+    Widget build(BuildContext context) {
+      return Center(
       child: Container(
           child: Column(
             children: <Widget>[
@@ -50,5 +63,6 @@ class _SignUpChoiceState extends State<SignUpChoice> {
           ),
           padding: EdgeInsets.fromLTRB(10, 200, 10, 0)),
     );
+    }
   }
-}
+

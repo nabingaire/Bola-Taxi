@@ -39,6 +39,7 @@ class _SignUpPassengerState extends State<SignUpPassenger> {
               decoration: InputDecoration(
                 labelText: 'Gender',
               ),
+              
             ),
              Container(
                   child: SizedBox(
@@ -57,7 +58,8 @@ class _SignUpPassengerState extends State<SignUpPassenger> {
           ],
         ),
       
-      padding: EdgeInsets.fromLTRB(0, 50, 0, 0),),
+      padding: EdgeInsets.fromLTRB(30, 30, 30, 30),
+      ),
      
     );
   }

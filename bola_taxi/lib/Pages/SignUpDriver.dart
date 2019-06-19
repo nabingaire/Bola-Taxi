@@ -63,7 +63,7 @@ class _SignUpDriverState extends State<SignUpDriver> {
           ],
         ),
       
-      padding: EdgeInsets.fromLTRB(0, 50, 0, 0),),
+      padding: EdgeInsets.fromLTRB(30, 50, 30, 30),),
      
     );
   }
