@@ -3,6 +3,11 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 class HttpHelper {
+  //Roshan's base url
+  final _baseURL = "http://192.168.100.10/bola-taxi/api";
+
+  //Nabin's base url
+  // final _baseURL = "http://192.168.1.21/bola-taxi/api";
 
   static HttpHelper _instance = new HttpHelper.internal();
 
@@ -15,7 +20,7 @@ class HttpHelper {
   Future<dynamic> get(String url, {Map<String, String> headers}) {
     return http
         .get(
-      url,
+      _baseURL + url,
       headers: headers,
     )
         .then((http.Response response) {
@@ -37,7 +42,7 @@ class HttpHelper {
   Future<dynamic> post(String url,
       {Object body}) {
     return http
-        .post(url, body: body)
+        .post(_baseURL + url, body: body)
         .then((http.Response response) {
       String res = response.body;
       int statusCode = response.statusCode;

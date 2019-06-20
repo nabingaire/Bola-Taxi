@@ -176,7 +176,7 @@ class _SignUpDriverUIState extends State<SignUpDriverUI> {
   }
 
   sendSignUpData(){
-    String signupUrl = "http://192.168.100.10/bola-taxi/api/drivers/signup.php";
+    String signupUrl = "/drivers/signup.php";
 
     HttpHelper http =  new HttpHelper();
 
