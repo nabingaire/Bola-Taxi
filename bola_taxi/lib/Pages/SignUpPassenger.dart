@@ -119,7 +119,7 @@ class _SignUpPassengerUIState extends State<SignUpPassengerUI> {
               ),
               TextFormField(
                 decoration: InputDecoration(
-                  labelText: 'Gender',
+                  labelText: _gender,
                 ),
                 validator: (value) {
                   if (value.isEmpty) {
@@ -129,7 +129,9 @@ class _SignUpPassengerUIState extends State<SignUpPassengerUI> {
                   }
                 },
                 onSaved: (String value) {
-                  _gender = value;
+                  setState(() {
+                   _gender = value; 
+                  });
                 },
               ),
               Container(
@@ -168,18 +170,34 @@ class _SignUpPassengerUIState extends State<SignUpPassengerUI> {
         "gender" : ""
     }
     */
-    Object _signUpData = {
+    Object _signUpData = json.encode({
       "name":_fullName,
       "phone":_phoneNumber,
       "password":_password,
       "gender":_gender
-    };
-    
-    http.Response response = await http.post(Uri.encodeFull("http://localhost/bola-taxi/api/passengers/signup.php"),
-      body: _signUpData
+    });
+
+    http.Response response = await http.post(Uri.encodeFull("http://192.168.100.10/bola-taxi/api/passengers/signup.php"),
+    headers: {
+      "Accept": "application/json"
+    },
+    body: _signUpData
     );
 
-    print(response.body);
+    String res = response.body;
+    print(res);
+
+    // int statusCode = response.statusCode;
+    //   print("API Response: " + res);
+    //   if (statusCode < 200 || statusCode > 400) {
+    //     res = "{\"status\":" +
+    //         statusCode.toString() +
+    //         ",\"message\":\"error\",\"response\":" +
+    //         res +
+    //         "}";
+    //     throw new Exception( statusCode);
+    //   }
+
 
   }
 }
