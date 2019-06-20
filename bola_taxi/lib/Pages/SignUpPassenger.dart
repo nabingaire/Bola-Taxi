@@ -161,7 +161,7 @@ class _SignUpPassengerUIState extends State<SignUpPassengerUI> {
   }
 
   sendSignUpData(){
-    String url = "http://192.168.100.10/bola-taxi/api/passengers/signup.php";
+    String signUpUrl = "/passengers/signup.php";
     HttpHelper http =  new HttpHelper();
 
     Object _signUpData = json.encode({
@@ -171,7 +171,7 @@ class _SignUpPassengerUIState extends State<SignUpPassengerUI> {
       "gender":_gender
     });
 
-    print(http.post(url,body: _signUpData));
+    print(http.post(signUpUrl,body: _signUpData));
     
   }
 }
