@@ -26,6 +26,8 @@ dependencies:
   firebase_core: any
   firebase_database: any
 
+ google_maps_flutter: ^0.4.0
+ # Google map dependency
 
 
 dev_dependencies:
