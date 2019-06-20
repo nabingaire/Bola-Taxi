@@ -1,5 +1,8 @@
+import 'dart:async';
 import 'package:bola_taxi/Helper/form-helper.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 class SignUpPassenger extends StatefulWidget {
   @override
@@ -137,6 +140,7 @@ class _SignUpPassengerUIState extends State<SignUpPassengerUI> {
                       FormHelper helper = new FormHelper(context, _signUpPassengerformKey);
                       helper.saveForm();
                       helper.showSnackBar();
+                      sendSignUpData();
                     },
                     child: const Text(
                       'Sign Up ',
@@ -153,5 +157,29 @@ class _SignUpPassengerUIState extends State<SignUpPassengerUI> {
         padding: EdgeInsets.fromLTRB(30, 0, 30, 0),
       ),
     );
+  }
+
+  Future<String> sendSignUpData() async{
+    /* 
+    {
+        "name" : "",
+        "phone" : "",
+        "password" : "",
+        "gender" : ""
+    }
+    */
+    Object _signUpData = {
+      "name":_fullName,
+      "phone":_phoneNumber,
+      "password":_password,
+      "gender":_gender
+    };
+    
+    http.Response response = await http.post(Uri.encodeFull("http://localhost/bola-taxi/api/passengers/signup.php"),
+      body: _signUpData
+    );
+
+    print(response.body);
+
   }
 }

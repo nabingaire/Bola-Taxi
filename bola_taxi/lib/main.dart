@@ -4,8 +4,6 @@ import 'package:bola_taxi/Pages/ResetPassword.dart';
 import 'package:bola_taxi/Pages/ResetRequest.dart';
 import 'package:bola_taxi/Pages/RideHistory.dart';
 import 'package:bola_taxi/Pages/SignUpDriver.dart';
-import 'package:bola_taxi/Pages/SignUpPassenger.dart';
-import 'package:bola_taxi/Pages/SignUpPassenger.dart' as prefix0;
 import 'package:bola_taxi/Pages/SignupChoice.dart';
 import 'package:bola_taxi/Pages/SignupPassenger.dart';
 import 'package:bola_taxi/Pages/Splash.dart';
@@ -26,7 +24,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        body: ResetRequest(),
+        body: SignUpPassenger(),
       ),
     );
   }
