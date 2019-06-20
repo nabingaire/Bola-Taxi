@@ -53,7 +53,9 @@ class _LoginUIState extends State<LoginUI> {
           ),
            Container(
             child: SizedBox(
-                width: double.infinity,
+              height: 40,
+                width: 200,
+              
                 child: RaisedButton(
                   onPressed: () {},
                   child: const Text(
@@ -61,8 +63,9 @@ class _LoginUIState extends State<LoginUI> {
                     style: TextStyle(fontSize: 20, color: Colors.red),
                   ),
                   color: Colors.white,
+        
                 )),
-            padding: EdgeInsets.fromLTRB(0, 40, 0, 0),
+            padding: EdgeInsets.fromLTRB(0, 20, 0, 0),
           ),
           Container(
 
@@ -79,12 +82,13 @@ class _LoginUIState extends State<LoginUI> {
 
          Container(
             child: SizedBox(
-                width: double.infinity,
+              height: 30,
+                width: 120,
                 child: RaisedButton(
                   onPressed: () {},
                   child: const Text(
                     'Sign Up',
-                    style: TextStyle(fontSize: 15, color: Colors.red),
+                    style: TextStyle(fontSize: 20, color: Colors.red),
                   ),
                   color: Colors.white,
                 )),
