@@ -30,11 +30,11 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
     $driversSignupQuery = "INSERT INTO drivers(name,phone,password,gender) VALUES ('$name', '$phone','$password','$gender')";
     $taxiQuery = "INSERT INTO taxi_info(taxi_no) VALUES ('$taxi_no')";
 
-    $responseArray;
-    if(mysqli_query($conn,$driversQuery)){
+    $responseArray = array();
+    if(mysqli_query($conn,$driversSignupQuery)){
         if(mysqli_query($conn,$taxiQuery)){
                
-        $responseArray = array('response_code'=>STATUS_OK,'message'=>'Signup Successfull');
+        $this->responseArray = array('response_code'=>STATUS_OK,'message'=>'Signup Successfull');
         }
     }else{
        $responseArray = array('response_code'=>NOT_FOUND,'message'=>mysqli_error($conn));

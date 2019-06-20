@@ -118,7 +118,7 @@ class _SignUpPassengerUIState extends State<SignUpPassengerUI> {
               ),
               TextFormField(
                 decoration: InputDecoration(
-                  labelText: _gender,
+                  labelText: "Gender",
                 ),
                 validator: (value) {
                   if (value.isEmpty) {
@@ -170,7 +170,7 @@ class _SignUpPassengerUIState extends State<SignUpPassengerUI> {
       "password":_password,
       "gender":_gender
     });
-    
+
     print(http.post(url,body: _signUpData));
     
   }
