@@ -97,7 +97,7 @@ class _LoginUIState extends State<LoginUI> {
          
         ],
       ),
-      padding: EdgeInsets.fromLTRB(10, 90, 10, 10),
+      padding: EdgeInsets.fromLTRB(30, 70, 30, 10),
     ));
   }
 }
