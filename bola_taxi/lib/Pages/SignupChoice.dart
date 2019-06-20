@@ -58,7 +58,7 @@ class _SignUpChoiceState extends State<SignUpChoice> {
                   width: double.infinity,
                   child: RaisedButton(
                     onPressed: () {
-                      NavigationHelper(context).goToPassengersSignUp();
+                      NavigationHelper(context).goToDriverSignup();
                     },
                     child: const Text(
                       'Sign Up as Drivers',
