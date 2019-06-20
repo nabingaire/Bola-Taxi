@@ -1,3 +1,4 @@
+import 'package:bola_taxi/Helper/form-helper.dart';
 import 'package:flutter/material.dart';
 
 class SignUpDriver extends StatefulWidget {
@@ -149,11 +150,9 @@ class _SignUpDriverUIState extends State<SignUpDriverUI> {
                   width: double.infinity,
                   child: RaisedButton(
                     onPressed: () {
-                      saveForm();
-                      if (_signUpDriverformKey.currentState.validate()) {
-                        Scaffold.of(context).showSnackBar(
-                            SnackBar(content: Text('Signing Up')));
-                      }
+                      FormHelper helper = new FormHelper(context, _signUpDriverformKey);
+                      helper.saveForm();
+                      helper.showSnackBar();
                     },
                     child: const Text(
                       'Sign Up ',
@@ -172,7 +171,5 @@ class _SignUpDriverUIState extends State<SignUpDriverUI> {
     );
   }
 
-  saveForm() {
-    _signUpDriverformKey.currentState.save();
-  }
+
 }
