@@ -1,4 +1,7 @@
+import 'dart:convert';
+
 import 'package:bola_taxi/Helper/form-helper.dart';
+import 'package:bola_taxi/Helper/http-helper.dart';
 import 'package:flutter/material.dart';
 
 class SignUpDriver extends StatefulWidget {
@@ -150,9 +153,10 @@ class _SignUpDriverUIState extends State<SignUpDriverUI> {
                   width: double.infinity,
                   child: RaisedButton(
                     onPressed: () {
-                      FormHelper helper = new FormHelper(context, _signUpDriverformKey);
-                      helper.saveForm();
-                      helper.showSnackBar();
+                      FormHelper formHelper = new FormHelper(context, _signUpDriverformKey);
+                      formHelper.saveForm();
+                      formHelper.showSnackBar();
+                      sendSignUpData();
                     },
                     child: const Text(
                       'Sign Up ',
@@ -169,6 +173,36 @@ class _SignUpDriverUIState extends State<SignUpDriverUI> {
         padding: EdgeInsets.fromLTRB(30, 0, 30, 0),
       ),
     );
+  }
+
+  sendSignUpData(){
+    String signupUrl = "http://192.168.100.10/bola-taxi/api/drivers/signup.php";
+    String taxiInfoUrl = "http://192.168.100.10/bola-taxi/api/taxi/taxi_info.php";
+
+    HttpHelper http =  new HttpHelper();
+
+    /*The data first has to be added to the drivers DB and then to taxi_info where the taxi_number 
+    has to be added
+    */
+    Object _signUpData = json.encode({
+      "name":_fullName,
+      "phone":_phoneNumber,
+      "password":_password,
+      "gender":_gender
+    });
+
+    Object _taxiData = json.encode(
+      {
+        "taxi_no":_taxiNumber
+      }
+    );
+    
+    //Send data to drivers DB
+    http.post(signupUrl,body: _signUpData);
+    //Send data to taxi info DB
+    http.post(taxiInfoUrl,body: _taxiData);
+    
+    
   }
 
 
