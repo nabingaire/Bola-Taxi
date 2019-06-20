@@ -1,7 +1,6 @@
-import 'dart:async';
 import 'package:bola_taxi/Helper/form-helper.dart';
+import 'package:bola_taxi/Helper/http-helper.dart';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 class SignUpPassenger extends StatefulWidget {
@@ -161,43 +160,18 @@ class _SignUpPassengerUIState extends State<SignUpPassengerUI> {
     );
   }
 
-  Future<String> sendSignUpData() async{
-    /* 
-    {
-        "name" : "",
-        "phone" : "",
-        "password" : "",
-        "gender" : ""
-    }
-    */
+  sendSignUpData(){
+    String url = "http://192.168.100.10/bola-taxi/api/passengers/signup.php";
+    HttpHelper http =  new HttpHelper();
+
     Object _signUpData = json.encode({
       "name":_fullName,
       "phone":_phoneNumber,
       "password":_password,
       "gender":_gender
     });
-
-    http.Response response = await http.post(Uri.encodeFull("http://192.168.100.10/bola-taxi/api/passengers/signup.php"),
-    headers: {
-      "Accept": "application/json"
-    },
-    body: _signUpData
-    );
-
-    String res = response.body;
-    print(res);
-
-    // int statusCode = response.statusCode;
-    //   print("API Response: " + res);
-    //   if (statusCode < 200 || statusCode > 400) {
-    //     res = "{\"status\":" +
-    //         statusCode.toString() +
-    //         ",\"message\":\"error\",\"response\":" +
-    //         res +
-    //         "}";
-    //     throw new Exception( statusCode);
-    //   }
-
-
+    
+    print(http.post(url,body: _signUpData));
+    
   }
 }
