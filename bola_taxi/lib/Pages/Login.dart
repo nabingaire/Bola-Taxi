@@ -24,7 +24,7 @@ class _LoginUIState extends State<LoginUI> {
   @override
   Widget build(BuildContext context) {
     return Center(
-        child: Container(
+        child: SingleChildScrollView(
       child: Column(
         children: <Widget>[
           Image.asset('assets/images/logo.png'),
@@ -51,33 +51,49 @@ class _LoginUIState extends State<LoginUI> {
                 )),
             padding: EdgeInsets.fromLTRB(0, 40, 0, 0),
           ),
-            Container(
+           Container(
             child: SizedBox(
                 width: double.infinity,
                 child: RaisedButton(
                   onPressed: () {},
                   child: const Text(
-                    'Forget Password?',
-                    style: TextStyle(fontSize: 15, color: Colors.white),
+                    'Forgot Password?',
+                    style: TextStyle(fontSize: 20, color: Colors.red),
                   ),
                   color: Colors.white,
                 )),
             padding: EdgeInsets.fromLTRB(0, 40, 0, 0),
           ),
-          Align(
-              alignment: Alignment.bottomLeft,
-              child: Row(
-                children: <Widget>[
-                  Text("New Here?"),
-                  Text(
-                    " Sign Up",
-                    style: TextStyle(color: Colors.deepPurpleAccent[400]),
-                  )
-                ],
-              ))
+          Container(
+
+            alignment: Alignment.bottomCenter,
+                      child: Column(
+                        children: <Widget>[
+                          Text("New Here?",
+                          style: TextStyle(fontSize: 15,color: Colors.black),
+                          ),
+                        ]
+                          ),
+                          padding: EdgeInsets.fromLTRB(0, 100, 0, 0),
+          ),
+
+         Container(
+            child: SizedBox(
+                width: double.infinity,
+                child: RaisedButton(
+                  onPressed: () {},
+                  child: const Text(
+                    'Sign Up',
+                    style: TextStyle(fontSize: 15, color: Colors.red),
+                  ),
+                  color: Colors.white,
+                )),
+            padding: EdgeInsets.fromLTRB(0, 20, 0, 0),
+          ),
+         
         ],
       ),
-      padding: EdgeInsets.fromLTRB(10, 90, 10, 0),
+      padding: EdgeInsets.fromLTRB(10, 90, 10, 10),
     ));
   }
 }
