@@ -1,5 +1,7 @@
 import 'package:bola_taxi/Helper/form-helper.dart';
+import 'package:bola_taxi/Helper/http-helper.dart';
 import 'package:flutter/material.dart';
+import 'dart:convert';
 
 class SignUpPassenger extends StatefulWidget {
   @override
@@ -116,7 +118,7 @@ class _SignUpPassengerUIState extends State<SignUpPassengerUI> {
               ),
               TextFormField(
                 decoration: InputDecoration(
-                  labelText: 'Gender',
+                  labelText: _gender,
                 ),
                 validator: (value) {
                   if (value.isEmpty) {
@@ -126,7 +128,9 @@ class _SignUpPassengerUIState extends State<SignUpPassengerUI> {
                   }
                 },
                 onSaved: (String value) {
-                  _gender = value;
+                  setState(() {
+                   _gender = value; 
+                  });
                 },
               ),
               Container(
@@ -137,6 +141,7 @@ class _SignUpPassengerUIState extends State<SignUpPassengerUI> {
                       FormHelper helper = new FormHelper(context, _signUpPassengerformKey);
                       helper.saveForm();
                       helper.showSnackBar();
+                      sendSignUpData();
                     },
                     child: const Text(
                       'Sign Up ',
@@ -153,5 +158,20 @@ class _SignUpPassengerUIState extends State<SignUpPassengerUI> {
         padding: EdgeInsets.fromLTRB(30, 0, 30, 0),
       ),
     );
+  }
+
+  sendSignUpData(){
+    String url = "http://192.168.100.10/bola-taxi/api/passengers/signup.php";
+    HttpHelper http =  new HttpHelper();
+
+    Object _signUpData = json.encode({
+      "name":_fullName,
+      "phone":_phoneNumber,
+      "password":_password,
+      "gender":_gender
+    });
+    
+    print(http.post(url,body: _signUpData));
+    
   }
 }

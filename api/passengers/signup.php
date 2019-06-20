@@ -27,7 +27,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
 
     $passengerSignupQuery = "INSERT INTO users(name,phone,password,gender) VALUES ('$name', '$phone','$password','$gender')";
     $responseArray;
-    if(mysqli_query($conn,$sql)){
+    if(mysqli_query($conn,$passengerSignupQuery)){
         $responseArray = array('response_code'=>STATUS_OK,'message'=>'Added succesfully');
     }else{
         $responseArray = array('response_code'=>NOT_FOUND,'message'=>'Connection Not Found');;
