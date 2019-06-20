@@ -30,7 +30,7 @@ class _LoginUIState extends State<LoginUI> {
           Image.asset('assets/images/logo.png'),
           TextField(
             decoration: InputDecoration(
-              labelText: 'Phone Number',
+              labelText: 'Mobile',
             ),
           ),
           TextField(
@@ -48,6 +48,19 @@ class _LoginUIState extends State<LoginUI> {
                     style: TextStyle(fontSize: 20, color: Colors.white),
                   ),
                   color: Colors.deepPurpleAccent[400],
+                )),
+            padding: EdgeInsets.fromLTRB(0, 40, 0, 0),
+          ),
+            Container(
+            child: SizedBox(
+                width: double.infinity,
+                child: RaisedButton(
+                  onPressed: () {},
+                  child: const Text(
+                    'Forget Password?',
+                    style: TextStyle(fontSize: 15, color: Colors.white),
+                  ),
+                  color: Colors.white,
                 )),
             padding: EdgeInsets.fromLTRB(0, 40, 0, 0),
           ),
