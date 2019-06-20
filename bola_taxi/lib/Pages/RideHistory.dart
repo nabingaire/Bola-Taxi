@@ -42,6 +42,7 @@ class _RideHistoryUI extends StatelessWidget {
               )
             ])),
             Card(
+              
                 child:
                     Column(mainAxisSize: MainAxisSize.min, children: <Widget>[
               const ListTile(

@@ -21,7 +21,6 @@ class _DriversHomeUI extends StatelessWidget {
       appBar: AppBar(
         title: Text("Bola Taxi"),
       ),
-      
       drawer: Drawer(
         child: ListView(
           padding: EdgeInsets.zero,
@@ -30,53 +29,47 @@ class _DriversHomeUI extends StatelessWidget {
               decoration: BoxDecoration(
                 color: Colors.white,
               ),
-              
               margin: const EdgeInsets.only(bottom: 80.0),
-  
-         
-              child:  Container(
-                
+              child: Container(
                 decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  image: DecorationImage(
-                    fit: BoxFit.cover,
-                
-                  image: AssetImage('assets/images/pp.png')
-                  
-                  )
-                ),
+                    shape: BoxShape.circle,
+                    image: DecorationImage(
+                        fit: BoxFit.cover,
+                        image: AssetImage('assets/images/pp.png'))),
               ),
+              
             ),
-            
             ListTile(
               title: Text("Home"),
-               trailing: Icon(Icons.home),
+              leading: Icon(Icons.home),
               onTap: () {
                 Navigator.pop(context);
               },
             ),
             ListTile(
               title: Text("Change Status"),
-              trailing: Icon(Icons.home),
+              leading: Icon(Icons.change_history),
               onTap: () {
                 Navigator.pop(context);
               },
             ),
             ListTile(
               title: Text("Ride History"),
+              leading: Icon(Icons.directions_bus),
               onTap: () {
                 Navigator.pop(context);
               },
             ),
-         
             ListTile(
               title: Text("Setting"),
+              leading: Icon(Icons.settings),
               onTap: () {
                 Navigator.pop(context);
               },
             ),
             ListTile(
               title: Text("Logout"),
+              leading: Icon(Icons.eject),
               onTap: () {
                 Navigator.pop(context);
               },
@@ -84,6 +77,7 @@ class _DriversHomeUI extends StatelessWidget {
           ],
         ),
       ),
+      
     );
   }
 }

@@ -7,7 +7,9 @@ import 'package:bola_taxi/Pages/SignUpPassenger.dart' as prefix0;
 import 'package:bola_taxi/Pages/SignupChoice.dart';
 import 'package:bola_taxi/Pages/SignupPassenger.dart';
 import 'package:bola_taxi/Pages/Splash.dart';
+import 'package:bola_taxi/Pages/UserProfile.dart';
 import 'package:bola_taxi/pages/Login.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(HomePage());
@@ -22,7 +24,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        body: SignUpDriver(),
+        body: UserProfile(),
       ),
     );
   }
