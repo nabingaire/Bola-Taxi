@@ -52,21 +52,18 @@ class _LoginUIState extends State<LoginUI> {
             padding: EdgeInsets.fromLTRB(0, 40, 0, 0),
           ),
            Container(
-            child: SizedBox(
-              height: 40,
-                width: 200,
-              
-                child: RaisedButton(
-                  onPressed: () {},
-                  child: const Text(
-                    'Forgot Password?',
-                    style: TextStyle(fontSize: 20, color: Colors.red),
-                  ),
-                  color: Colors.white,
-        
-                )),
-            padding: EdgeInsets.fromLTRB(0, 20, 0, 0),
+
+            alignment: Alignment.bottomCenter,
+                      child: Column(
+                        children: <Widget>[
+                          Text("Forgot Password?",
+                          style: TextStyle(fontSize: 15,color: Colors.black),
+                          ),
+                        ]
+                          ),
+                          padding: EdgeInsets.fromLTRB(0, 20, 0, 0),
           ),
+         
           Container(
 
             alignment: Alignment.bottomCenter,
@@ -80,20 +77,19 @@ class _LoginUIState extends State<LoginUI> {
                           padding: EdgeInsets.fromLTRB(0, 100, 0, 0),
           ),
 
-         Container(
-            child: SizedBox(
-              height: 30,
-                width: 120,
-                child: RaisedButton(
-                  onPressed: () {},
-                  child: const Text(
-                    'Sign Up',
-                    style: TextStyle(fontSize: 20, color: Colors.red),
-                  ),
-                  color: Colors.white,
-                )),
-            padding: EdgeInsets.fromLTRB(0, 20, 0, 0),
+ Container(
+
+            alignment: Alignment.bottomCenter,
+                      child: Column(
+                        children: <Widget>[
+                          Text("Sign Up",
+                          style: TextStyle(fontSize: 15,color: Colors.black),
+                          ),
+                        ]
+                          ),
+                          padding: EdgeInsets.fromLTRB(0, 20, 0, 0),
           ),
+    
          
         ],
       ),
