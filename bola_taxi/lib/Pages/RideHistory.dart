@@ -13,6 +13,22 @@ class _RideHistoryState extends State<RideHistory> {
 }
 
 class _RideHistoryUI extends StatelessWidget {
+  List<Map> _rideHistoryData = [
+    {
+      "origin": "Bhaktapur",
+      "destination": "Kathmandu",
+      "rider_name": "Raja Ram",
+      "date": "1990/02/02",
+      "taxi_no": "BA14PA"
+    },
+    {
+      "origin": "Kathmandu",
+      "destination": "Bhaktapur",
+      "rider_name": "Raja Ram",
+      "date": "1990/02/02",
+      "taxi_no": "BA14PA"
+    }
+  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,101 +46,26 @@ class _RideHistoryUI extends StatelessWidget {
       body: new Center(
         child: Column(
           children: <Widget>[
-    
-            Card(
-                child:
-                    Column(mainAxisSize: MainAxisSize.min, children: <Widget>[
-              const ListTile(
-                leading: Icon(Icons.directions_car),
-                title: Text("Ride History 1"),
-                subtitle: Text(
-                    "Origin: bkt , Destination: ktm, Riderdetail: rambahadur, date: ,taxi_no: ba 1 ja 2265 "),
-              )
-            ])),
-            Card(
-              
-                child:
-                    Column(mainAxisSize: MainAxisSize.min, children: <Widget>[
-              const ListTile(
-                leading: Icon(Icons.directions_car),
-                title: Text("Ride History 2"),
-                subtitle: Text(
-                    "Origin: bkt , Destination: ktm, Riderdetail: rambahadur, date: ,taxi_no: ba 1 ja 2265 "),
-              )
-            ])),
-            Card(
-                child:
-                    Column(mainAxisSize: MainAxisSize.min, children: <Widget>[
-              const ListTile(
-                leading: Icon(Icons.directions_car),
-                title: Text("Ride History 3"),
-                subtitle: Text(
-                    "Origin: bkt , Destination: ktm, Riderdetail: rambahadur, date: ,taxi_no: ba 1 ja 2265 "),
-              )
-            ])),
-            Card(
-                child:
-                    Column(mainAxisSize: MainAxisSize.min, children: <Widget>[
-              const ListTile(
-                leading: Icon(Icons.directions_car),
-                title: Text("Ride History 2"),
-                subtitle: Text(
-                    "Origin: bkt , Destination: ktm, Riderdetail: rambahadur, date: ,taxi_no: ba 1 ja 2265 "),
-              )
-            ])),
-            Card(
-                child:
-                    Column(mainAxisSize: MainAxisSize.min, children: <Widget>[
-              const ListTile(
-                leading: Icon(Icons.directions_car),
-                title: Text("Ride History 3"),
-                subtitle: Text(
-                    "Origin: bkt , Destination: ktm, Riderdetail: rambahadur, date: ,taxi_no: ba 1 ja 2265 "),
-              )
-            ])),
-            Card(
-                child:
-                    Column(mainAxisSize: MainAxisSize.min, children: <Widget>[
-              const ListTile(
-                leading: Icon(Icons.directions_car),
-                title: Text("Ride History 2"),
-                subtitle: Text(
-                    "Origin: bkt , Destination: ktm, Riderdetail: rambahadur, date: ,taxi_no: ba 1 ja 2265 "),
-              )
-            ])),
-            Card(
-                child:
-                    Column(mainAxisSize: MainAxisSize.min, children: <Widget>[
-              const ListTile(
-                leading: Icon(Icons.directions_car),
-                title: Text("Ride History 3"),
-                subtitle: Text(
-                    "Origin: bkt , Destination: ktm, Riderdetail: rambahadur, date: ,taxi_no: ba 1 ja 2265 "),
-              )
-            ])),
-            Card(
-                child:
-                    Column(mainAxisSize: MainAxisSize.min, children: <Widget>[
-              const ListTile(
-                leading: Icon(Icons.directions_car),
-                title: Text("Ride History 2"),
-                subtitle: Text(
-                    "Origin: bkt , Destination: ktm, Riderdetail: rambahadur, date: ,taxi_no: ba 1 ja 2265 "),
-              )
-            ])),
-            Card(
-                child:
-                    Column(mainAxisSize: MainAxisSize.min, children: <Widget>[
-              const ListTile(
-                leading: Icon(Icons.directions_car),
-                title: Text("Ride History 3"),
-                subtitle: Text(
-                    "Origin: bkt , Destination: ktm, Riderdetail: rambahadur, date: ,taxi_no: ba 1 ja 2265 "),
-              )
-            ])),
+            ListView.builder(
+              itemBuilder: _buildRideHistory,
+              itemCount: _rideHistoryData.length,
+            )
           ],
         ),
       ),
+    );
+  }
+
+  Widget _buildRideHistory(BuildContext context, int index) {
+    return Card(
+      child: Column(mainAxisSize: MainAxisSize.min, children: <Widget>[
+        const ListTile(
+          leading: Icon(Icons.directions_car),
+          title: Text("Ride History 3"),
+          subtitle: Text(
+              "Origin: ABC, Destination: ktm, Riderdetail: rambahadur, date: ,taxi_no: ba 1 ja 2265 "),
+        )
+      ]),
     );
   }
 }
