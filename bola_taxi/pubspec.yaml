@@ -56,6 +56,8 @@ flutter:
     - assets/images/splash.png
     - assets/images/bheda.png
     - assets/images/pp.png
+    - assets/images/menu.png
+    - assets/images/notify.png
   #  - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
