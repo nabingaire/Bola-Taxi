@@ -4,10 +4,10 @@ import 'package:http/http.dart' as http;
 
 class HttpHelper {
   //Roshan's base url
-  // final _baseURL = "http://192.168.100.10/bola-taxi/api";
+  final _baseURL = "http://192.168.100.10/bola-taxi/api";
 
   //Nabin's base url
-  final _baseURL = "http://192.168.1.21/bola_taxi/api";
+  // final _baseURL = "http://192.168.1.21/bola_taxi/api";
 
   static HttpHelper _instance = new HttpHelper.internal();
 

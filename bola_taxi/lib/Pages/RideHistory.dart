@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:bola_taxi/Helper/http-helper.dart';
 import 'package:bola_taxi/Models/ride_history_modal.dart';
 import 'package:flutter/material.dart';
 
@@ -11,41 +12,42 @@ class RideHistory extends StatefulWidget {
 class _RideHistoryState extends State<RideHistory> {
   @override
   Widget build(BuildContext context) {
-    return _RideHistoryUI();
+    return RideHistoryUI();
   }
 }
 
-class _RideHistoryUI extends StatelessWidget {
-  // getUsers() {
-  //   Object _rideHistoryObj = [
-  //     {
-  //       "index": 1,
-  //       "origin": "Bhaktapur",
-  //       "destination": "Kathmandu",
-  //       "rider_name": "Raja Ram",
-  //       "date": "1990/02/02",
-  //       "taxi_no": "BA14PA"
-  //     },
-  //     {
-  //       "index":2,
-  //       "origin": "Kathmandu",
-  //       "destination": "Bhaktapur",
-  //       "rider_name": "Raja Ram",
-  //       "date": "1990/02/02",
-  //       "taxi_no": "BA14PA"
-  //     }
-  //   ];
-  //   var _rideHistoryData = json.decode(_rideHistoryObj);
+class RideHistoryUI extends StatefulWidget {
+  @override
+  _RideHistoryUIState createState() => _RideHistoryUIState();
+}
 
-  //   List<RideHistoryModal> rideHistoryList = [];
+class _RideHistoryUIState extends State<RideHistoryUI> {
+  List<RideHistoryModal> _rideHistoryList = [];
 
-  //   for (var u in _rideHistoryData) {
-  //     RideHistoryModal rideHistory = RideHistoryModal(_rideHistoryData["index"],_rideHistoryData["origin"],_rideHistoryData["destination"],_rideHistoryData["rider_name"],_rideHistoryData["date"],_rideHistoryData["taxi_no"]);
-  //     rideHistoryList.add(rideHistory);
-  //   }
+  _RideHistoryUIState() {
+    String url = "\request\getcompletedrequestdata.php";
+    HttpHelper http = HttpHelper();
+    // var _rideHistoryData = json.decode(http.post(url));
+    http.post(url).then((val) => setState(() {
+          getUsers(val);
+        }));
+  }
+  
+  getUsers(jsonObj) {
+    var _rideHistoryData = json.decode(jsonObj);
+    for (var u in _rideHistoryData) {
+      RideHistoryModal rideHistory = RideHistoryModal(
+          _rideHistoryData["index"],
+          _rideHistoryData["origin"],
+          _rideHistoryData["destination"],
+          _rideHistoryData["rider_name"],
+          _rideHistoryData["date"],
+          _rideHistoryData["taxi_no"]);
+      _rideHistoryList.add(rideHistory);
+    }
 
-  //   print(rideHistoryList.length);
-  // }
+    print(_rideHistoryList.length);
+  }
 
   List<String> rideData = ["Nepal", "China"];
 
