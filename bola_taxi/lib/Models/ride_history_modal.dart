@@ -1,4 +1,4 @@
-class RideHistory{
+class RideHistoryModal{
   // {
   //     "origin": "Bhaktapur",
   //     "destination": "Kathmandu",
@@ -8,10 +8,11 @@ class RideHistory{
   //   },
 
   final int index;
+  final String origin;
   final String destination;
   final String riderName;
   final String date;
   final String taxiNo;
 
-  RideHistory({this.index,this.destination,this.riderName,this.date,this.taxiNo});
+  RideHistoryModal(this.index,this.origin,this.destination,this.riderName,this.date,this.taxiNo);
 }
