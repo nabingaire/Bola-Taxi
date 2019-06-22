@@ -1,12 +1,11 @@
 <?php
-if ($_SERVER['REQUEST_METHOD'] === 'POST'){
+if ($_SERVER['REQUEST_METHOD'] === 'GET'){
     
    
     require '../config/database.php';
     require '../config/response_codes.php';
         
     
-    }
     /*============ Send Data ===========*/
     $getCompletedRequestDataQuery = "SELECT * FROM completed_request";
     //Check if sucess
@@ -19,5 +18,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'){
     header('Content-Type: application/json');
     //Close Connection
     mysqli_close($conn);
-
+}
 ?>
