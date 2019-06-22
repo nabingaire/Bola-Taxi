@@ -24,7 +24,7 @@ class PassengerHomeUI extends StatefulWidget {
 class _PassengerHomeUIState extends State<PassengerHomeUI> {
   GoogleMapController mapController;
 
-  final LatLng _center = const LatLng(45.521563, -122.677433);
+  final LatLng _kathMandu = const  LatLng(27.708576,85.3348869);
 
   void _onMapCreated(GoogleMapController controller) {
     mapController = controller;
@@ -40,9 +40,10 @@ class _PassengerHomeUIState extends State<PassengerHomeUI> {
       body: GoogleMap(
         onMapCreated: _onMapCreated,
         initialCameraPosition: CameraPosition(
-          target: _center,
-          zoom: 11.0,
+          target: _kathMandu,
+          zoom: 12.0,
         ),
+        myLocationEnabled: true,
       ),
     );
   }
