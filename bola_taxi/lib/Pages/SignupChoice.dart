@@ -37,6 +37,14 @@ class _SignUpChoiceState extends State<SignUpChoice> {
           child: Column(
             children: <Widget>[
               Image.asset('assets/images/logo.png'),
+              Text("Bola Taxi",
+              style: TextStyle(
+                fontSize: 30,
+                color: Colors.red,
+                fontWeight: FontWeight.bold,
+
+              )
+              ),
               Container(
                 child: SizedBox(
                   width: double.infinity,
@@ -51,7 +59,7 @@ class _SignUpChoiceState extends State<SignUpChoice> {
                     color: Colors.deepPurpleAccent[400],
                   ),
                 ),
-                padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+                padding: EdgeInsets.fromLTRB(0, 30, 0, 0),
               ),
               Container(
                 child: SizedBox(
@@ -71,7 +79,7 @@ class _SignUpChoiceState extends State<SignUpChoice> {
               ),
             ],
           ),
-          padding: EdgeInsets.fromLTRB(10, 200, 10, 0)),
+          padding: EdgeInsets.fromLTRB(10, 130, 10, 0)),
     );
     }
   }

@@ -28,6 +28,10 @@ class _LoginUIState extends State<LoginUI> {
       child: Column(
         children: <Widget>[
           Image.asset('assets/images/logo.png'),
+          Text("Bola Taxi",
+          style: TextStyle(fontSize: 25,color: Colors.red,fontWeight: FontWeight.bold)
+         
+          ),
           TextField(
             decoration: InputDecoration(
               labelText: 'Mobile',
@@ -74,7 +78,7 @@ class _LoginUIState extends State<LoginUI> {
                           ),
                         ]
                           ),
-                          padding: EdgeInsets.fromLTRB(0, 100, 0, 0),
+                          padding: EdgeInsets.fromLTRB(0, 140, 0, 0),
           ),
 
  Container(

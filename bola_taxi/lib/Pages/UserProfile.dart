@@ -12,6 +12,7 @@ class _UserProfileState extends State<UserProfile> {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: _UserProfileUI(),
+      
     );
    
   }
@@ -25,7 +26,7 @@ class _UserProfileUI extends StatelessWidget {
             child: new Text("User Profile"),
           ),
           leading: new IconButton(
-            icon: new Icon(Icons.verified_user),
+            icon: new Icon(Icons.arrow_back),
           ),
         ),
         body: new Stack(
@@ -87,6 +88,7 @@ class _UserProfileUI extends StatelessWidget {
             )
             
             ],
-        ));
+        )
+        );
   }
 }
