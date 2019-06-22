@@ -1,5 +1,6 @@
 import 'package:bola_taxi/Helper/form-helper.dart';
 import 'package:bola_taxi/Helper/http-helper.dart';
+import 'package:bola_taxi/Helper/widgets-generator-helper.dart';
 import 'package:flutter/material.dart';
 import 'dart:convert';
 
@@ -129,7 +130,7 @@ class _SignUpPassengerUIState extends State<SignUpPassengerUI> {
                 },
                 onSaved: (String value) {
                   setState(() {
-                   _gender = value; 
+                    _gender = value;
                   });
                 },
               ),
@@ -138,9 +139,12 @@ class _SignUpPassengerUIState extends State<SignUpPassengerUI> {
                   width: double.infinity,
                   child: RaisedButton(
                     onPressed: () {
-                      FormHelper helper = new FormHelper(context, _signUpPassengerformKey);
+                      FormHelper helper =
+                          new FormHelper(context, _signUpPassengerformKey);
                       helper.saveForm();
-                      helper.showSnackBar();
+                      WidgetsGeneratorHelper(context)
+                          .showSnackBar("Signing Up");
+
                       sendSignUpData();
                     },
                     child: const Text(
@@ -160,18 +164,17 @@ class _SignUpPassengerUIState extends State<SignUpPassengerUI> {
     );
   }
 
-  sendSignUpData(){
+  sendSignUpData() {
     String signUpUrl = "/passengers/signup.php";
-    HttpHelper http =  new HttpHelper();
+    HttpHelper http = new HttpHelper();
 
-    Object _signUpData = json.encode({
-      "name":_fullName,
-      "phone":_phoneNumber,
-      "password":_password,
-      "gender":_gender
-    });
+    Object _signUpData = {
+      "name": _fullName,
+      "phone": _phoneNumber,
+      "password": _password,
+      "gender": _gender
+    };
 
-    print(http.post(signUpUrl,body: _signUpData));
-    
+    print(http.post(signUpUrl, body: _signUpData));
   }
 }

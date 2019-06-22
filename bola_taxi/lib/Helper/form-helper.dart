@@ -12,9 +12,4 @@ class FormHelper {
     _key.currentState.save();
   }
 
-  showSnackBar() {
-    if (_key.currentState.validate()) {
-      Scaffold.of(_context).showSnackBar(SnackBar(content: Text('Signing Up')));
-    }
-  }
 }

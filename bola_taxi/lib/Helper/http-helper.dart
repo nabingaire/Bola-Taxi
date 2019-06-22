@@ -42,7 +42,7 @@ class HttpHelper {
   Future<dynamic> post(String url,
       {Object body}) {
     return http
-        .post(_baseURL + url, body: body)
+        .post(_baseURL + url, body: json.encode(body))
         .then((http.Response response) {
       String res = response.body;
       int statusCode = response.statusCode;

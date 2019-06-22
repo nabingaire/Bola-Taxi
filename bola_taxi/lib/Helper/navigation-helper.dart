@@ -1,3 +1,5 @@
+import 'package:bola_taxi/Pages/DriversHome.dart';
+import 'package:bola_taxi/Pages/PassengersHome.dart';
 import 'package:bola_taxi/Pages/SignUpPassenger.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -9,8 +11,8 @@ class NavigationHelper {
   NavigationHelper(this.context);
 
   goToDriverSignup({args}) {
-    Navigator.push(this.context,
-        MaterialPageRoute(builder: (context) => SignUpDriver()));
+    Navigator.push(
+        this.context, MaterialPageRoute(builder: (context) => SignUpDriver()));
   }
 
   goToPassengersSignUp({args}) {
@@ -18,4 +20,13 @@ class NavigationHelper {
         MaterialPageRoute(builder: (context) => SignUpPassenger()));
   }
 
+  goToDriversHome({args}) {
+    Navigator.push(
+        context, MaterialPageRoute(builder: (context) => DriversHome()));
+  }
+
+  goToPassengersHome({args}) {
+    Navigator.push(
+        context, MaterialPageRoute(builder: (context) => PassengersHome()));
+  }
 }
