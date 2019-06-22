@@ -25,16 +25,16 @@ class _RideHistoryUIState extends State<RideHistoryUI> {
   List<RideHistoryModal> _rideHistoryList = [];
 
   _RideHistoryUIState() {
-    String url = "\request\getcompletedrequestdata.php";
+    String url = "/request/getcompletedrequestdata.php";
     HttpHelper http = HttpHelper();
     // var _rideHistoryData = json.decode(http.post(url));
-    http.post(url).then((val) => setState(() {
+    http.get(url).then((val) => setState(() {
           getUsers(val);
-        }));
+    }));
   }
   
-  getUsers(jsonObj) {
-    var _rideHistoryData = json.decode(jsonObj);
+  getUsers(rideHistoryList) {
+    // var _rideHistoryData = jsonObj.toString();
     // for (var u in _rideHistoryData) {
     //   RideHistoryModal rideHistory = RideHistoryModal(
     //       _rideHistoryData["index"],
@@ -46,7 +46,8 @@ class _RideHistoryUIState extends State<RideHistoryUI> {
     //   _rideHistoryList.add(rideHistory);
     // }
 
-    print(_rideHistoryData.length);
+    print("Got DATAAAAAAAAAAAAA");
+    print(rideHistoryList[0]["completed_request_id"]);
   }
 
   List<String> rideData = ["Nepal", "China"];
