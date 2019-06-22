@@ -19,10 +19,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET'){
     // }
     
     /*============ Send Data ===========*/
-    $getCompletedRequestDataQuery = "SELECT * FROM completed_request";
-    
+    $getCompletedRequestDataQuery = "SELECT c.completed_request_id,c.origin,c.destination,t.taxi_no,d.name,c.completed_time FROM completed_request as c
+        JOIN taxi_info as t ON t.t_id = c.t_id
+        JOIN drivers as d ON t.t_id = d.d_id";
+
     //Check if sucess
     $getCompletedRequestData = mysqli_query($conn,$getCompletedRequestDataQuery);
+
     $rows = array();
     while($r = mysqli_fetch_assoc($getCompletedRequestData)) {
         $rows[] = $r;

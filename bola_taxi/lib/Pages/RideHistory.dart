@@ -30,24 +30,24 @@ class _RideHistoryUIState extends State<RideHistoryUI> {
     // var _rideHistoryData = json.decode(http.post(url));
     http.get(url).then((val) => setState(() {
           getUsers(val);
-    }));
+        }));
   }
-  
+
   getUsers(rideHistoryList) {
     // var _rideHistoryData = jsonObj.toString();
-    // for (var u in _rideHistoryData) {
-    //   RideHistoryModal rideHistory = RideHistoryModal(
-    //       _rideHistoryData["index"],
-    //       _rideHistoryData["origin"],
-    //       _rideHistoryData["destination"],
-    //       _rideHistoryData["rider_name"],
-    //       _rideHistoryData["date"],
-    //       _rideHistoryData["taxi_no"]);
-    //   _rideHistoryList.add(rideHistory);
-    // }
+    int count = 0;
 
-    print("Got DATAAAAAAAAAAAAA");
-    print(rideHistoryList[0]["completed_request_id"]);
+    for (var u in rideHistoryList) {
+      RideHistoryModal rideHistory = RideHistoryModal(
+          int.parse(rideHistoryList[count]["completed_request_id"]),
+          rideHistoryList[count]["origin"],
+          rideHistoryList[count]["destination"],
+          rideHistoryList[count]["name"],
+          rideHistoryList[count]["completed_time"],
+          rideHistoryList[count]["taxi_no"]);
+      _rideHistoryList.add(rideHistory);
+      count++;
+    }
   }
 
   List<String> rideData = ["Nepal", "China"];
@@ -67,10 +67,10 @@ class _RideHistoryUIState extends State<RideHistoryUI> {
         ),
         backgroundColor: Colors.deepPurpleAccent[400],
       ),
-      body: new Center(
+      body:  Center(
           child: ListView.builder(
         itemBuilder: _buildRideHistory,
-        itemCount: rideData.length,
+        itemCount: _rideHistoryList.length,
       )),
     );
   }
@@ -80,9 +80,15 @@ class _RideHistoryUIState extends State<RideHistoryUI> {
       child: Column(mainAxisSize: MainAxisSize.min, children: <Widget>[
         ListTile(
           leading: Icon(Icons.directions_car),
-          title: Text(rideData[index]),
-          subtitle: Text(
-              "Origin: ABC, Destination: ktm, Riderdetail: rambahadur, date: ,taxi_no: ba 1 ja 2265 "),
+          title: Text(_rideHistoryList[index].origin +
+              " - " +
+              _rideHistoryList[index].destination),
+          subtitle: Text("Driver Name: " +
+              _rideHistoryList[index].riderName +
+              "\nTaxi No: " +
+              _rideHistoryList[index].taxiNo +
+              "\nTime: " +
+              _rideHistoryList[index].date),
         )
       ]),
     );
