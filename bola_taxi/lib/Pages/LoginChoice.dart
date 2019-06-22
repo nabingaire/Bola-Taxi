@@ -53,7 +53,7 @@ class _LoginChoiceState extends State<LoginChoice> {
                       NavigationHelper(context).goToPassengersLogin();
                     },
                     child: const Text(
-                      'Login as Passengers',
+                      'Login as Passenger',
                       style: TextStyle(fontSize: 20, color: Colors.white),
                     ),
                     color: Colors.deepPurpleAccent[400],
@@ -69,7 +69,7 @@ class _LoginChoiceState extends State<LoginChoice> {
                       NavigationHelper(context).goToDriversLogin();
                     },
                     child: const Text(
-                      'Login as Drivers',
+                      'Login as Driver',
                       style: TextStyle(fontSize: 20, color: Colors.white),
                     ),
                     color: Colors.deepPurpleAccent[400],
