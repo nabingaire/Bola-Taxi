@@ -20,6 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET'){
     
     /*============ Send Data ===========*/
     $getCompletedRequestDataQuery = "SELECT * FROM completed_request";
+    
     //Check if sucess
     $getCompletedRequestData = mysqli_query($conn,$getCompletedRequestDataQuery);
     $rows = array();
