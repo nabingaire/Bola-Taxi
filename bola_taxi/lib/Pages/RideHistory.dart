@@ -35,18 +35,18 @@ class _RideHistoryUIState extends State<RideHistoryUI> {
   
   getUsers(jsonObj) {
     var _rideHistoryData = json.decode(jsonObj);
-    for (var u in _rideHistoryData) {
-      RideHistoryModal rideHistory = RideHistoryModal(
-          _rideHistoryData["index"],
-          _rideHistoryData["origin"],
-          _rideHistoryData["destination"],
-          _rideHistoryData["rider_name"],
-          _rideHistoryData["date"],
-          _rideHistoryData["taxi_no"]);
-      _rideHistoryList.add(rideHistory);
-    }
+    // for (var u in _rideHistoryData) {
+    //   RideHistoryModal rideHistory = RideHistoryModal(
+    //       _rideHistoryData["index"],
+    //       _rideHistoryData["origin"],
+    //       _rideHistoryData["destination"],
+    //       _rideHistoryData["rider_name"],
+    //       _rideHistoryData["date"],
+    //       _rideHistoryData["taxi_no"]);
+    //   _rideHistoryList.add(rideHistory);
+    // }
 
-    print(_rideHistoryList.length);
+    print(_rideHistoryData.length);
   }
 
   List<String> rideData = ["Nepal", "China"];
