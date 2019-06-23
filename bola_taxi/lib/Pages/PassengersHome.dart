@@ -6,6 +6,7 @@ import 'package:bola_taxi/Widgets/menu_drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong/latlong.dart';
+import 'dart:async';
 
 class PassengersHome extends StatefulWidget {
   var data;
@@ -45,6 +46,9 @@ class _PassengerHomeUIState extends State<PassengerHomeUI> {
   //Tap Count
   int _tapCount = 0;
 
+  //Request sent boolean
+  bool _requestSent = false;
+
   //Color
   List<Color> _buttonBackgroundColorsList = [
     Colors.deepPurpleAccent[400],
@@ -80,9 +84,25 @@ class _PassengerHomeUIState extends State<PassengerHomeUI> {
 
   @override
   Widget build(BuildContext context) {
+    
+    //Check if request has been accepted by any driver
+    const pollingTime = Duration(seconds: 2);
+    const String activeRequestsAPIUrl = "/request/checkifrequestaccepted.php";
+    Object activeRequestsAPIObj = {"request_id": 21};
+    Timer.periodic(
+        pollingTime,
+        (Timer t) => {
+              HttpHelper()
+                  .post(activeRequestsAPIUrl, body: activeRequestsAPIObj)
+                  .then((value) => setState(() {
+                        print(value);
+                      }))
+            });
+
     return Scaffold(
       appBar: AppBar(
         title: Text("Bola Taxi"),
+        backgroundColor: _buttonBackgroundColorsList[_tapCount],
       ),
       drawer: MenuDrawer(),
       body: Stack(
@@ -201,10 +221,9 @@ class _PassengerHomeUIState extends State<PassengerHomeUI> {
       "request_time": (DateTime.now()).toString(),
       "status": "pending"
     };
-
-    print(_dataObj);
     HttpHelper().post(url, body: _dataObj).then((val) => setState(() {
           print(val);
+          _setRequestSentTo(true);
         }));
   }
 
@@ -256,7 +275,8 @@ class _PassengerHomeUIState extends State<PassengerHomeUI> {
         // return object of type Dialog
         return AlertDialog(
           title: new Text("A driver is on his way!!"),
-          content: new Text("Roshan Chapagain is coming to pick you up. His Taxi Number is Ba.15.Cha"),
+          content: new Text(
+              "Roshan Chapagain is coming to pick you up. His Taxi Number is Ba.15.Cha"),
           actions: <Widget>[
             // usually buttons at the bottom of the dialog
             new FlatButton(
@@ -269,5 +289,9 @@ class _PassengerHomeUIState extends State<PassengerHomeUI> {
         );
       },
     );
+  }
+
+  _setRequestSentTo(bool value) {
+    _requestSent = value;
   }
 }
