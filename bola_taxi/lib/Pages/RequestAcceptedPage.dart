@@ -5,25 +5,36 @@ import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong/latlong.dart';
 
 class RequestAcceptedPage extends StatefulWidget {
+  var data;
+  RequestAcceptedPage({this.data});
   @override
-  _RequestAcceptedPageState createState() => _RequestAcceptedPageState();
+  _RequestAcceptedPageState createState() =>
+      _RequestAcceptedPageState(data: data);
 }
 
 class _RequestAcceptedPageState extends State<RequestAcceptedPage> {
+  var data;
+  _RequestAcceptedPageState({this.data});
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: RequestAcceptedPageUI(),
+      home: RequestAcceptedPageUI(data: data),
     );
   }
 }
 
 class RequestAcceptedPageUI extends StatefulWidget {
+  var data;
+  RequestAcceptedPageUI({this.data});
   @override
-  _RequestAcceptedPageUIState createState() => _RequestAcceptedPageUIState();
+  _RequestAcceptedPageUIState createState() =>
+      _RequestAcceptedPageUIState(requestData: data);
 }
 
 class _RequestAcceptedPageUIState extends State<RequestAcceptedPageUI> {
+  var requestData;
+  _RequestAcceptedPageUIState({this.requestData});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
