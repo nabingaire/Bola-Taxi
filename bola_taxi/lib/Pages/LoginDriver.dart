@@ -111,7 +111,7 @@ class _LoginDriverUIState extends State<LoginDriverUI> {
                   style: TextStyle(fontSize: 15, color: Colors.black),
                 ),
               ]),
-              padding: EdgeInsets.fromLTRB(0, 120, 0, 0),
+              padding: EdgeInsets.fromLTRB(0, 80, 0, 0),
             ),
             Container(
               alignment: Alignment.bottomCenter,
