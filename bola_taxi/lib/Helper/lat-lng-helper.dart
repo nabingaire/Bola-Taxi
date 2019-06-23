@@ -1,10 +1,10 @@
 class LatLngHelper{
   
-  String latLng;
-  List<String> latLngList;
+  String latLng ="";
+  List<String> latLngList =[];
 
   LatLngHelper(this.latLng){
-    List<String> latLngList = _convertLatLngStringToList();
+    latLngList = _convertLatLngStringToList();
   }
   
 

@@ -1,3 +1,7 @@
+import 'package:bola_taxi/Helper/http-helper.dart';
+import 'package:bola_taxi/Helper/lat-lng-helper.dart';
+import 'package:bola_taxi/Helper/navigation-helper.dart';
+import 'package:bola_taxi/Models/active_ride_modal.dart';
 import 'package:bola_taxi/Widgets/menu_drawer.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -5,7 +9,7 @@ import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong/latlong.dart';
 
 class RequestAcceptedPage extends StatefulWidget {
-  var data;
+  ActiveRideModal data;
   RequestAcceptedPage({this.data});
   @override
   _RequestAcceptedPageState createState() =>
@@ -13,7 +17,7 @@ class RequestAcceptedPage extends StatefulWidget {
 }
 
 class _RequestAcceptedPageState extends State<RequestAcceptedPage> {
-  var data;
+  ActiveRideModal data;
   _RequestAcceptedPageState({this.data});
   @override
   Widget build(BuildContext context) {
@@ -24,7 +28,7 @@ class _RequestAcceptedPageState extends State<RequestAcceptedPage> {
 }
 
 class RequestAcceptedPageUI extends StatefulWidget {
-  var data;
+  ActiveRideModal data;
   RequestAcceptedPageUI({this.data});
   @override
   _RequestAcceptedPageUIState createState() =>
@@ -32,13 +36,17 @@ class RequestAcceptedPageUI extends StatefulWidget {
 }
 
 class _RequestAcceptedPageUIState extends State<RequestAcceptedPageUI> {
-  var requestData;
+  ActiveRideModal requestData;
   _RequestAcceptedPageUIState({this.requestData});
 
   @override
   Widget build(BuildContext context) {
-    print("From request accepted page");
-    print(requestData);
+    String origin = requestData.origin;
+    LatLngHelper latLngHelper = new LatLngHelper(origin);
+
+    double latitude = latLngHelper.getLatitude();
+    double longitude = latLngHelper.getLongitude();
+
     return Scaffold(
       appBar: AppBar(
         title: Text("Bola Taxi"),
@@ -49,7 +57,7 @@ class _RequestAcceptedPageUIState extends State<RequestAcceptedPageUI> {
         children: <Widget>[
           FlutterMap(
             options: new MapOptions(
-              center: new LatLng(27.7083355, 85.3131555),
+              center: new LatLng(latitude, longitude),
               zoom: 13.0,
             ),
             layers: [
@@ -67,7 +75,7 @@ class _RequestAcceptedPageUIState extends State<RequestAcceptedPageUI> {
                   Marker(
                     width: 80.0,
                     height: 80.0,
-                    point: LatLng(27.7083355, 85.3131555),
+                    point: LatLng(latitude, longitude),
                     builder: (ctx) => new Container(
                           child: Icon(
                             Icons.location_on,
@@ -93,7 +101,7 @@ class _RequestAcceptedPageUIState extends State<RequestAcceptedPageUI> {
                         color: Colors.white,
                       ),
                       onPressed: () {
-                        setState(() {});
+                        _areYouSurePrompt(context);
                       },
                       label: Text(
                         "Request Completed",
@@ -107,6 +115,49 @@ class _RequestAcceptedPageUIState extends State<RequestAcceptedPageUI> {
           )
         ],
       ),
+    );
+  }
+
+  _addDataToCompletedRequests() {
+    String url = "/request/completed_request.php";
+    Object completedRequest = {
+      "t_id": requestData.driverId,
+      "u_id": requestData.passangerId,
+      "origin": requestData.origin,
+      "destination": requestData.destination,
+      "request_id": requestData.index
+    };
+
+    HttpHelper().post(url,body: completedRequest).then((val) => setState(() {
+          print(val);
+        }));
+  }
+
+  _areYouSurePrompt(requestObj) {
+    return showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        // return object of type Dialog
+        return AlertDialog(
+          title: new Text("Are you sure?"),
+          actions: <Widget>[
+            // usually buttons at the bottom of the dialog
+            new FlatButton(
+              child: new Text("Cancel"),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+            new FlatButton(
+              child: new Text("Yes"),
+              onPressed: () {
+                _addDataToCompletedRequests();
+                NavigationHelper(context).goToDriversHome();
+              },
+            ),
+          ],
+        );
+      },
     );
   }
 }
