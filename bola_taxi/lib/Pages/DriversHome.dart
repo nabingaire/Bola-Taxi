@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:flutter/widgets.dart';
 
 class DriversHome extends StatefulWidget {
   @override
@@ -20,36 +21,47 @@ class _DriversHomeUI extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Bola Taxi",
-       ),
-       backgroundColor: Colors.deepPurpleAccent[400],
+        title: Text(
+          "Bola Taxi",
+        ),
+        backgroundColor: Colors.deepPurpleAccent[400],
       ),
-      
       drawer: Drawer(
         child: ListView(
-          padding: EdgeInsets.fromLTRB(0, 60, 120, 800),
-          
+          padding: EdgeInsets.fromLTRB(0, 0, 50, 80),
           children: <Widget>[
             DrawerHeader(
-              
-              decoration: BoxDecoration(
-              
-                color: Colors.white,
-              
-                 shape: BoxShape.circle,
-                    image: DecorationImage(
-                        fit: BoxFit.cover,
-                        image: AssetImage('assets/images/pp.png')),
-                        
-
+              child: Column(
+                children: <Widget>[
+                  Center(
+                    child: CircleAvatar(
+                      backgroundImage: AssetImage(
+                        'assets/images/pp.png',
+                      ),
+                      maxRadius: 56,
+                    ),
+                  ),
+                  
+                  Text(
+                    "Nabin Gaire",
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                    
+                  ),
+                ],
               ),
-             padding: EdgeInsets.fromLTRB(100, 100, 100, 100),
 
-             
+              // decoration: BoxDecoration(
+
+              //   color: Colors.white,
+
+              //    shape: BoxShape.circle,
+              //       image: DecorationImage(
+              //           fit: BoxFit.cover,
+              //           image: AssetImage('assets/images/pp.png')),
+
+              // ),
             ),
-            
             ListTile(
-              
               title: Text("Home"),
               leading: Icon(Icons.home),
               onTap: () {
@@ -87,7 +99,6 @@ class _DriversHomeUI extends StatelessWidget {
           ],
         ),
       ),
-      
     );
   }
 }

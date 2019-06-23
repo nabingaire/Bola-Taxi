@@ -1,3 +1,4 @@
+import 'package:bola_taxi/Pages/ChangeStatus.dart';
 import 'package:bola_taxi/Pages/DriversHome.dart';
 import 'package:bola_taxi/Pages/LoginChoice.dart';
 import 'package:bola_taxi/Pages/LoginPassenger.dart';
@@ -25,7 +26,11 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
+<<<<<<< HEAD
         body: LoginPassenger()
+=======
+        body: ChangeStatus()
+>>>>>>> 33a7501f36e68c3a8450518011ce9b33ec25a4fe
         
       ),
     );
