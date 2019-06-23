@@ -45,6 +45,7 @@ class _AcceptPageState extends State<AcceptPage> {
                       },
                     ),
                   ]),
+                
             ),
             Card(
               child: Column(mainAxisSize: MainAxisSize.max,
@@ -55,28 +56,54 @@ class _AcceptPageState extends State<AcceptPage> {
                   subtitle: Text("Name: Nabin Gaire"+" " +" Mobile: 9844785589"+" \n Origin: gyaneshwor"+" "+ "Destination: baneshwor"),
 
                 ),
-                RaisedButton(
-                  onPressed: null,
-                  child: Text("Accept Job",
-                  
-                  style: TextStyle(
-                    color: Colors.white,
-                    
-                   
-                    fontSize: 25,
-                    fontWeight: FontWeight.bold
-                    
-
-                  ),
-                  
-                  ),
-                  
-                 padding: EdgeInsets.fromLTRB(0,0,0,0),
-                  
-                ),
+                
 
               ],),
               
+            ),
+             Container(
+            child: RaisedButton(
+                
+                
+                  onPressed: (){},
+                  
+                  child: Row(children: <Widget>[
+                    Text("Accept Job",style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold
+                    ),
+                    ),
+                    Icon(Icons.check_circle)
+                  ],
+                  ),
+                  color: Colors.deepPurpleAccent[400],
+                 padding: EdgeInsets.fromLTRB(50,10,50,10),
+                  
+                ),
+                padding: EdgeInsets.fromLTRB(60, 30, 60,0),
+            ),
+            Container(
+            child: RaisedButton(
+                
+                
+                  onPressed: (){},
+                  
+                  child: Row(children: <Widget>[
+                    Text("Pass",style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold
+                    ),
+                    ),
+                    Icon(Icons.close)
+                  ],
+                  ),
+                  color: Colors.red,
+                 padding: EdgeInsets.fromLTRB(50,10,50,10),
+                  
+                ),
+                padding: EdgeInsets.fromLTRB(60, 30, 60,0),
             )
           ],
       
