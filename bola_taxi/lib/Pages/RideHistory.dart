@@ -50,7 +50,6 @@ class _RideHistoryUIState extends State<RideHistoryUI> {
     }
   }
 
-  List<String> rideData = ["Nepal", "China"];
 
   @override
   Widget build(BuildContext context) {

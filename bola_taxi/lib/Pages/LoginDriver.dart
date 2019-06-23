@@ -137,7 +137,7 @@ class _LoginDriverUIState extends State<LoginDriverUI> {
 
     HttpHelper().post(url, body: loginData).then((value) => setState(() {
           if (value["response_code"] == 200) {
-            NavigationHelper(context).goToDriversHome();
+            NavigationHelper(context).goToDriversHome(args:value);
           } else
             WidgetsGeneratorHelper(context)
                 .showSnackBar("Either phone or password is incorrect");

@@ -24,7 +24,7 @@ class NavigationHelper {
 
   goToDriversHome({args}) {
     Navigator.push(
-        context, MaterialPageRoute(builder: (context) => DriversHome()));
+        context, MaterialPageRoute(builder: (context) => DriversHome(data: args)));
   }
 
   /* =================== Passengers ============== */

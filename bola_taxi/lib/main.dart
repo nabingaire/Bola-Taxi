@@ -2,6 +2,7 @@ import 'package:bola_taxi/Pages/AcceptPage.dart';
 import 'package:bola_taxi/Pages/ChangeStatus.dart';
 import 'package:bola_taxi/Pages/DriversHome.dart';
 import 'package:bola_taxi/Pages/LoginChoice.dart';
+import 'package:bola_taxi/Pages/LoginDriver.dart';
 import 'package:bola_taxi/Pages/LoginPassenger.dart';
 import 'package:bola_taxi/Pages/PassengersHome.dart';
 import 'package:bola_taxi/Pages/ResetPassword.dart';
@@ -27,11 +28,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-<<<<<<< HEAD
-        body: AcceptPage()
-=======
-        body: LoginPassenger()
->>>>>>> ca41bcae2eafdc589bd521fd5960fbe7d72e2c9d
+        body: LoginDriver()
         
       ),
     );
