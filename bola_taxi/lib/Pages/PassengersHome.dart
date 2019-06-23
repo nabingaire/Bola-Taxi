@@ -248,4 +248,26 @@ class _PassengerHomeUIState extends State<PassengerHomeUI> {
     WidgetsGeneratorHelper(context)
         .showSnackBar("Your Request has been cancelled");
   }
+
+  _showDriverAcceptedRequestNotification() {
+    return showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        // return object of type Dialog
+        return AlertDialog(
+          title: new Text("A driver is on his way!!"),
+          content: new Text("Roshan Chapagain is coming to pick you up. His Taxi Number is Ba.15.Cha"),
+          actions: <Widget>[
+            // usually buttons at the bottom of the dialog
+            new FlatButton(
+              child: new Text("Okay"),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
 }
