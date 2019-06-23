@@ -11,40 +11,37 @@ class _LoginChoiceState extends State<LoginChoice> {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-         appBar: AppBar(
-        title: new Center(
-          child: new Text("Sign Up"),
-        
+        appBar: AppBar(
+          title: new Center(
+            child: new Text("Sign Up"),
+          ),
+          leading: new IconButton(
+            icon: new Icon(Icons.arrow_back),
+            iconSize: 35,
+            color: Colors.white,
+          ),
+          backgroundColor: Colors.deepPurpleAccent[400],
         ),
-        leading: new IconButton(
-          icon: new Icon(Icons.arrow_back),
-          iconSize: 35,
-          color: Colors.white,
-        ),
-        backgroundColor: Colors.deepPurpleAccent[400],
-      
-      ),
         body: _LoginChoiceUI(),
       ),
     );
   }
 }
-  class _LoginChoiceUI extends StatelessWidget {
-    @override
-    Widget build(BuildContext context) {
-      return Center(
+
+class _LoginChoiceUI extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Center(
       child: Container(
           child: Column(
             children: <Widget>[
               Image.asset('assets/images/logo.png'),
               Text("Bola Taxi",
-              style: TextStyle(
-                fontSize: 30,
-                color: Colors.red,
-                fontWeight: FontWeight.bold,
-
-              )
-              ),
+                  style: TextStyle(
+                    fontSize: 30,
+                    color: Colors.red,
+                    fontWeight: FontWeight.bold,
+                  )),
               Container(
                 child: SizedBox(
                   width: double.infinity,
@@ -64,6 +61,7 @@ class _LoginChoiceState extends State<LoginChoice> {
               Container(
                 child: SizedBox(
                   width: double.infinity,
+                  height: 40,
                   child: RaisedButton(
                     onPressed: () {
                       NavigationHelper(context).goToDriversLogin();
@@ -81,6 +79,5 @@ class _LoginChoiceState extends State<LoginChoice> {
           ),
           padding: EdgeInsets.fromLTRB(10, 130, 10, 0)),
     );
-    }
   }
-
+}
