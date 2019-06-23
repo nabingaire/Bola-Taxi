@@ -37,6 +37,8 @@ class _RequestAcceptedPageUIState extends State<RequestAcceptedPageUI> {
 
   @override
   Widget build(BuildContext context) {
+    print("From request accepted page");
+    print(requestData);
     return Scaffold(
       appBar: AppBar(
         title: Text("Bola Taxi"),

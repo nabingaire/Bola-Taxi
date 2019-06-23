@@ -1,3 +1,4 @@
+import 'package:bola_taxi/Helper/navigation-helper.dart';
 import 'package:bola_taxi/Models/active_ride_modal.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -164,10 +165,10 @@ class _AcceptPageState extends State<AcceptPage> {
 
   _acceptJob() {
     Object acceptedRequestsObj = {
-      "driver_id": requestObj.driver_id,
+      "driver_id": requestObj.driverId,
       "request_id": requestObj.index
     };
-    _areYouSurePrompt();
+    _areYouSurePrompt(requestObj);
     print(acceptedRequestsObj);
   }
 
@@ -175,7 +176,7 @@ class _AcceptPageState extends State<AcceptPage> {
     Navigator.pop(context);
   }
 
-  _areYouSurePrompt() {
+  _areYouSurePrompt(requestObj) {
     return showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -203,7 +204,7 @@ class _AcceptPageState extends State<AcceptPage> {
             new FlatButton(
               child: new Text("Okay"),
               onPressed: () {
-                Navigator.of(context).pop();
+                NavigationHelper(context).goToRequestAcceptedPage(args:requestObj);
               },
             ),
           ],
