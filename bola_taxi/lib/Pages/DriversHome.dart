@@ -1,4 +1,5 @@
 import 'package:bola_taxi/Helper/http-helper.dart';
+import 'package:bola_taxi/Models/active_ride_modal.dart';
 import 'package:bola_taxi/Widgets/menu_drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -35,14 +36,15 @@ class _DriversHomeUIState extends State<DriversHomeUI> {
   var driversData;
 
   //Active Rides List
-  List<> _activeRequestsList;
+  List<ActiveRideModal> _activeRequestsList = [];
 
   _DriversHomeUIState({this.driversData}) {
     //Get all active requests data
-    String url = "/request/getcompletedrequestdata.php";
+    String url = "/request/getActiveRequests.php";
     HttpHelper http = HttpHelper();
     // var _rideHistoryData = json.decode(http.post(url));
     http.get(url).then((val) => setState(() {
+          print(val);
           getActiveRequestsData(val);
         }));
   }
@@ -52,13 +54,13 @@ class _DriversHomeUIState extends State<DriversHomeUI> {
     int count = 0;
 
     for (var u in activeRequestsData) {
-      ActiveRidesModal activeRide = ActiveRidesModal(
-          int.parse(activeRequestsData[count]["completed_request_id"]),
-          activeRequestsData[count]["origin"],
-          activeRequestsData[count]["destination"],
-          activeRequestsData[count]["name"],
-          activeRequestsData[count]["completed_time"],
-          activeRequestsData[count]["taxi_no"]);
+      ActiveRideModal activeRide = ActiveRideModal(
+        int.parse(activeRequestsData[count]["request_id"]),
+        activeRequestsData[count]["origin"],
+        activeRequestsData[count]["destination"],
+        activeRequestsData[count]["phone"],
+        activeRequestsData[count]["request_time"],
+      );
       _activeRequestsList.add(activeRide);
       count++;
     }
@@ -67,28 +69,35 @@ class _DriversHomeUIState extends State<DriversHomeUI> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text(
-            "Bola Taxi",
-          ),
-          backgroundColor: Colors.deepPurpleAccent[400],
+      appBar: AppBar(
+        title: Text(
+          "Active Requests",
         ),
-        drawer: MenuDrawer(),
-        body: Card(
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: <Widget>[
-              ListTile(
-                leading: Icon(Icons.directions_car),
-                title: Text("Origin: baneshwor" +
-                    " " +
-                    "Destination: koteshwor" +
-                    " " +
-                    "\n Phone: 9844785589 " +
-                    "Requested time: 12:53:02"),
-              )
-            ],
-          ),
-        ));
+        backgroundColor: Colors.deepPurpleAccent[400],
+      ),
+      drawer: MenuDrawer(),
+      body: Center(
+          child: ListView.builder(
+        itemBuilder: _buildActiveRequest,
+        itemCount: _activeRequestsList.length,
+      )),
+    );
+  }
+
+  Widget _buildActiveRequest(BuildContext context, int index) {
+    return Card(
+      child: Column(mainAxisSize: MainAxisSize.min, children: <Widget>[
+        ListTile(
+          leading: Icon(Icons.directions_car),
+          title: Text(_activeRequestsList[index].origin +
+              " - " +
+              _activeRequestsList[index].destination),
+          subtitle: Text("Phone: " +
+              _activeRequestsList[index].phoneNumber +
+              "\nRequested Time: " +
+              _activeRequestsList[index].date),
+        )
+      ]),
+    );
   }
 }
