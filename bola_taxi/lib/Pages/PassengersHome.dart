@@ -113,9 +113,10 @@ class _PassengerHomeUIState extends State<PassengerHomeUI> {
                       ),
                       onPressed: () {
                         setState(() {
-                          _tapCount++;
-                          if(_tapCount == 3){
-                          _sendDataToRequestDB();
+                            _tapCount++;
+                    
+                          if (_tapCount == 3) {
+                            _sendDataToRequestDB();
                           }
                         });
                       },
@@ -168,12 +169,17 @@ class _PassengerHomeUIState extends State<PassengerHomeUI> {
     String url = "/request/request.php";
 
     Object _dataObj = {
-      "u_id": passangerData[0],
-      "origin": locationDestinationLatLngList[0].latitude.toString() +"," +locationDestinationLatLngList[0].longitude.toString()  ,
-      "destination": locationDestinationLatLngList[1].latitude.toString() +"," +locationDestinationLatLngList[1].longitude.toString()  ,
+      "u_id": passangerData["u_id"],
+      "origin": locationDestinationLatLngList[0].latitude.toString() +
+          "," +
+          locationDestinationLatLngList[0].longitude.toString(),
+      "destination": locationDestinationLatLngList[1].latitude.toString() +
+          "," +
+          locationDestinationLatLngList[1].longitude.toString(),
       "request_time": (DateTime.now()).toString(),
       "status": "pending"
     };
+    print(_dataObj);
     HttpHelper().post(url, body: _dataObj).then((val) => setState(() {
           print(val);
         }));

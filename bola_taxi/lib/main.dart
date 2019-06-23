@@ -26,11 +26,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-<<<<<<< HEAD
         body: LoginPassenger()
-=======
-        body: ChangeStatus()
->>>>>>> 33a7501f36e68c3a8450518011ce9b33ec25a4fe
         
       ),
     );
