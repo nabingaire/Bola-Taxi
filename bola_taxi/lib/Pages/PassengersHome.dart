@@ -43,6 +43,9 @@ class _PassengerHomeUIState extends State<PassengerHomeUI> {
   var passangerData;
   _PassengerHomeUIState({this.passangerData});
 
+  //Request ID
+  int _requestId = 0;
+
   //Tap Count
   int _tapCount = 0;
 
@@ -84,11 +87,13 @@ class _PassengerHomeUIState extends State<PassengerHomeUI> {
 
   @override
   Widget build(BuildContext context) {
-    
+
     //Check if request has been accepted by any driver
+    
+    if(_requestSent){
     const pollingTime = Duration(seconds: 2);
-    const String activeRequestsAPIUrl = "/request/checkifrequestaccepted.php";
-    Object activeRequestsAPIObj = {"request_id": 21};
+    const String activeRequestsAPIUrl = "/request/getAcceptedRequestDataByRequestId.php";
+    Object activeRequestsAPIObj = {"request_id": _requestId};
     Timer.periodic(
         pollingTime,
         (Timer t) => {
@@ -98,6 +103,7 @@ class _PassengerHomeUIState extends State<PassengerHomeUI> {
                         print(value);
                       }))
             });
+    }
 
     return Scaffold(
       appBar: AppBar(
@@ -224,6 +230,8 @@ class _PassengerHomeUIState extends State<PassengerHomeUI> {
     HttpHelper().post(url, body: _dataObj).then((val) => setState(() {
           print(val);
           _setRequestSentTo(true);
+          _requestId = int.parse(val["request_id"]);
+          print(_requestId);
         }));
   }
 

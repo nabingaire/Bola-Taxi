@@ -29,11 +29,11 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
 
     $requestQuery="INSERT INTO request(u_id,origin,destination,status) VALUES ('$u_id','$origin','$destination','$status');";
     $getRequestIdQuery = "SELECT LAST_INSERT_ID() AS request_id;"; 
-    $combinedQuery = $requestQuery . $getRequestIdQuery;
-    echo($combinedQuery);
     $responseArray;
-    if($runQuery = mysqli_query($conn,$combinedQuery)){
+    if($runQuery = mysqli_query($conn,$requestQuery)){
 
+        $getRequestIdResult = mysqli_query($conn,$getRequestIdQuery);
+        $getRequestId = mysqli_fetch_assoc($getRequestIdResult);
 
         $responseArray = array('response_code'=> STATUS_OK,'message'=>'Added succesfully');
 
@@ -41,7 +41,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
         $responseArray = array('response_code'=>NOT_FOUND, 'message'=>mysqli_error($conn));
     }
 
-    $responseArray["request_id"] = $runQuery[0]; 
+    $responseArray["request_id"] = $getRequestId["request_id"]; 
 
 
 
