@@ -29,12 +29,23 @@ class _ActiveRequestUI extends StatelessWidget {
         ),
         backgroundColor: Colors.deepPurpleAccent[400],
       ),
+         
+      
       body: Column(
-        Text(
+        
+        
+        children: <Widget>[
+
+      Text(
           "Origin: baneshwor , Destination: koteshwor , phone: 9844785589 , request time: 12:53:00"
         ),
-      )
+
+
+      ],)
+      
+      
       );
+      
     
   }
 }
