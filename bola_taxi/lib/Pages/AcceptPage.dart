@@ -80,7 +80,7 @@ class _AcceptPageState extends State<AcceptPage> {
                 ),
               ),
             ),
-            padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
+            padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
           ),
           Container(
             child: SizedBox(
