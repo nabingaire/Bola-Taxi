@@ -27,7 +27,8 @@ dependencies:
   cupertino_icons: ^0.1.2
 
   # Google map dependency
-  google_maps_flutter: ^0.4.0
+  # google_maps_flutter: ^0.4.0
+  flutter_map: any
 
 
 
