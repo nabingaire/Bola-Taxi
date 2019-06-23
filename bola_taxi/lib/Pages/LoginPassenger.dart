@@ -138,8 +138,6 @@ class _LoginPassengerUIState extends State<LoginPassengerUI> {
     HttpHelper().post(url, body: loginData).then((value) => setState(() {
           if (value["response_code"] == 200) {
             NavigationHelper(context).goToPassengersHome(args:value);
-            print("From http helper");
-            print(value);
           } else
             WidgetsGeneratorHelper(context)
                 .showSnackBar("Either phone or password is incorrect");
