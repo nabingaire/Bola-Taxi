@@ -43,29 +43,11 @@ class _AcceptPageState extends State<AcceptPage> {
                       'id': 'mapbox.streets',
                     },
                   ),
-<<<<<<< HEAD
-                  layers: [
-                    new TileLayerOptions(
-                      urlTemplate: "https://api.tiles.mapbox.com/v4/"
-                          "{id}/{z}/{x}/{y}@2x.png?access_token={accessToken}",
-                      additionalOptions: {
-                        'accessToken':
-                            'pk.eyJ1IjoiYXJvYmNlIiwiYSI6ImNqeDhqZXIwbjBsczEzcnF1cjNma3VhNHcifQ.IqytwuTwvYV1ftFptax9dA',
-                        'id': 'mapbox.streets',
-                      },
-                    ),
-                  ]),
-                
-            ),
-            Card(
-              child: Column(mainAxisSize: MainAxisSize.max,
-=======
                 ]),
           ),
           Card(
             child: Column(
               mainAxisSize: MainAxisSize.max,
->>>>>>> 6c350f054ff39fc7aa46343d42109a5077fefb7d
               children: <Widget>[
                 ListTile(
                   leading: Icon(Icons.info),
@@ -77,59 +59,6 @@ class _AcceptPageState extends State<AcceptPage> {
                       " " +
                       "Destination: baneshwor"),
                 ),
-<<<<<<< HEAD
-                
-
-              ],),
-              
-            ),
-             Container(
-            child: RaisedButton(
-                
-                
-                  onPressed: (){},
-                  
-                  child: Row(children: <Widget>[
-                    Text("Accept Job",style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold
-                    ),
-                    ),
-                    Icon(Icons.check_circle)
-                  ],
-                  ),
-                  color: Colors.deepPurpleAccent[400],
-                 padding: EdgeInsets.fromLTRB(50,10,50,10),
-                  
-                ),
-                padding: EdgeInsets.fromLTRB(60, 30, 60,0),
-            ),
-            Container(
-            child: RaisedButton(
-                
-                
-                  onPressed: (){},
-                  
-                  child: Row(children: <Widget>[
-                    Text("Pass",style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold
-                    ),
-                    ),
-                    Icon(Icons.close)
-                  ],
-                  ),
-                  color: Colors.red,
-                 padding: EdgeInsets.fromLTRB(50,10,50,10),
-                  
-                ),
-                padding: EdgeInsets.fromLTRB(60, 30, 60,0),
-            )
-          ],
-      
-=======
               ],
             ),
           ),
@@ -152,7 +81,6 @@ class _AcceptPageState extends State<AcceptPage> {
               ),
             ),
             padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
->>>>>>> 6c350f054ff39fc7aa46343d42109a5077fefb7d
           ),
           Container(
             child: SizedBox(
