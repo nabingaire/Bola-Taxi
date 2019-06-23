@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 
 class DriversHome extends StatefulWidget {
   @override
@@ -19,28 +20,36 @@ class _DriversHomeUI extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Bola Taxi"),
+        title: Text("Bola Taxi",
+       ),
+       backgroundColor: Colors.deepPurpleAccent[400],
       ),
       
       drawer: Drawer(
         child: ListView(
-          padding: EdgeInsets.zero,
+          padding: EdgeInsets.fromLTRB(0, 60, 120, 800),
+          
           children: <Widget>[
             DrawerHeader(
+              
               decoration: BoxDecoration(
+              
                 color: Colors.white,
-              ),
-              margin: const EdgeInsets.only(bottom: 80.0),
-              child: Container(
-                decoration: BoxDecoration(
-                    shape: BoxShape.circle,
+              
+                 shape: BoxShape.circle,
                     image: DecorationImage(
                         fit: BoxFit.cover,
-                        image: AssetImage('assets/images/pp.png'))),
+                        image: AssetImage('assets/images/pp.png')),
+                        
+
               ),
-              
+             padding: EdgeInsets.fromLTRB(100, 100, 100, 100),
+
+             
             ),
+            
             ListTile(
+              
               title: Text("Home"),
               leading: Icon(Icons.home),
               onTap: () {
