@@ -113,9 +113,11 @@ class _PassengerHomeUIState extends State<PassengerHomeUI> {
                       ),
                       onPressed: () {
                         setState(() {
+                          if(_tapCount != 2){
                             _tapCount++;
+                          }
                     
-                          if (_tapCount == 3) {
+                          if (_tapCount == 2) {
                             _sendDataToRequestDB();
                           }
                         });
