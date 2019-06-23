@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:bola_taxi/Widgets/menu_drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
@@ -23,28 +25,34 @@ class PassengerHomeUI extends StatefulWidget {
 }
 
 class _PassengerHomeUIState extends State<PassengerHomeUI> {
-  LatLng _kathMandu = LatLng(27.708576, 85.3348869);
+  //Tap Count
+  int _tapCount = 0;
+
+  //Color
+  List<Color> _buttonBackgroundColorsList = [
+    Colors.deepPurpleAccent[400],
+    Colors.indigo,
+    Colors.green
+  ];
+
+  //Icon
+  List<IconData> _buttonIconList = [
+    Icons.arrow_upward,
+    Icons.arrow_downward,
+    Icons.thumb_up
+  ];
+
+  //Text
+  List<String> _textList = ["Pick me up", "Drop me here", "Confirm"];
 
   //Markers
   List<Marker> _mapMarkers = [];
 
+  //LatLng
+  List<LatLng> locationDestinationLatLngList = [];
+
   @override
   Widget build(BuildContext context) {
-    _mapMarkers.add(
-      Marker(
-        width: 80.0,
-        height: 80.0,
-        point: new LatLng(27.7083355, 85.3131555),
-        builder: (ctx) => new Container(
-              child: Icon(
-                Icons.location_on,
-                color: Colors.deepPurpleAccent[400],
-                size: 40.0,
-              ),
-            ),
-      ),
-    );
-
     return Scaffold(
       appBar: AppBar(
         title: Text("Bola Taxi"),
@@ -84,15 +92,19 @@ class _PassengerHomeUIState extends State<PassengerHomeUI> {
                   height: 40,
                   child: RaisedButton.icon(
                       icon: Icon(
-                        Icons.local_taxi,
+                        _buttonIconList[_tapCount],
                         color: Colors.white,
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                        setState(() {
+                          _tapCount++;
+                        });
+                      },
                       label: Text(
-                        'Pick me Up',
+                        _textList[_tapCount],
                         style: TextStyle(color: Colors.white),
                       ),
-                      color: Colors.deepPurpleAccent[400]),
+                      color: _buttonBackgroundColorsList[_tapCount]),
                 ),
               ),
             ),
@@ -105,18 +117,32 @@ class _PassengerHomeUIState extends State<PassengerHomeUI> {
 
   _handleTap(LatLng point, BuildContext context) {
     setState(() {
-      _mapMarkers.add(Marker(
-        width: 80.0,
-        height: 80.0,
-        point: point,
-        builder: (ctx) => new Container(
-              child: Icon(
-                Icons.location_on,
-                color: Colors.deepPurpleAccent[400],
-                size: 40.0,
-              ),
-            ),
-      ));
+      if (_tapCount <= 1) {
+        //Only once per button click
+        try {
+          locationDestinationLatLngList.removeAt(_tapCount);
+          _mapMarkers.removeAt(_tapCount);
+        } catch (e) {
+          print(e.toString());
+        }
+
+        locationDestinationLatLngList.insert(_tapCount, point);
+        _mapMarkers.insert(
+            _tapCount,
+            Marker(
+              width: 80.0,
+              height: 80.0,
+              point: point,
+              builder: (ctx) => new Container(
+                    child: Icon(
+                      Icons.location_on,
+                      color: _buttonBackgroundColorsList[0],
+                      size: 40.0,
+                    ),
+                  ),
+            ));
+        print(locationDestinationLatLngList);
+      }
     });
   }
 }
