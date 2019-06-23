@@ -6,6 +6,7 @@ import 'package:bola_taxi/Widgets/menu_drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong/latlong.dart';
+import 'package:vibration/vibration.dart';
 import 'dart:async';
 
 class PassengersHome extends StatefulWidget {
@@ -46,11 +47,17 @@ class _PassengerHomeUIState extends State<PassengerHomeUI> {
   //Request ID
   int _requestId = 0;
 
+  //Data for dialog
+  String _nameOfDriver;
+  String _taxiNo;
+
   //Tap Count
   int _tapCount = 0;
 
   //Request sent boolean
   bool _requestSent = false;
+  //Dialog has been shown
+  bool _dialogShown = false;
 
   //Color
   List<Color> _buttonBackgroundColorsList = [
@@ -87,22 +94,28 @@ class _PassengerHomeUIState extends State<PassengerHomeUI> {
 
   @override
   Widget build(BuildContext context) {
-
     //Check if request has been accepted by any driver
-    
-    if(_requestSent){
-    const pollingTime = Duration(seconds: 2);
-    const String activeRequestsAPIUrl = "/request/getAcceptedRequestDataByRequestId.php";
-    Object activeRequestsAPIObj = {"request_id": _requestId};
-    Timer.periodic(
-        pollingTime,
-        (Timer t) => {
-              HttpHelper()
-                  .post(activeRequestsAPIUrl, body: activeRequestsAPIObj)
-                  .then((value) => setState(() {
-                        print(value);
-                      }))
-            });
+
+    if (_requestSent && !_dialogShown) {
+      const pollingTime = Duration(seconds: 5);
+      const String activeRequestsAPIUrl =
+          "/request/getAcceptedRequestDataByRequestId.php";
+      Object activeRequestsAPIObj = {"request_id": 33};
+      Timer.periodic(
+          pollingTime,
+          (Timer t) => {
+                HttpHelper()
+                    .post(activeRequestsAPIUrl, body: activeRequestsAPIObj)
+                    .then((value) => setState(() {
+                          if (value[0]["response_code"] == 200) {
+                            _nameOfDriver = value[0]["name"];
+                            _taxiNo = value[0]["taxi_no"];
+                            _showDriverAcceptedRequestNotification();
+                            _setDialogShownTo(true);
+                            t.cancel();
+                          }
+                        }))
+              });
     }
 
     return Scaffold(
@@ -262,7 +275,8 @@ class _PassengerHomeUIState extends State<PassengerHomeUI> {
                 _clearLocationDestinationLatLngList();
                 _resetIndex();
                 _clearMarkerList();
-                print(_mapMarkers);
+                _setDialogShownTo(false);
+                _setRequestSentTo(false);
               }),
         );
   }
@@ -277,14 +291,21 @@ class _PassengerHomeUIState extends State<PassengerHomeUI> {
   }
 
   _showDriverAcceptedRequestNotification() {
+    _vibrate();
     return showDialog(
       context: context,
       builder: (BuildContext context) {
         // return object of type Dialog
         return AlertDialog(
           title: new Text("A driver is on his way!!"),
-          content: new Text(
-              "Roshan Chapagain is coming to pick you up. His Taxi Number is Ba.15.Cha"),
+          content: new Text.rich(TextSpan(children: <TextSpan>[
+            TextSpan(
+                text: _nameOfDriver,
+                style: TextStyle(fontWeight: FontWeight.bold)),
+            TextSpan(text: " is coming to pick you up. His Taxi Number is: "),
+            TextSpan(
+                text: _taxiNo, style: TextStyle(fontWeight: FontWeight.bold))
+          ])),
           actions: <Widget>[
             // usually buttons at the bottom of the dialog
             new FlatButton(
@@ -301,5 +322,15 @@ class _PassengerHomeUIState extends State<PassengerHomeUI> {
 
   _setRequestSentTo(bool value) {
     _requestSent = value;
+  }
+
+  _setDialogShownTo(bool value) {
+    _dialogShown = value;
+  }
+
+  _vibrate() {
+    Vibration.hasVibrator().then((value) {
+      Vibration.vibrate();
+    });
   }
 }

@@ -30,6 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET'){
     while($r = mysqli_fetch_assoc($getCompletedRequestData)) {
         $rows[] = $r;
     }
+
     echo json_encode($rows);
     header('Content-Type: application/json');
     //Close Connection
