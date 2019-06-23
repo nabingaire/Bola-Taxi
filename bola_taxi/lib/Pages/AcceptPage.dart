@@ -24,64 +24,86 @@ class _AcceptPageState extends State<AcceptPage> {
         backgroundColor: Colors.deepPurpleAccent[400],
       ),
       body: Column(
-          
-          children: <Widget>[
-            new SizedBox(
-              height: 400,
-               width: double.infinity,
-              child: FlutterMap(
-                  options: new MapOptions(
-                    center: LatLng(27.7083355, 85.3131555),
-                    zoom: 13.0,
+        children: <Widget>[
+          new SizedBox(
+            height: 240,
+            width: double.infinity,
+            child: FlutterMap(
+                options: new MapOptions(
+                  center: LatLng(27.7083355, 85.3131555),
+                  zoom: 13.0,
+                ),
+                layers: [
+                  new TileLayerOptions(
+                    urlTemplate: "https://api.tiles.mapbox.com/v4/"
+                        "{id}/{z}/{x}/{y}@2x.png?access_token={accessToken}",
+                    additionalOptions: {
+                      'accessToken':
+                          'pk.eyJ1IjoiYXJvYmNlIiwiYSI6ImNqeDhqZXIwbjBsczEzcnF1cjNma3VhNHcifQ.IqytwuTwvYV1ftFptax9dA',
+                      'id': 'mapbox.streets',
+                    },
                   ),
-                  layers: [
-                    new TileLayerOptions(
-                      urlTemplate: "https://api.tiles.mapbox.com/v4/"
-                          "{id}/{z}/{x}/{y}@2x.png?access_token={accessToken}",
-                      additionalOptions: {
-                        'accessToken':
-                            'pk.eyJ1IjoiYXJvYmNlIiwiYSI6ImNqeDhqZXIwbjBsczEzcnF1cjNma3VhNHcifQ.IqytwuTwvYV1ftFptax9dA',
-                        'id': 'mapbox.streets',
-                      },
-                    ),
-                  ]),
-            ),
-            Card(
-              child: Column(mainAxisSize: MainAxisSize.max,
+                ]),
+          ),
+          Card(
+            child: Column(
+              mainAxisSize: MainAxisSize.max,
               children: <Widget>[
                 ListTile(
                   leading: Icon(Icons.info),
                   title: Text("Users Information"),
-                  subtitle: Text("Name: Nabin Gaire"+" " +" Mobile: 9844785589"+" \n Origin: gyaneshwor"+" "+ "Destination: baneshwor"),
-
+                  subtitle: Text("Name: Nabin Gaire" +
+                      " " +
+                      " Mobile: 9844785589" +
+                      " \n Origin: gyaneshwor" +
+                      " " +
+                      "Destination: baneshwor"),
                 ),
-                RaisedButton(
-                  onPressed: null,
-                  child: Text("Accept Job",
-                  
-                  style: TextStyle(
-                    color: Colors.white,
-                    
-                   
-                    fontSize: 25,
-                    fontWeight: FontWeight.bold
-                    
-
-                  ),
-                  
-                  ),
-                  
-                 padding: EdgeInsets.fromLTRB(0,0,0,0),
-                  
-                ),
-
-              ],),
-              
-            )
-          ],
-      
+              ],
+            ),
           ),
-          
+          Container(
+            child: SizedBox(
+              width: double.infinity,
+              height: 40,
+              child: RaisedButton.icon(
+                icon: Icon(
+                  Icons.sentiment_very_satisfied,
+                  color: Colors.white,
+                ),
+                color: Colors.deepPurpleAccent[400],
+                onPressed: () {},
+                label: Text(
+                  "Accept Job",
+                  style: TextStyle(
+                      color: Colors.white, fontWeight: FontWeight.bold),
+                ),
+              ),
+            ),
+            padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
+          ),
+          Container(
+            child: SizedBox(
+              width: double.infinity,
+              height: 40,
+              child: RaisedButton.icon(
+                icon: Icon(
+                  Icons.sentiment_dissatisfied,
+                  color: Colors.white,
+                ),
+                color: Colors.red,
+                onPressed: () {},
+                label: Text(
+                  "Pass Job",
+                  style: TextStyle(
+                      color: Colors.white, fontWeight: FontWeight.bold),
+                ),
+              ),
+            ),
+            padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
+          )
+        ],
+      ),
     );
   }
 }
