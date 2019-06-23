@@ -26,12 +26,25 @@ class _PassengerHomeUIState extends State<PassengerHomeUI> {
   LatLng _kathMandu = LatLng(27.708576, 85.3348869);
 
   //Markers
-  List<Marker> _mapMarkers;
+  List<Marker> _mapMarkers = [];
 
   @override
   Widget build(BuildContext context) {
-    // _mapMarkers.add(Marker(
-    //     markerId: MarkerId('ny'), position: LatLng(27.7129365, 85.3180723)));
+    _mapMarkers.add(
+      Marker(
+        width: 80.0,
+        height: 80.0,
+        point: new LatLng(27.7083355, 85.3131555),
+        builder: (ctx) => new Container(
+              child: Icon(
+                Icons.location_on,
+                color: Colors.deepPurpleAccent[400],
+                size: 40.0,
+              ),
+            ),
+      ),
+    );
+
     return Scaffold(
       appBar: AppBar(
         title: Text("Bola Taxi"),
@@ -43,7 +56,9 @@ class _PassengerHomeUIState extends State<PassengerHomeUI> {
             options: new MapOptions(
               center: new LatLng(27.7083355, 85.3131555),
               zoom: 13.0,
-              onTap: _handleTap,
+              onTap: (LatLng point) {
+                _handleTap(point, context);
+              },
             ),
             layers: [
               new TileLayerOptions(
@@ -56,16 +71,7 @@ class _PassengerHomeUIState extends State<PassengerHomeUI> {
                 },
               ),
               new MarkerLayerOptions(
-                markers: [
-                  new Marker(
-                    width: 80.0,
-                    height: 80.0,
-                    point: new LatLng(27.7083355, 85.3131555),
-                    builder: (ctx) => new Container(
-                          child: Icon(Icons.location_on),
-                        ),
-                  ),
-                ],
+                markers: _mapMarkers,
               ),
             ],
           ),
@@ -97,9 +103,20 @@ class _PassengerHomeUIState extends State<PassengerHomeUI> {
     );
   }
 
-  _handleTap(LatLng point) {
+  _handleTap(LatLng point, BuildContext context) {
     setState(() {
-      _mapMarkers.add(Marker(point: point));
+      _mapMarkers.add(Marker(
+        width: 80.0,
+        height: 80.0,
+        point: point,
+        builder: (ctx) => new Container(
+              child: Icon(
+                Icons.location_on,
+                color: Colors.deepPurpleAccent[400],
+                size: 40.0,
+              ),
+            ),
+      ));
     });
   }
 }
