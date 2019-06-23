@@ -23,9 +23,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $password = $json_obj->password;
 
 
-  $usersLoginQuery = "SELECT  * from users where phone='$phone' AND password= '$password'";
+  $usersLoginQuery = "SELECT  u_id,name,phone,current_loc,gender,review_id from users where phone='$phone' AND password= '$password'";
 
   $loginResult = mysqli_query($conn, $usersLoginQuery);
+
+  while($r = mysqli_fetch_assoc($loginResult)) {
+    $rows[] = $r;
+  }
 
   $responseArray = array();
   if (mysqli_num_rows($loginResult) == 0) {
@@ -33,6 +37,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   } else {
     $responseArray = array('response_code' => STATUS_OK, 'message' => 'Login Successfull');
   }
+
+  //Add required fields
+  $responseArray["u_id"] = $rows[0]["u_id"];
+  $responseArray["name"] = $rows[0]["name"];
+  $responseArray["phone"] = $rows[0]["phone"];
+  $responseArray["current_loc"] = $rows[0]["current_loc"];
+  $responseArray["gender"] = $rows[0]["gender"];
+  $responseArray["review_id"] = $rows[0]["review_id"];
 
   header('Content-type: application/json');
   echo json_encode($responseArray);

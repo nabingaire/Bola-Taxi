@@ -1,30 +1,46 @@
 import 'dart:convert';
 
+import 'package:bola_taxi/Helper/http-helper.dart';
 import 'package:bola_taxi/Widgets/menu_drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong/latlong.dart';
 
 class PassengersHome extends StatefulWidget {
+  var data;
+  PassengersHome({this.data});
+
   @override
-  _PassengersHomeState createState() => _PassengersHomeState();
+  _PassengersHomeState createState() {
+    return _PassengersHomeState(data: data);
+  }
 }
 
 class _PassengersHomeState extends State<PassengersHome> {
+  var data;
+  _PassengersHomeState({this.data});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: PassengerHomeUI(),
+      home: PassengerHomeUI(data: data),
     );
   }
 }
 
 class PassengerHomeUI extends StatefulWidget {
+  var data;
+  PassengerHomeUI({this.data});
+
   @override
-  _PassengerHomeUIState createState() => _PassengerHomeUIState();
+  _PassengerHomeUIState createState() =>
+      _PassengerHomeUIState(passangerData: data);
 }
 
 class _PassengerHomeUIState extends State<PassengerHomeUI> {
+  var passangerData;
+  _PassengerHomeUIState({this.passangerData});
+
   //Tap Count
   int _tapCount = 0;
 
@@ -98,6 +114,9 @@ class _PassengerHomeUIState extends State<PassengerHomeUI> {
                       onPressed: () {
                         setState(() {
                           _tapCount++;
+                          if(_tapCount == 3){
+                          _sendDataToRequestDB();
+                          }
                         });
                       },
                       label: Text(
@@ -141,8 +160,22 @@ class _PassengerHomeUIState extends State<PassengerHomeUI> {
                     ),
                   ),
             ));
-        print(locationDestinationLatLngList);
       }
     });
+  }
+
+  _sendDataToRequestDB() {
+    String url = "/request/request.php";
+
+    Object _dataObj = {
+      "u_id": passangerData[0],
+      "origin": locationDestinationLatLngList[0].latitude.toString() +"," +locationDestinationLatLngList[0].longitude.toString()  ,
+      "destination": locationDestinationLatLngList[1].latitude.toString() +"," +locationDestinationLatLngList[1].longitude.toString()  ,
+      "request_time": (DateTime.now()).toString(),
+      "status": "pending"
+    };
+    HttpHelper().post(url, body: _dataObj).then((val) => setState(() {
+          print(val);
+        }));
   }
 }

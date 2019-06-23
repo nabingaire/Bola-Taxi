@@ -27,12 +27,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
   $loginResult = mysqli_query($conn, $driversLoginQuery);
 
+  while($r = mysqli_fetch_assoc($loginResult)) {
+    $rows[] = $r;
+}
+
   $responseArray = array();
   if (mysqli_num_rows($loginResult) == 0) {
     $responseArray = array('response_code' => NOT_FOUND, 'message' => mysqli_error($conn));
   } else {
     $responseArray = array('response_code' => STATUS_OK, 'message' => 'Login Successfull');
   }
+
+  $responseArray = array_merge($responseArray,$rows);
 
   header('Content-type: application/json');
   echo json_encode($responseArray);
