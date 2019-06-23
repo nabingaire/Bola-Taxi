@@ -101,7 +101,9 @@ class _AcceptPageState extends State<AcceptPage> {
                   color: Colors.white,
                 ),
                 color: Colors.deepPurpleAccent[400],
-                onPressed: () {},
+                onPressed: () {
+                  _acceptJob();
+                },
                 label: Text(
                   "Accept Job",
                   style: TextStyle(
@@ -121,7 +123,9 @@ class _AcceptPageState extends State<AcceptPage> {
                   color: Colors.white,
                 ),
                 color: Colors.red,
-                onPressed: () {},
+                onPressed: () {
+                  _passJob();
+                },
                 label: Text(
                   "Pass Job",
                   style: TextStyle(
@@ -156,5 +160,55 @@ class _AcceptPageState extends State<AcceptPage> {
 
   List<String> _convertLatLngStringToList(value) {
     return value.split(",");
+  }
+
+  _acceptJob() {
+    Object acceptedRequestsObj = {
+      "driver_id": requestObj.driver_id,
+      "request_id": requestObj.index
+    };
+    _areYouSurePrompt();
+    print(acceptedRequestsObj);
+  }
+
+  void _passJob() {
+    Navigator.pop(context);
+  }
+
+  _areYouSurePrompt() {
+    return showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        // return object of type Dialog
+        return AlertDialog(
+          title: new Text("Are you sure?"),
+          content: new Text.rich(TextSpan(children: <TextSpan>[
+            TextSpan(
+              text:
+                  "Are you sure want to pick up the passenger? Failing to do so will lead ",
+            ),
+            TextSpan(
+                text: " bad reviews. ",
+                style:
+                    TextStyle(fontWeight: FontWeight.bold, color: Colors.red)),
+          ])),
+          actions: <Widget>[
+            // usually buttons at the bottom of the dialog
+            new FlatButton(
+              child: new Text("Cancel"),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+            new FlatButton(
+              child: new Text("Okay"),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
   }
 }
