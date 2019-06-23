@@ -41,7 +41,7 @@ class NavigationHelper {
 
   goToPassengersHome({args}) {
     Navigator.push(
-        context, MaterialPageRoute(builder: (context) => PassengersHome()));
+        context, MaterialPageRoute(builder: (context) => PassengersHome(data: args)));
   }
 
   

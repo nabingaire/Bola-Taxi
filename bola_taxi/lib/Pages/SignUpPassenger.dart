@@ -5,11 +5,14 @@ import 'package:flutter/material.dart';
 import 'dart:convert';
 
 class SignUpPassenger extends StatefulWidget {
+
   @override
   _SignUpPassengerState createState() => _SignUpPassengerState();
 }
 
 class _SignUpPassengerState extends State<SignUpPassenger> {
+
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -32,11 +35,15 @@ class _SignUpPassengerState extends State<SignUpPassenger> {
 }
 
 class SignUpPassengerUI extends StatefulWidget {
+
   @override
   _SignUpPassengerUIState createState() => _SignUpPassengerUIState();
 }
 
 class _SignUpPassengerUIState extends State<SignUpPassengerUI> {
+  
+
+  
   //Form Key
   final _signUpPassengerformKey = GlobalKey<FormState>();
 
