@@ -14,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET'){
   
     
     /*============ Send Data ===========*/
-    $getCompletedRequestDataQuery = "SELECT r.request_id,r.origin,r.destination,u.phone,r.request_time FROM request as r
+    $getCompletedRequestDataQuery = "SELECT u.name,r.request_id,r.origin,r.destination,u.phone,r.request_time FROM request as r
     JOIN users as u ON r.u_id = u.u_id WHERE r.status='pending'";
 
     //Check if sucess

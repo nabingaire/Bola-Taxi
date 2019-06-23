@@ -1,3 +1,4 @@
+import 'package:bola_taxi/Pages/AcceptPage.dart';
 import 'package:bola_taxi/Pages/DriversHome.dart';
 import 'package:bola_taxi/Pages/LoginPassenger.dart';
 import 'package:bola_taxi/Pages/PassengersHome.dart';
@@ -25,6 +26,10 @@ class NavigationHelper {
   goToDriversHome({args}) {
     Navigator.push(
         context, MaterialPageRoute(builder: (context) => DriversHome(data: args)));
+  }
+
+  goToAcceptPage({args}){
+    Navigator.push(context,MaterialPageRoute(builder: (context) => AcceptPage(data: args)) );
   }
 
   /* =================== Passengers ============== */

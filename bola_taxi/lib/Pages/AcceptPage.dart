@@ -1,16 +1,23 @@
+import 'package:bola_taxi/Models/active_ride_modal.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong/latlong.dart';
 
 class AcceptPage extends StatefulWidget {
+  ActiveRideModal data;
+  AcceptPage({this.data});
   @override
-  _AcceptPageState createState() => _AcceptPageState();
+  _AcceptPageState createState() => _AcceptPageState(requestObj: data);
 }
 
 class _AcceptPageState extends State<AcceptPage> {
+  ActiveRideModal requestObj;
+  _AcceptPageState({this.requestObj});
   @override
   Widget build(BuildContext context) {
+    print(_getOriginLatitude());
+    print(_getOriginLongitude());
     return Scaffold(
       appBar: AppBar(
         title: new Center(
@@ -30,7 +37,7 @@ class _AcceptPageState extends State<AcceptPage> {
             width: double.infinity,
             child: FlutterMap(
                 options: new MapOptions(
-                  center: LatLng(27.7083355, 85.3131555),
+                  center: LatLng(_getOriginLatitude(), _getOriginLongitude()),
                   zoom: 13.0,
                 ),
                 layers: [
@@ -43,6 +50,23 @@ class _AcceptPageState extends State<AcceptPage> {
                       'id': 'mapbox.streets',
                     },
                   ),
+                  new MarkerLayerOptions(
+                    markers: [
+                      Marker(
+                        width: 80.0,
+                        height: 80.0,
+                        point:
+                            LatLng(_getOriginLatitude(), _getOriginLongitude()),
+                        builder: (ctx) => new Container(
+                              child: Icon(
+                                Icons.location_on,
+                                color: Colors.deepPurpleAccent[400],
+                                size: 40.0,
+                              ),
+                            ),
+                      )
+                    ],
+                  ),
                 ]),
           ),
           Card(
@@ -51,14 +75,19 @@ class _AcceptPageState extends State<AcceptPage> {
               children: <Widget>[
                 ListTile(
                   leading: Icon(Icons.info),
-                  title: Text("Users Information"),
-                  subtitle: Text("Name: Nabin Gaire" +
-                      " " +
-                      " Mobile: 9844785589" +
-                      " \n Origin: gyaneshwor" +
-                      " " +
-                      "Destination: baneshwor"),
-                ),
+                  title:
+                      Text(requestObj.origin + " - " + requestObj.destination),
+                  subtitle: Text.rich(TextSpan(children: <TextSpan>[
+                    TextSpan(
+                        text: "Name: ",
+                        style: TextStyle(fontWeight: FontWeight.bold)),
+                    TextSpan(text: requestObj.name),
+                    TextSpan(
+                        text: " Mobile: ",
+                        style: TextStyle(fontWeight: FontWeight.bold)),
+                    TextSpan(text: requestObj.phoneNumber),
+                  ])),
+                )
               ],
             ),
           ),
@@ -80,7 +109,7 @@ class _AcceptPageState extends State<AcceptPage> {
                 ),
               ),
             ),
-            padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
+            padding: EdgeInsets.fromLTRB(20, 20, 20, 0),
           ),
           Container(
             child: SizedBox(
@@ -105,5 +134,27 @@ class _AcceptPageState extends State<AcceptPage> {
         ],
       ),
     );
+  }
+
+  _getOriginLongitude() {
+    String lat = _convertLatLngStringToList(_getOrigin())[1];
+    return double.parse(lat);
+  }
+
+  _getOriginLatitude() {
+    String lat = _convertLatLngStringToList(_getOrigin())[0];
+    return double.parse(lat);
+  }
+
+  _getOrigin() {
+    return requestObj.origin;
+  }
+
+  _getDestination() {
+    return requestObj.destination;
+  }
+
+  List<String> _convertLatLngStringToList(value) {
+    return value.split(",");
   }
 }

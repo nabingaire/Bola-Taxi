@@ -12,6 +12,7 @@ class ActiveRideModal{
   final String destination;
   final String phoneNumber;
   final String date;
+  final String name;
 
-  ActiveRideModal(this.index,this.origin,this.destination,this.phoneNumber,this.date);
+  ActiveRideModal(this.index,this.name,this.origin,this.destination,this.phoneNumber,this.date);
 }

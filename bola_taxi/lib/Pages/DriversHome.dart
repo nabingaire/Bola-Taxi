@@ -1,4 +1,5 @@
 import 'package:bola_taxi/Helper/http-helper.dart';
+import 'package:bola_taxi/Helper/navigation-helper.dart';
 import 'package:bola_taxi/Models/active_ride_modal.dart';
 import 'package:bola_taxi/Widgets/menu_drawer.dart';
 import 'package:flutter/material.dart';
@@ -56,6 +57,7 @@ class _DriversHomeUIState extends State<DriversHomeUI> {
     for (var u in activeRequestsData) {
       ActiveRideModal activeRide = ActiveRideModal(
         int.parse(activeRequestsData[count]["request_id"]),
+        activeRequestsData[count]["name"],
         activeRequestsData[count]["origin"],
         activeRequestsData[count]["destination"],
         activeRequestsData[count]["phone"],
@@ -85,19 +87,24 @@ class _DriversHomeUIState extends State<DriversHomeUI> {
   }
 
   Widget _buildActiveRequest(BuildContext context, int index) {
-    return Card(
-      child: Column(mainAxisSize: MainAxisSize.min, children: <Widget>[
-        ListTile(
-          leading: Icon(Icons.directions_car),
-          title: Text(_activeRequestsList[index].origin +
-              " - " +
-              _activeRequestsList[index].destination),
-          subtitle: Text("Phone: " +
-              _activeRequestsList[index].phoneNumber +
-              "\nRequested Time: " +
-              _activeRequestsList[index].date),
-        )
-      ]),
+    return GestureDetector(
+      child: Card(
+        child: Column(mainAxisSize: MainAxisSize.min, children: <Widget>[
+          ListTile(
+            leading: Icon(Icons.directions_car),
+            title: Text(_activeRequestsList[index].origin +
+                " - " +
+                _activeRequestsList[index].destination),
+            subtitle: Text("Phone: " +
+                _activeRequestsList[index].phoneNumber +
+                "\nRequested Time: " +
+                _activeRequestsList[index].date),
+          )
+        ]),
+      ),
+      onTap: (){
+        NavigationHelper(context).goToAcceptPage(args: _activeRequestsList[index]);
+      },
     );
   }
 }
