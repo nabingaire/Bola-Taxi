@@ -1,3 +1,5 @@
+
+
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
@@ -26,6 +28,7 @@ class _DriversHomeUI extends StatelessWidget {
           ),
           backgroundColor: Colors.deepPurpleAccent[400],
         ),
+        
         drawer: Drawer(
           child: ListView(
             padding: EdgeInsets.fromLTRB(0, 0, 50, 80),
@@ -95,48 +98,28 @@ class _DriversHomeUI extends StatelessWidget {
                   Navigator.pop(context);
                 },
               ),
+          
             ],
           ),
         ),
-        body: Column(children: <Widget>[
-          Container(
-            child: Text(" Origin: baneshwor: "  + " " +"Destination: koteshwor " +"\n Phone no: " +"\n Requested Time :",
-            style: TextStyle(
-              fontSize: 15
-            ),
-            
-
-              
-            ),
-            
-            padding: EdgeInsets.fromLTRB(40, 10, 0,10),
-          ),
-          Container(
-            child: Text(" Origin: baneshwor: "  + " " +"Destination: koteshwor " +"\n Phone no: " +"\n Requested Time :",
-            style: TextStyle(
-              fontSize: 15
-            ),
-            
-
-              
-            ),
-            
-            padding: EdgeInsets.fromLTRB(40, 10, 0,10),
-          ),
-          Container(
-            child: Text(" Origin: baneshwor: "  + " " +"Destination: koteshwor " +"\n Phone no: " +"\n Requested Time :",
-            style: TextStyle(
-              fontSize: 15
-            ),
-            
-
-              
-            ),
-            
-            padding: EdgeInsets.fromLTRB(40, 10, 0,10),
-          )
-        ],),
+      
         );
         
   }
+}
+
+Widget build(BuildContext context){
+
+  return  Card(
+
+    child: Column(mainAxisSize: MainAxisSize.min ,
+    children: <Widget>[
+    ListTile(
+      leading: Icon(Icons.directions_car),
+      title: Text("Origin: baneshwor" + " "+"Destination: koteshwor"+" "+"\n Phone: 9844785589 "+"Requested time: 12:53:02"),
+    )
+    ],
+    ),
+
+  );
 }
