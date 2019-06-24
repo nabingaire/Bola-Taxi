@@ -83,6 +83,8 @@ class _LoginDriverUIState extends State<LoginDriverUI> {
                       FormHelper formHelper =
                           new FormHelper(context, _loginFormKey);
                       formHelper.saveForm();
+                      formHelper.validateForm();
+
                       WidgetsGeneratorHelper(context)
                           .showSnackBar("Logging In");
                       checkIfCanLoginAndRedirect(context);
@@ -139,9 +141,6 @@ class _LoginDriverUIState extends State<LoginDriverUI> {
 
     HttpHelper().post(url, body: loginData).then((value) => setState(() {
           if (value["response_code"] == 200) {
-            //Set Preferences
-            print(SharedPreferencesHelper()
-                .setInitialLoginSharedPreference(value));
             NavigationHelper(context).goToDriversHome(args: value);
           } else
             WidgetsGeneratorHelper(context)

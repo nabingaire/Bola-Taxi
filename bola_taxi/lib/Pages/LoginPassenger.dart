@@ -1,8 +1,10 @@
 import 'package:bola_taxi/Helper/form-helper.dart';
 import 'package:bola_taxi/Helper/http-helper.dart';
 import 'package:bola_taxi/Helper/navigation-helper.dart';
+import 'package:bola_taxi/Helper/shared-preferences-helper.dart';
 import 'package:bola_taxi/Helper/widgets-generator-helper.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginPassenger extends StatefulWidget {
   @override
@@ -81,6 +83,7 @@ class _LoginPassengerUIState extends State<LoginPassengerUI> {
                       FormHelper formHelper =
                           new FormHelper(context, _loginFormKey);
                       formHelper.saveForm();
+                      formHelper.validateForm();
                       WidgetsGeneratorHelper(context)
                           .showSnackBar("Logging In");
                       checkIfCanLoginAndRedirect(context);
@@ -137,10 +140,21 @@ class _LoginPassengerUIState extends State<LoginPassengerUI> {
 
     HttpHelper().post(url, body: loginData).then((value) => setState(() {
           if (value["response_code"] == 200) {
-            NavigationHelper(context).goToPassengersHome(args:value);
+            NavigationHelper(context).goToPassengersHome(args: value);
+            //Set Preferences
+            print("Preferences");
+            print(SharedPreferencesHelper()
+                .setPassangerLoginSharedPreference(value));
           } else
             WidgetsGeneratorHelper(context)
                 .showSnackBar("Either phone or password is incorrect");
         }));
+
+    
   }
+
+  _getGenderData() async{
+      final prefs = await SharedPreferences.getInstance();
+      print(prefs.getString("gender"));
+    }
 }
