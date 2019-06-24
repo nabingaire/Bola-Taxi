@@ -1,6 +1,8 @@
+import 'package:bola_taxi/Pages/AcceptPage.dart';
 import 'package:bola_taxi/Pages/DriversHome.dart';
 import 'package:bola_taxi/Pages/LoginPassenger.dart';
 import 'package:bola_taxi/Pages/PassengersHome.dart';
+import 'package:bola_taxi/Pages/RequestAcceptedPage.dart';
 import 'package:bola_taxi/Pages/SignUpPassenger.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -17,14 +19,24 @@ class NavigationHelper {
         this.context, MaterialPageRoute(builder: (context) => SignUpDriver()));
   }
 
-  goToDriversLogin({args}){
+  goToDriversLogin({args}) {
     Navigator.push(this.context,
         MaterialPageRoute(builder: (context) => LoginPassenger()));
   }
 
   goToDriversHome({args}) {
-    Navigator.push(
-        context, MaterialPageRoute(builder: (context) => DriversHome(data: args)));
+    Navigator.push(context,
+        MaterialPageRoute(builder: (context) => DriversHome(data: args)));
+  }
+
+  goToAcceptPage({args}) {
+    Navigator.push(context,
+        MaterialPageRoute(builder: (context) => AcceptPage(data: args)));
+  }
+
+  goToRequestAcceptedPage({args}) {
+    Navigator.push(context,
+        MaterialPageRoute(builder: (context) => RequestAcceptedPage(data: args)));
   }
 
   /* =================== Passengers ============== */
@@ -40,9 +52,7 @@ class NavigationHelper {
   }
 
   goToPassengersHome({args}) {
-    Navigator.push(
-        context, MaterialPageRoute(builder: (context) => PassengersHome(data: args)));
+    Navigator.push(context,
+        MaterialPageRoute(builder: (context) => PassengersHome(data: args)));
   }
-
-  
 }
