@@ -100,7 +100,7 @@ class _PassengerHomeUIState extends State<PassengerHomeUI> {
       const pollingTime = Duration(seconds: 5);
       const String activeRequestsAPIUrl =
           "/request/getAcceptedRequestDataByRequestId.php";
-      Object activeRequestsAPIObj = {"request_id": _requestId};
+      Object activeRequestsAPIObj = {"request_id": 33};
       Timer.periodic(
           pollingTime,
           (Timer t) => {

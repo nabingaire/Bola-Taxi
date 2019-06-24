@@ -45,7 +45,7 @@ class _LoginPassengerUIState extends State<LoginPassengerUI> {
                     fontWeight: FontWeight.bold)),
             TextFormField(
               decoration: InputDecoration(
-                labelText: 'Mobile',
+                labelText: 'Phone',
               ),
               onSaved: (String value) {
                 _phoneNo = value;
