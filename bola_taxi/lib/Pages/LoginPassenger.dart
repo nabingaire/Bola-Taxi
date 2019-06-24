@@ -33,6 +33,7 @@ class _LoginPassengerUIState extends State<LoginPassengerUI> {
 
   @override
   Widget build(BuildContext context) {
+ 
     return Center(
         child: SingleChildScrollView(
       child: Form(
@@ -145,18 +146,12 @@ class _LoginPassengerUIState extends State<LoginPassengerUI> {
             print("Preferences");
             SharedPreferencesHelper helper = new SharedPreferencesHelper();
             helper.setPassangerLoginSharedPreference(value);
-            helper.getPreferenceName().then((value)=> setState((){
-              print(value);
-            }));
-
-            
+            helper.getPreferenceDriverId().then((value) => setState(() {
+                  print(value);
+                }));
           } else
             WidgetsGeneratorHelper(context)
                 .showSnackBar("Either phone or password is incorrect");
         }));
-
-    
   }
-
-  
 }

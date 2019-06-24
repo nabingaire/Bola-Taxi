@@ -19,8 +19,11 @@ class _DriversHomeState extends State<DriversHome> {
   _DriversHomeState({this.data});
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: DriversHomeUI(data: data),
+    return WillPopScope(
+      onWillPop: () async => false,
+      child: MaterialApp(
+        home: DriversHomeUI(data: data),
+      ),
     );
   }
 }
@@ -56,15 +59,14 @@ class _DriversHomeUIState extends State<DriversHomeUI> {
 
     for (var u in activeRequestsData) {
       ActiveRideModal activeRide = ActiveRideModal(
-        int.parse(activeRequestsData[count]["request_id"]),
-        activeRequestsData[count]["name"],
-        activeRequestsData[count]["origin"],
-        activeRequestsData[count]["destination"],
-        activeRequestsData[count]["phone"],
-        activeRequestsData[count]["request_time"],
-        driversData["d_id"],
-        activeRequestsData[count]["u_id"]
-      );
+          int.parse(activeRequestsData[count]["request_id"]),
+          activeRequestsData[count]["name"],
+          activeRequestsData[count]["origin"],
+          activeRequestsData[count]["destination"],
+          activeRequestsData[count]["phone"],
+          activeRequestsData[count]["request_time"],
+          driversData["d_id"],
+          activeRequestsData[count]["u_id"]);
       _activeRequestsList.add(activeRide);
       count++;
     }
@@ -104,8 +106,9 @@ class _DriversHomeUIState extends State<DriversHomeUI> {
           )
         ]),
       ),
-      onTap: (){
-        NavigationHelper(context).goToAcceptPage(args: _activeRequestsList[index]);
+      onTap: () {
+        NavigationHelper(context)
+            .goToAcceptPage(args: _activeRequestsList[index]);
       },
     );
   }

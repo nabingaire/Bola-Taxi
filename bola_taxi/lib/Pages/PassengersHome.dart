@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:bola_taxi/Helper/http-helper.dart';
+import 'package:bola_taxi/Helper/shared-preferences-helper.dart';
 import 'package:bola_taxi/Helper/widgets-generator-helper.dart';
 import 'package:bola_taxi/Widgets/menu_drawer.dart';
 import 'package:flutter/material.dart';
@@ -25,8 +26,11 @@ class _PassengersHomeState extends State<PassengersHome> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: PassengerHomeUI(data: data),
+    return WillPopScope(
+      onWillPop: () async => false,
+      child: MaterialApp(
+        home: PassengerHomeUI(data: data),
+      ),
     );
   }
 }
@@ -95,7 +99,6 @@ class _PassengerHomeUIState extends State<PassengerHomeUI> {
   @override
   Widget build(BuildContext context) {
     //Check if request has been accepted by any driver
-
     if (_requestSent && !_dialogShown) {
       const pollingTime = Duration(seconds: 5);
       const String activeRequestsAPIUrl =

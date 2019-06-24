@@ -14,7 +14,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 // }
 
 class SharedPreferencesHelper {
-  setPassangerLoginSharedPreference(data) async {
+  Future<dynamic> setPassangerLoginSharedPreference(data) async {
     final prefs = await SharedPreferences.getInstance();
 
     //Write
@@ -26,43 +26,43 @@ class SharedPreferencesHelper {
     prefs.setString("review_id", data["review_id"]);
   }
 
-  getPreferenceUserId() async {
+  Future<String> getPreferenceUserId() async {
     final prefs = await SharedPreferences.getInstance();
 
     return prefs.getString("u_id");
   }
 
-  getPreferenceName() async {
+  Future<String> getPreferenceName() async {
     final prefs = await SharedPreferences.getInstance();
 
     return prefs.getString("name");
   }
 
-  getPreferencePhone() async {
+  Future<String> getPreferencePhone() async {
     final prefs = await SharedPreferences.getInstance();
 
     return prefs.getString("phone");
   }
 
-  getPreferenceCurrentLocaction() async {
+  Future<String> getPreferenceCurrentLocaction() async {
     final prefs = await SharedPreferences.getInstance();
 
     return prefs.getString("current_loc");
   }
 
-  getPreferenceGender() async {
+  Future<String> getPreferenceGender() async {
     final prefs = await SharedPreferences.getInstance();
 
     return prefs.getString("gender");
   }
 
-  getPreferenceReviewId() async {
+  Future<String> getPreferenceReviewId() async {
     final prefs = await SharedPreferences.getInstance();
 
     return prefs.getString("review_id");
   }
 
-  setDriverLoginSharedPreference(data) async {
+  Future<String> setDriverLoginSharedPreference(data) async {
     final prefs = await SharedPreferences.getInstance();
 
     //Write
@@ -74,13 +74,13 @@ class SharedPreferencesHelper {
     prefs.setString("review_id", data["review_id"]);
   }
 
-  getPreferenceTaxiId() async{
+  Future<String> getPreferenceTaxiId() async{
     final prefs = await SharedPreferences.getInstance();
 
     return prefs.getString("taxi_id");
   }
 
-  getPreferenceDriverId() async{
+  Future<String> getPreferenceDriverId() async{
     final prefs = await SharedPreferences.getInstance();
 
     return prefs.getString("d_id");

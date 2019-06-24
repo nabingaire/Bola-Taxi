@@ -5,6 +5,7 @@ import 'package:bola_taxi/Pages/LoginPassenger.dart';
 import 'package:bola_taxi/Pages/PassengersHome.dart';
 import 'package:bola_taxi/Pages/RequestAcceptedPage.dart';
 import 'package:bola_taxi/Pages/SignUpPassenger.dart';
+import 'package:bola_taxi/main.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:bola_taxi/Pages/SignUpDriver.dart';
@@ -56,4 +57,9 @@ class NavigationHelper {
     Navigator.push(context,
         MaterialPageRoute(builder: (context) => PassengersHome(data: args)));
   }
+
+  // goToMain({args}){
+  //   Navigator.push(context,
+  //   MaterialPageRoute(builder: (context)=> HomePage()));
+  // }
 }
