@@ -41,11 +41,7 @@ class _ResetPasswordUI extends StatelessWidget {
                 labelText: 'Mobile Number',
               ),
             ),
-            TextField(
-              decoration: InputDecoration(
-                labelText: 'Authentication Number',
-              ),
-            ),
+            
             TextField(
               decoration: InputDecoration(
                 labelText: 'New Password',
