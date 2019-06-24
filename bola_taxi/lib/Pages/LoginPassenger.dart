@@ -143,8 +143,13 @@ class _LoginPassengerUIState extends State<LoginPassengerUI> {
             NavigationHelper(context).goToPassengersHome(args: value);
             //Set Preferences
             print("Preferences");
-            print(SharedPreferencesHelper()
-                .setPassangerLoginSharedPreference(value));
+            SharedPreferencesHelper helper = new SharedPreferencesHelper();
+            helper.setPassangerLoginSharedPreference(value);
+            helper.getPreferenceName().then((value)=> setState((){
+              print(value);
+            }));
+
+            
           } else
             WidgetsGeneratorHelper(context)
                 .showSnackBar("Either phone or password is incorrect");
@@ -153,8 +158,5 @@ class _LoginPassengerUIState extends State<LoginPassengerUI> {
     
   }
 
-  _getGenderData() async{
-      final prefs = await SharedPreferences.getInstance();
-      print(prefs.getString("gender"));
-    }
+  
 }
