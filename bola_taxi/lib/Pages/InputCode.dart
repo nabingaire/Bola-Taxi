@@ -1,20 +1,18 @@
 import 'package:flutter/material.dart';
 
-
-
-class ResetPassword extends StatefulWidget {
+class InputCode extends StatefulWidget {
   @override
-  _ResetPasswordState createState() => _ResetPasswordState();
+  _InputCodeState createState() => _InputCodeState();
 }
 
-class _ResetPasswordState extends State<ResetPassword> {
+class _InputCodeState extends State<InputCode> {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return  MaterialApp(
       home: Scaffold(
         appBar: AppBar(
           title: new Center(
-            child: new Text("Forgot Password"),
+            child: new Text("Bola Taxi"),
           ),
           leading: new IconButton(
             icon: new Icon(Icons.arrow_back),
@@ -23,43 +21,25 @@ class _ResetPasswordState extends State<ResetPassword> {
           ),
           backgroundColor: Colors.deepPurpleAccent[400],
         ),
-        body: _ResetPasswordUI(),
+        body: _InputCodeUI(),
       ),
     );
   }
 }
-class _ResetPasswordUI extends StatelessWidget {
+class _InputCodeUI extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Center(
+       return Center(
       child: SingleChildScrollView(
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
             TextField(
               decoration: InputDecoration(
-                labelText: 'Mobile Number',
-              ),
+                labelText: 'Enter code',
+              )
             ),
-            TextField(
-              decoration: InputDecoration(
-                labelText: 'Authentication Number',
-              ),
-            ),
-            TextField(
-              decoration: InputDecoration(
-                labelText: 'New Password',
-              ),
-              obscureText: true,
-            ),
-            TextField(
-              decoration: InputDecoration(
-                labelText: 'Confirm Password',
-              ),
-              obscureText: true,
-          
-        ),
-          Container(
+               Container(
               child: SizedBox(
                 width: double.infinity,
                 child: RaisedButton(
@@ -74,10 +54,10 @@ class _ResetPasswordUI extends StatelessWidget {
               padding: EdgeInsets.fromLTRB(30, 30, 30, 30),
             ),
           ]
-      ),
-      padding: EdgeInsets.fromLTRB(30, 30, 30, 30),  
-    ),
-    
+        ),
+          padding: EdgeInsets.fromLTRB(30, 0, 30, 0),
+      )
     );
+      
   }
 }

@@ -13,7 +13,7 @@ class _LoginChoiceState extends State<LoginChoice> {
       home: Scaffold(
         appBar: AppBar(
           title: new Center(
-            child: new Text("Sign Up"),
+            child: new Text("Login"),
           ),
           leading: new IconButton(
             icon: new Icon(Icons.arrow_back),

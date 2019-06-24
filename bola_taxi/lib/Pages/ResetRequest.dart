@@ -13,7 +13,7 @@ class _ResetRequestState extends State<ResetRequest> {
       home: Scaffold(
         appBar: AppBar(
           title: new Center(
-            child: new Text(""),
+            child: new Text("Bola Taxi"),
           ),
           leading: new IconButton(
             icon: new Icon(Icons.arrow_back),

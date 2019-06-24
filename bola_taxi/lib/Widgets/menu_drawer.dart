@@ -14,13 +14,13 @@ class MenuDrawer extends StatelessWidget {
                 Center(
                   child: CircleAvatar(
                     backgroundImage: AssetImage(
-                      'assets/images/pp.png',
+                      'assets/images/bheda.png',
                     ),
                     maxRadius: 56,
                   ),
                 ),
                 Text(
-                  "Nabin Gaire",
+                  "John Doe",
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
               ],

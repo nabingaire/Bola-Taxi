@@ -44,7 +44,7 @@ class _UserProfileUI extends StatelessWidget {
                       decoration: BoxDecoration(
                           color: Colors.white,
                           image: DecorationImage(
-                              image: AssetImage('assets/images/pp.png'),
+                              image: AssetImage('assets/images/bheda.png'),
                               fit: BoxFit.cover),
                           borderRadius: BorderRadius.all(Radius.circular(120.0)),
                           boxShadow: [
@@ -64,7 +64,7 @@ class _UserProfileUI extends StatelessWidget {
                           ListTile(   
                             trailing: Icon(Icons.edit),                    
                                title: Text(
-                                 "Nabin Gaire",
+                                 "John Doe",
                                  style: TextStyle(
                                    fontSize: 30.0,
                                    fontWeight: FontWeight.bold,
@@ -75,7 +75,7 @@ class _UserProfileUI extends StatelessWidget {
                             trailing: Icon(Icons.edit), 
                             leading: Icon(Icons.phone),                   
                                title: Text(
-                                 "9844785589",
+                                 "9812345678",
                                  style: TextStyle(
                                    fontSize: 20.0,
                                    fontWeight: FontWeight.bold,
