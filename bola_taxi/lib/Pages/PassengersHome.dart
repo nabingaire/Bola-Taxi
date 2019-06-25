@@ -1,6 +1,9 @@
 import 'dart:convert';
 
 import 'package:bola_taxi/Helper/http-helper.dart';
+import 'package:bola_taxi/Helper/lat-lng-helper.dart';
+import 'package:bola_taxi/Helper/location.helper.dart';
+import 'package:bola_taxi/Helper/shared-preferences-helper.dart';
 import 'package:bola_taxi/Helper/widgets-generator-helper.dart';
 import 'package:bola_taxi/Widgets/menu_drawer.dart';
 import 'package:flutter/material.dart';
@@ -25,8 +28,11 @@ class _PassengersHomeState extends State<PassengersHome> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: PassengerHomeUI(data: data),
+    return WillPopScope(
+      onWillPop: () async => false,
+      child: MaterialApp(
+        home: PassengerHomeUI(data: data),
+      ),
     );
   }
 }
@@ -41,6 +47,9 @@ class PassengerHomeUI extends StatefulWidget {
 }
 
 class _PassengerHomeUIState extends State<PassengerHomeUI> {
+
+  double currentLocationLat;
+  double currentLocationLong;
   var passangerData;
   _PassengerHomeUIState({this.passangerData});
 
@@ -95,12 +104,11 @@ class _PassengerHomeUIState extends State<PassengerHomeUI> {
   @override
   Widget build(BuildContext context) {
     //Check if request has been accepted by any driver
-
     if (_requestSent && !_dialogShown) {
       const pollingTime = Duration(seconds: 5);
       const String activeRequestsAPIUrl =
           "/request/getAcceptedRequestDataByRequestId.php";
-      Object activeRequestsAPIObj = {"request_id": _requestId};
+      Object activeRequestsAPIObj = {"request_id": 33};
       Timer.periodic(
           pollingTime,
           (Timer t) => {
@@ -131,6 +139,7 @@ class _PassengerHomeUIState extends State<PassengerHomeUI> {
               center: new LatLng(27.7083355, 85.3131555),
               zoom: 13.0,
               onTap: (LatLng point) {
+                // currentLocationLat = LatLngHelper(point.t).getLatitude();
                 _handleTap(point, context);
               },
             ),

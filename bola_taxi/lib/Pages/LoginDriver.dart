@@ -1,11 +1,10 @@
 import 'package:bola_taxi/Helper/form-helper.dart';
 import 'package:bola_taxi/Helper/http-helper.dart';
 import 'package:bola_taxi/Helper/navigation-helper.dart';
+import 'package:bola_taxi/Helper/shared-preferences-helper.dart';
 import 'package:bola_taxi/Helper/widgets-generator-helper.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'dart:async';
-
 
 class LoginDriver extends StatefulWidget {
   @override
@@ -84,6 +83,8 @@ class _LoginDriverUIState extends State<LoginDriverUI> {
                       FormHelper formHelper =
                           new FormHelper(context, _loginFormKey);
                       formHelper.saveForm();
+                      formHelper.validateForm();
+
                       WidgetsGeneratorHelper(context)
                           .showSnackBar("Logging In");
                       checkIfCanLoginAndRedirect(context);
@@ -140,10 +141,6 @@ class _LoginDriverUIState extends State<LoginDriverUI> {
 
     HttpHelper().post(url, body: loginData).then((value) => setState(() {
           if (value["response_code"] == 200) {
-            // SharedPreferences prefs = await SharedPreferences.getInstance();
-            // int counter = (prefs.getInt('counter') ?? 0) + 1;
-            // print('Pressed $counter times.');
-            // await prefs.setInt('counter', counter);
             NavigationHelper(context).goToDriversHome(args: value);
           } else
             WidgetsGeneratorHelper(context)

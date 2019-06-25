@@ -178,6 +178,7 @@ class _SignUpDriverUIState extends State<SignUpDriverUI> {
                       FormHelper formHelper =
                           new FormHelper(context, _signUpDriverformKey);
                       formHelper.saveForm();
+                      formHelper.validateForm();
                       WidgetsGeneratorHelper(context)
                           .showSnackBar("Signing Up");
 

@@ -12,4 +12,8 @@ class FormHelper {
     _key.currentState.save();
   }
 
+  validateForm(){
+    _key.currentState.validate();
+  }
+
 }

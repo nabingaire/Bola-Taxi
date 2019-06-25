@@ -154,6 +154,7 @@ class _SignUpPassengerUIState extends State<SignUpPassengerUI> {
                       FormHelper helper =
                           new FormHelper(context, _signUpPassengerformKey);
                       helper.saveForm();
+                      helper.validateForm();
                       WidgetsGeneratorHelper(context)
                           .showSnackBar("Signing Up");
 

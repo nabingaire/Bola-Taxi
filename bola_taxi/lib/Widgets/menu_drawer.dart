@@ -1,3 +1,4 @@
+import 'package:bola_taxi/Helper/navigation-helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
@@ -69,7 +70,7 @@ class MenuDrawer extends StatelessWidget {
             title: Text("Logout"),
             leading: Icon(Icons.eject),
             onTap: () {
-              Navigator.pop(context);
+              // NavigationHelper(context).goToMain();
             },
           ),
         ],

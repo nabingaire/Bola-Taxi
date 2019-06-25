@@ -30,6 +30,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
     $requestQuery="INSERT INTO request(u_id,origin,destination,status) VALUES ('$u_id','$origin','$destination','$status');";
     $getRequestIdQuery = "SELECT LAST_INSERT_ID() AS request_id;"; 
     $responseArray;
+    $getRequestId;
     if($runQuery = mysqli_query($conn,$requestQuery)){
 
         $getRequestIdResult = mysqli_query($conn,$getRequestIdQuery);

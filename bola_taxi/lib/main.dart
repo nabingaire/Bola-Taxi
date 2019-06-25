@@ -1,3 +1,6 @@
+import 'package:bola_taxi/Helper/location.helper.dart';
+import 'package:bola_taxi/Helper/navigation-helper.dart';
+import 'package:bola_taxi/Helper/shared-preferences-helper.dart';
 import 'package:bola_taxi/Pages/AcceptPage.dart';
 import 'package:bola_taxi/Pages/ChangeStatus.dart';
 import 'package:bola_taxi/Pages/DriversHome.dart';
@@ -25,8 +28,13 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+
+
   @override
   Widget build(BuildContext context) {
+
+    LocationHelper().getLocationNameFromLatLng("latitude", "longitude");
+
     return MaterialApp(
       home: Scaffold(
         body: AcceptPage()
