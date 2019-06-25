@@ -154,59 +154,7 @@ class _SignUpDriverUIState extends State<SignUpDriverUI> {
                             padding: EdgeInsets.fromLTRB(0, 20, 20,20),
                             
                           ),
-              //             Container(
-                            
-              //            child: Row(
-              //              childre
-              //                 "Gender:",
-              //                 style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,
-              //                 ),
-            
-            
-              //             ),
-              //              (
-              //               mainAxisAlignment: MainAxisAlignment.center,
-              //               children: <Widget>[
-              //                new Radio(
-              //                         value: 0,
-              //                         groupValue: _radioValue1,
-              //                 onChanged: _handleRadioValueChange1,
-              //               ),
-              //               new Text(
-              //                 'Male',
-              //                 style: new TextStyle(fontSize: 16.0),
-              //               ),
-              //               new Radio(
-              //                 value: 1,
-              //                 groupValue: _radioValue1,
-              //                 onChanged: _handleRadioValueChange1,
-              //           ),
-              //           new Text(
-              //             'Female',
-              //             style: new TextStyle(
-              //               fontSize: 16.0,
-              //             ),
-              //           ),
-              //   ],
-                
-              // ),
-              //             ),
-
-              // TextFormField(
-              //   decoration: InputDecoration(
-              //     labelText: 'Gender',
-              //   ),
-              //   validator: (value) {
-              //     if (value.isEmpty) {
-              //       return 'Gender cannot be empty';
-              //     } else {
-              //       return null;
-              //     }
-              //   },
-              //   onSaved: (String value) {
-              //     _gender = value;
-              //   },
-              // ),
+              
               TextFormField(
                 decoration: InputDecoration(
                   labelText: 'Taxi_no',
