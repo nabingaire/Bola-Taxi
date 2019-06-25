@@ -8,8 +8,7 @@ class LocationHelper {
         await Geocoder.local.findAddressesFromCoordinates(coordinates);
 
     var first = addresses.first;
-    print("${first.featureName} : ${first.addressLine}");
-    // print(addresses.second);
+    return "${first.featureName} : ${first.addressLine}";
   }
 
 }

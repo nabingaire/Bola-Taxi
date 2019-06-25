@@ -1,6 +1,8 @@
 import 'dart:convert';
 
 import 'package:bola_taxi/Helper/http-helper.dart';
+import 'package:bola_taxi/Helper/lat-lng-helper.dart';
+import 'package:bola_taxi/Helper/location.helper.dart';
 import 'package:bola_taxi/Helper/shared-preferences-helper.dart';
 import 'package:bola_taxi/Helper/widgets-generator-helper.dart';
 import 'package:bola_taxi/Widgets/menu_drawer.dart';
@@ -45,6 +47,9 @@ class PassengerHomeUI extends StatefulWidget {
 }
 
 class _PassengerHomeUIState extends State<PassengerHomeUI> {
+
+  double currentLocationLat;
+  double currentLocationLong;
   var passangerData;
   _PassengerHomeUIState({this.passangerData});
 
@@ -123,7 +128,7 @@ class _PassengerHomeUIState extends State<PassengerHomeUI> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text("Bola Taxi"),
+        title: LocationHelper().getLocationNameFromLatLng(),
         backgroundColor: _buttonBackgroundColorsList[_tapCount],
       ),
       drawer: MenuDrawer(),
@@ -134,6 +139,7 @@ class _PassengerHomeUIState extends State<PassengerHomeUI> {
               center: new LatLng(27.7083355, 85.3131555),
               zoom: 13.0,
               onTap: (LatLng point) {
+                currentLocationLat = LatLngHelper(point.t).getLatitude();
                 _handleTap(point, context);
               },
             ),
