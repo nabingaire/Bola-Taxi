@@ -17,8 +17,6 @@ class _AcceptPageState extends State<AcceptPage> {
   _AcceptPageState({this.requestObj});
   @override
   Widget build(BuildContext context) {
-    print(_getOriginLatitude());
-    print(_getOriginLongitude());
     return Scaffold(
       appBar: AppBar(
         title: new Center(
@@ -38,7 +36,7 @@ class _AcceptPageState extends State<AcceptPage> {
             width: double.infinity,
             child: FlutterMap(
                 options: new MapOptions(
-                  center: LatLng(_getOriginLatitude(), _getOriginLongitude()),
+                  center: LatLng(27.7089427,85.2560925),
                   zoom: 13.0,
                 ),
                 layers: [
@@ -57,7 +55,7 @@ class _AcceptPageState extends State<AcceptPage> {
                         width: 80.0,
                         height: 80.0,
                         point:
-                            LatLng(_getOriginLatitude(), _getOriginLongitude()),
+                            LatLng(27.7089427,85.2560925),
                         builder: (ctx) => new Container(
                               child: Icon(
                                 Icons.location_on,
@@ -77,16 +75,16 @@ class _AcceptPageState extends State<AcceptPage> {
                 ListTile(
                   leading: Icon(Icons.info),
                   title:
-                      Text(requestObj.origin + " - " + requestObj.destination),
+                      Text("Baneshwor" + " - " + "Gyaneshwor"),
                   subtitle: Text.rich(TextSpan(children: <TextSpan>[
                     TextSpan(
                         text: "Name: ",
                         style: TextStyle(fontWeight: FontWeight.bold)),
-                    TextSpan(text: requestObj.name),
+                    TextSpan(text: "Manish"),
                     TextSpan(
                         text: " Mobile: ",
                         style: TextStyle(fontWeight: FontWeight.bold)),
-                    TextSpan(text: requestObj.phoneNumber),
+                    TextSpan(text: "9844785589"),
                   ])),
                 )
               ],
@@ -141,23 +139,23 @@ class _AcceptPageState extends State<AcceptPage> {
     );
   }
 
-  _getOriginLongitude() {
-    String lat = _convertLatLngStringToList(_getOrigin())[1];
-    return double.parse(lat);
-  }
+  // _getOriginLongitude() {
+  //   String lat = _convertLatLngStringToList(_getOrigin())[1];
+  //   return double.parse(lat);
+  // }
 
-  _getOriginLatitude() {
-    String lat = _convertLatLngStringToList(_getOrigin())[0];
-    return double.parse(lat);
-  }
+  // _getOriginLatitude() {
+  //   String lat = _convertLatLngStringToList(_getOrigin())[0];
+  //   return double.parse(lat);
+  // }
 
-  _getOrigin() {
-    return requestObj.origin;
-  }
+  // _getOrigin() {
+  //   return requestObj.origin;
+  // }
 
-  _getDestination() {
-    return requestObj.destination;
-  }
+  // _getDestination() {
+  //   return requestObj.destination;
+  // }
 
   List<String> _convertLatLngStringToList(value) {
     return value.split(",");

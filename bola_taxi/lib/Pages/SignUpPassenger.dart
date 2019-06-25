@@ -5,14 +5,11 @@ import 'package:flutter/material.dart';
 import 'dart:convert';
 
 class SignUpPassenger extends StatefulWidget {
-
   @override
   _SignUpPassengerState createState() => _SignUpPassengerState();
 }
 
 class _SignUpPassengerState extends State<SignUpPassenger> {
-
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -35,127 +32,120 @@ class _SignUpPassengerState extends State<SignUpPassenger> {
 }
 
 class SignUpPassengerUI extends StatefulWidget {
-
   @override
   _SignUpPassengerUIState createState() => _SignUpPassengerUIState();
 }
 
 class _SignUpPassengerUIState extends State<SignUpPassengerUI> {
-  
-
-  
   //Form Key
   final _signUpPassengerformKey = GlobalKey<FormState>();
 
-  String _fullName = '';
-  String _phoneNumber = '';
-  String _password = '';
-  String _confirmPassword = '';
-  String _gender = '';
+  String _fullName;
+  String _phoneNumber;
+  String _password;
+  String _confirmPassword;
+  String _gender;
 
   @override
   Widget build(BuildContext context) {
     var _radioValue1;
-        var _handleRadioValueChange1;
-                return Center(
-                  child: SingleChildScrollView(
-                    child: Form(
-                      key: _signUpPassengerformKey,
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: <Widget>[
-                          TextFormField(
-                            decoration: InputDecoration(
-                              labelText: 'FullName',
-                            ),
-                            validator: (value) {
-                              if (value.isEmpty) {
-                                return 'Full Name cannot be empty';
-                              } else {
-                                return null;
-                              }
-                            },
-                            onSaved: (String value) {
-                              _fullName = value;
-                            },
-                          ),
-                          TextFormField(
-                            decoration: InputDecoration(
-                              labelText: 'Phone Number',
-                            ),
-                            validator: (value) {
-                              if (value.isEmpty) {
-                                return 'Phone Number cannot be empty';
-                              } else {
-                                return null;
-                              }
-                            },
-                            onSaved: (String value) {
-                              _phoneNumber = value;
-                            },
-                          ),
-                          TextFormField(
-                            decoration: InputDecoration(
-                              labelText: 'Password',
-                            ),
-                            validator: (value) {
-                              if (value.isEmpty) {
-                                return 'Password cannot be empty';
-                              } else {
-                                return null;
-                              }
-                            },
-                            onSaved: (String value) {
-                              _password = value;
-                            },
-                            obscureText: true,
-                          ),
-                          TextFormField(
-                            decoration: InputDecoration(
-                              labelText: 'Confirm Password',
-                            ),
-                            validator: (value) {
-                              if (value.isEmpty) {
-                                return 'Confirm Password cannot be empty';
-                              } else {
-                                return null;
-                              }
-                            },
-                            onSaved: (String value) {
-                              _confirmPassword = value;
-                            },
-                            obscureText: true,
-                          ),
-                          Container(
-                                                        child: Row(children: <Widget>[
-                                                          
-                                                         Radio(
-                                                                  value: 0,
-                                                                  groupValue: _radioValue1,
-                                                      onChanged: _handleRadioValueChange1,
-                                            ),
-                                             Text(
-                                              'Male',
-                                              style: new TextStyle(fontSize: 16.0),
-                                            ),
-                                             Radio(
-                                              value: 1,
-                                              groupValue: _radioValue1,
-                                              onChanged: _handleRadioValueChange1,
-                                        ),
-                                        Text(
-                                          'Female',
-                                          style: new TextStyle(
-                                            fontSize: 16.0,
-                                          ),
-                                        ),
-                                        
-                            ],
-                            
-                            ),
-                            padding: EdgeInsets.fromLTRB(0, 20, 20,20),
-                            
-                          ),
+    var _handleRadioValueChange1;
+    return Center(
+      child: SingleChildScrollView(
+        child: Form(
+          key: _signUpPassengerformKey,
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              TextFormField(
+                decoration: InputDecoration(
+                  labelText: 'FullName',
+                ),
+                validator: (value) {
+                  if (value.isEmpty) {
+                    return 'Full Name cannot be empty';
+                  } else {
+                    return null;
+                  }
+                },
+                onSaved: (String value) {
+                  _fullName = value;
+                },
+              ),
+              TextFormField(
+                decoration: InputDecoration(
+                  labelText: 'Phone Number',
+                ),
+                validator: (value) {
+                  if (value.isEmpty) {
+                    return 'Phone Number cannot be empty';
+                  } else {
+                    return null;
+                  }
+                },
+                onSaved: (String value) {
+                  _phoneNumber = value;
+                },
+              ),
+              TextFormField(
+                decoration: InputDecoration(
+                  labelText: 'Password',
+                ),
+                validator: (value) {
+                  if (value.isEmpty) {
+                    return 'Password cannot be empty';
+                  } else {
+                    return null;
+                  }
+                },
+                onSaved: (String value) {
+                  _password = value;
+                },
+                obscureText: true,
+              ),
+              TextFormField(
+                decoration: InputDecoration(
+                  labelText: 'Confirm Password',
+                ),
+                validator: (value) {
+                  if (value.isEmpty) {
+                    return 'Confirm Password cannot be empty';
+                  } else {
+                    return null;
+                  }
+                },
+                onSaved: (String value) {
+                  _confirmPassword = value;
+                },
+                obscureText: true,
+              ),
+              Container(
+                child: Row(
+                  children: <Widget>[
+                    Radio(
+                      value: 0,
+                      groupValue: _radioValue1,
+                      onChanged: _handleRadioValueChange1,
+                    ),
+                    Text(
+                      'Male',
+                      style: new TextStyle(fontSize: 16.0),
+                    ),
+                    Radio(
+                      value: 1,
+                      groupValue: _radioValue1,
+                      onChanged: _handleRadioValueChange1,
+                    ),
+                    Text(
+                      'Female',
+                      style: new TextStyle(
+                        fontSize: 16.0,
+                      ),
+                    ),
+                  ],
+                ),
+                padding: EdgeInsets.fromLTRB(0, 20, 20, 20),
+              ),
               Container(
                 child: SizedBox(
                   width: double.infinity,
