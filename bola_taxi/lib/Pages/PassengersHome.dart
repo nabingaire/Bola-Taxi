@@ -128,7 +128,7 @@ class _PassengerHomeUIState extends State<PassengerHomeUI> {
 
     return Scaffold(
       appBar: AppBar(
-        title: LocationHelper().getLocationNameFromLatLng(),
+        title: Text("Bola Taxi"),
         backgroundColor: _buttonBackgroundColorsList[_tapCount],
       ),
       drawer: MenuDrawer(),
@@ -139,7 +139,7 @@ class _PassengerHomeUIState extends State<PassengerHomeUI> {
               center: new LatLng(27.7083355, 85.3131555),
               zoom: 13.0,
               onTap: (LatLng point) {
-                currentLocationLat = LatLngHelper(point.t).getLatitude();
+                // currentLocationLat = LatLngHelper(point.t).getLatitude();
                 _handleTap(point, context);
               },
             ),
