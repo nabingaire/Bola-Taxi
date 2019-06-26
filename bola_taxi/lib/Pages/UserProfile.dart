@@ -39,14 +39,14 @@ class _UserProfileUI extends StatelessWidget {
               child: Column(
                 children: <Widget>[
                   Container(
-                      width: 250.0,
-                      height: 250.0,
+                      width: 200.0,
+                      height: 200.0,
                       decoration: BoxDecoration(
                           color: Colors.white,
                           image: DecorationImage(
                               image: AssetImage('assets/images/bheda.png'),
                               fit: BoxFit.cover),
-                          borderRadius: BorderRadius.all(Radius.circular(120.0)),
+                          borderRadius: BorderRadius.all(Radius.circular(110.0)),
                           boxShadow: [
                             BoxShadow(blurRadius: 7.0, color: Colors.black)
                           ]

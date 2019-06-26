@@ -11,8 +11,14 @@ class MenuDrawer extends StatelessWidget {
         children: <Widget>[
           DrawerHeader(
             child: Column(
+              
               children: <Widget>[
-                Center(
+            GestureDetector(
+              onTap: (){
+        
+                                NavigationHelper(context).goTOUserProfile();
+              },
+                  
                   child: CircleAvatar(
                     backgroundImage: AssetImage(
                       'assets/images/bheda.png',
@@ -27,16 +33,7 @@ class MenuDrawer extends StatelessWidget {
               ],
             ),
 
-            // decoration: BoxDecoration(
-
-            //   color: Colors.white,
-
-            //    shape: BoxShape.circle,
-            //       image: DecorationImage(
-            //           fit: BoxFit.cover,
-            //           image: AssetImage('assets/images/pp.png')),
-
-            // ),
+        
           ),
           ListTile(
             title: Text("Home"),

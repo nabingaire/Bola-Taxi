@@ -37,8 +37,7 @@ class _HomePageState extends State<HomePage> {
 
     return MaterialApp(
       home: Scaffold(
-        body: AcceptPage()
-        
+        body: UserProfile(),        
       ),
     );
   }
