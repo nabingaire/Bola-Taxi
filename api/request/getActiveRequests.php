@@ -14,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET'){
   
     
     /*============ Send Data ===========*/
-    $getCompletedRequestDataQuery = "SELECT u.u_id,r.request_id,u.name,r.origin,r.destination,u.phone,r.request_time FROM request as r
+    $getCompletedRequestDataQuery = "SELECT u.u_id,r.request_id,u.name,r.origin,r.destination,r.origin_name,r.destination_name,u.phone,r.request_time FROM request as r
     JOIN users as u ON r.u_id = u.u_id WHERE r.status='pending'";
 
     //Check if sucess
@@ -25,8 +25,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET'){
         $rows[] = $r;
     }
 
-    echo json_encode($rows);
     header('Content-Type: application/json');
+    
+    echo json_encode($rows);
     //Close Connection
     mysqli_close($conn);
 }

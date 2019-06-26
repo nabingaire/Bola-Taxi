@@ -63,6 +63,8 @@ class _DriversHomeUIState extends State<DriversHomeUI> {
           activeRequestsData[count]["name"],
           activeRequestsData[count]["origin"],
           activeRequestsData[count]["destination"],
+          activeRequestsData[count]["origin_name"],
+          activeRequestsData[count]["destination"],
           activeRequestsData[count]["phone"],
           activeRequestsData[count]["request_time"],
           driversData["d_id"],
@@ -96,9 +98,9 @@ class _DriversHomeUIState extends State<DriversHomeUI> {
         child: Column(mainAxisSize: MainAxisSize.min, children: <Widget>[
           ListTile(
             leading: Icon(Icons.directions_car),
-            title: Text(_activeRequestsList[index].origin +
+            title: Text(_activeRequestsList[index].originName +
                 " - " +
-                _activeRequestsList[index].destination),
+                _activeRequestsList[index].destinationName),
             subtitle: Text("Phone: " +
                 _activeRequestsList[index].phoneNumber +
                 "\nRequested Time: " +

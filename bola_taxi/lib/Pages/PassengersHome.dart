@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:bola_taxi/Helper/distance-helper.dart';
+import 'package:bola_taxi/Helper/fare-helper.dart';
 import 'package:bola_taxi/Helper/http-helper.dart';
 import 'package:bola_taxi/Helper/lat-lng-helper.dart';
 import 'package:bola_taxi/Helper/location.helper.dart';
@@ -66,6 +68,15 @@ class _PassengerHomeUIState extends State<PassengerHomeUI> {
   bool _requestSent = false;
   //Dialog has been shown
   bool _dialogShown = false;
+
+  //Show Price
+  bool _showPriceContainer = false;
+
+  //Total Fare
+  double totalFare = 0;
+
+  //Calculate total distance
+  double totalDistance = 0;
 
   //Pin Location Name
   String locationName = "Bola Taxi";
@@ -163,13 +174,34 @@ class _PassengerHomeUIState extends State<PassengerHomeUI> {
               ),
             ],
           ),
+          if (_showPriceContainer) ...[
+            Container(
+              child: Center(
+                child: Align(
+                  alignment: Alignment(1.0, 0.83),
+                  child: SizedBox(
+                    width: double.infinity,
+                    height: 35,
+                    child: RaisedButton(
+                        onPressed: () {},
+                        child: Text(
+                          "Rs. " + totalFare.round().toString(),
+                          style: TextStyle(color: Colors.white, fontSize: 30.0),
+                        ),
+                        color: Colors.black.withOpacity(0.3)),
+                  ),
+                ),
+              ),
+              padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+            )
+          ],
           Container(
             child: Center(
               child: Align(
                 alignment: Alignment.bottomCenter,
                 child: SizedBox(
                   width: double.infinity,
-                  height: 40,
+                  height: 45,
                   child: RaisedButton.icon(
                       icon: Icon(
                         _buttonIconList[_tapCount],
@@ -181,18 +213,33 @@ class _PassengerHomeUIState extends State<PassengerHomeUI> {
                             _tapCount++;
                           }
 
+                          if (_tapCount == 2) {
+                            setState(() {
+                              totalDistance = _getDistance(
+                                  _locationDestinationLatLngList[0].latitude,
+                                  _locationDestinationLatLngList[0].longitude,
+                                  _locationDestinationLatLngList[1].latitude,
+                                  _locationDestinationLatLngList[1].longitude);
+                              totalFare = _getFareFromDistance(totalDistance);
+                              print(totalDistance);
+                              print("Total Fare");
+                              print(totalFare);
+                              _showPriceContainer = true;
+                            });
+                          }
+
                           if (_tapCount == 3) {
                             _sendDataToRequestDB();
                             _showRideOnTheWayToast(context);
+                            print("Fare From distance");
                           }
 
                           //On Cancel Request
                           if (_tapCount == 4) {
                             _cancelPickUpRequest();
                             _showRequestHasBeenCancelledToast(context);
+                            _showPriceContainer = false;
                           }
-                          print("Tap Count:");
-                          print(_tapCount);
                         });
                       },
                       label: Text(
@@ -203,7 +250,7 @@ class _PassengerHomeUIState extends State<PassengerHomeUI> {
                 ),
               ),
             ),
-            padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
+            padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
           )
         ],
       ),
@@ -243,23 +290,41 @@ class _PassengerHomeUIState extends State<PassengerHomeUI> {
   _sendDataToRequestDB() {
     String url = "/request/request.php";
 
-    Object _dataObj = {
-      "u_id": passangerData["u_id"],
-      "origin": _locationDestinationLatLngList[0].latitude.toString() +
-          "," +
-          _locationDestinationLatLngList[0].longitude.toString(),
-      "destination": _locationDestinationLatLngList[1].latitude.toString() +
-          "," +
-          _locationDestinationLatLngList[1].longitude.toString(),
-      "request_time": (DateTime.now()).toString(),
-      "status": "pending"
-    };
-    HttpHelper().post(url, body: _dataObj).then((val) => setState(() {
-          print(val);
-          _setRequestSentTo(true);
-          _requestId = int.parse(val["request_id"]);
-          print(_requestId);
-        }));
+    String originName;
+    String destinationName;
+
+    LocationHelper()
+        .getLocationNameFromLatLng(_locationDestinationLatLngList[0].latitude,
+            _locationDestinationLatLngList[0].longitude)
+        .then((value) {
+      originName = value;
+      LocationHelper()
+          .getLocationNameFromLatLng(_locationDestinationLatLngList[1].latitude,
+              _locationDestinationLatLngList[1].longitude)
+          .then((value) {
+        destinationName = value;
+
+        Object _dataObj = {
+          "u_id": passangerData["u_id"],
+          "origin": _locationDestinationLatLngList[0].latitude.toString() +
+              "," +
+              _locationDestinationLatLngList[0].longitude.toString(),
+          "destination": _locationDestinationLatLngList[1].latitude.toString() +
+              "," +
+              _locationDestinationLatLngList[1].longitude.toString(),
+          "origin_name": originName,
+          "destination_name": destinationName,
+          "request_time": (DateTime.now()).toString(),
+          "status": "pending"
+        };
+        HttpHelper().post(url, body: _dataObj).then((val) => setState(() {
+              print(val);
+              _setRequestSentTo(true);
+              _requestId = int.parse(val["request_id"]);
+              print(_requestId);
+            }));
+      });
+    });
   }
 
   _showRideOnTheWayToast(BuildContext context) {
@@ -355,5 +420,37 @@ class _PassengerHomeUIState extends State<PassengerHomeUI> {
       locationName = value;
     });
     return locationName;
+  }
+
+  _getDistance(originLat, originLon, destinationLat, destinationLon) {
+    //Get Fare
+    return DistanceHelper().calculateDistance(
+        originLat, originLon, destinationLat, destinationLon);
+  }
+
+  _getFareFromDistance(distanceInMeters) {
+    return FareHelper().getFare(distanceInMeters);
+  }
+
+  _showPayWithKhaltiDialog() {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        // return object of type Dialog
+        return AlertDialog(
+          title: new Text("Payment"),
+          content: new Text("Alert Dialog body"),
+          actions: <Widget>[
+            // usually buttons at the bottom of the dialog
+            new FlatButton(
+              child: new Text("Close"),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
   }
 }

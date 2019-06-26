@@ -2,7 +2,7 @@ import 'package:geocoder/geocoder.dart';
 
 class LocationHelper {
 
-  Future<String> getLocationNameFromLatLng(latitude, longitude)async{
+  Future<String> getLocationNameFromLatLng(double latitude, double longitude)async{
     final coordinates = new Coordinates(latitude,longitude);
     var addresses =
         await Geocoder.local.findAddressesFromCoordinates(coordinates);
