@@ -11,14 +11,11 @@ class MenuDrawer extends StatelessWidget {
         children: <Widget>[
           DrawerHeader(
             child: Column(
-              
               children: <Widget>[
-            GestureDetector(
-              onTap: (){
-        
-                                NavigationHelper(context).goTOUserProfile();
-              },
-                  
+                GestureDetector(
+                  onTap: () {
+                    NavigationHelper(context).goTOUserProfile();
+                  },
                   child: CircleAvatar(
                     backgroundImage: AssetImage(
                       'assets/images/bheda.png',
@@ -32,8 +29,6 @@ class MenuDrawer extends StatelessWidget {
                 ),
               ],
             ),
-
-        
           ),
           ListTile(
             title: Text("Home"),
@@ -53,7 +48,7 @@ class MenuDrawer extends StatelessWidget {
             title: Text("Ride History"),
             leading: Icon(Icons.directions_bus),
             onTap: () {
-              Navigator.pop(context);
+              NavigationHelper(context).goToRideHistory();
             },
           ),
           ListTile(
@@ -67,7 +62,7 @@ class MenuDrawer extends StatelessWidget {
             title: Text("Logout"),
             leading: Icon(Icons.eject),
             onTap: () {
-              // NavigationHelper(context).goToMain();
+              NavigationHelper(context).goToLoginChoice();
             },
           ),
         ],
