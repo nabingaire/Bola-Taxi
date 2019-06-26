@@ -4,21 +4,6 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
     require '../config/database.php';
     require '../config/response_codes.php';
 
-    /*
-        Get data
-
-        {
-            "d_id": "",
-            "t_id": "",
-            "origin": "",
-            "destination" : ""
-        
-
-        }
-
-
-
-    */
 
     $json_str = file_get_contents('php://input');
     $json_obj = json_decode($json_str);

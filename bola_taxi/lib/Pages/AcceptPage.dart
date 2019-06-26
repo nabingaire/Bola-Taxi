@@ -1,3 +1,4 @@
+import 'package:bola_taxi/Helper/http-helper.dart';
 import 'package:bola_taxi/Helper/navigation-helper.dart';
 import 'package:bola_taxi/Models/active_ride_modal.dart';
 import 'package:flutter/cupertino.dart';
@@ -167,11 +168,16 @@ class _AcceptPageState extends State<AcceptPage> {
   }
 
   _acceptJob() {
+    _areYouSurePrompt(requestObj);
+    String url = "/request/setActiveRequest.php";
     Object acceptedRequestsObj = {
       "driver_id": requestObj.driverId,
       "request_id": requestObj.index
     };
-    _areYouSurePrompt(requestObj);
+    HttpHelper().post(url,body: acceptedRequestsObj).then((value){
+      print(value);
+    });
+    
     print(acceptedRequestsObj);
   }
 
