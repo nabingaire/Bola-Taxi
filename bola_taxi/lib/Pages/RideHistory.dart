@@ -60,6 +60,9 @@ class _RideHistoryUIState extends State<RideHistoryUI> {
           child: new Text("Ride History"),
         ),
         leading: new IconButton(
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
           icon: new Icon(Icons.arrow_back),
           iconSize: 35,
           color: Colors.white,

@@ -12,13 +12,16 @@ class _InputCodeState extends State<InputCode> {
       home: Scaffold(
         appBar: AppBar(
           title: new Center(
-            child: new Text("Bola Taxi"),
+            child: new Text("Confirmation Code"),
           ),
-          leading: new IconButton(
-            icon: new Icon(Icons.arrow_back),
-            iconSize: 35,
-            color: Colors.white,
-          ),
+           leading: new IconButton(
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+          icon: new Icon(Icons.arrow_back),
+          iconSize: 35,
+          color: Colors.white,
+        ),
           backgroundColor: Colors.deepPurpleAccent[400],
         ),
         body: _InputCodeUI(),

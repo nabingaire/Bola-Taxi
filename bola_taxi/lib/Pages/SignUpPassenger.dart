@@ -16,13 +16,16 @@ class _SignUpPassengerState extends State<SignUpPassenger> {
       home: Scaffold(
         appBar: AppBar(
           title: new Center(
-            child: new Text("Sign Up"),
+            child: new Text("Sign Up Passengers"),
           ),
           leading: new IconButton(
-            icon: new Icon(Icons.arrow_back),
-            iconSize: 35,
-            color: Colors.white,
-          ),
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+          icon: new Icon(Icons.arrow_back),
+          iconSize: 35,
+          color: Colors.white,
+        ),
           backgroundColor: Colors.deepPurpleAccent[400],
         ),
         body: SignUpPassengerUI(),
