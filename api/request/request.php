@@ -26,8 +26,11 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
     $origin=$json_obj->origin;
     $destination=$json_obj->destination;
     $status=$json_obj->status;
+    $origin_name=$json_obj->origin_name;
+    $destination_name=$json_obj->destination_name;
+    
 
-    $requestQuery="INSERT INTO request(u_id,origin,destination,status) VALUES ('$u_id','$origin','$destination','$status');";
+    $requestQuery="INSERT INTO request(u_id,origin,destination,origin_name,destination_name,status) VALUES ('$u_id','$origin','$destination','$origin_name','$destination_name','$status');";
     $getRequestIdQuery = "SELECT LAST_INSERT_ID() AS request_id;"; 
     $responseArray;
     $getRequestId;

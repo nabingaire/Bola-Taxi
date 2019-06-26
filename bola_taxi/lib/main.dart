@@ -34,7 +34,6 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
 
-    LocationHelper().getLocationNameFromLatLng("latitude", "longitude");
 
     return MaterialApp(
       home: Scaffold(
