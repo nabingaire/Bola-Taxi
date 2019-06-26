@@ -38,11 +38,7 @@ class _HomePageState extends State<HomePage> {
 
     return MaterialApp(
       home: Scaffold(
-<<<<<<< HEAD
-        body: PassengersHome(),        
-=======
         body: LoginChoice(),        
->>>>>>> 51c1e059cbd9185a0ad9f5db2d841ac5cd91b807
       ),
     );
   }

@@ -135,9 +135,11 @@ class _PassengerHomeUIState extends State<PassengerHomeUI> {
                 HttpHelper()
                     .post(activeRequestsAPIUrl, body: activeRequestsAPIObj)
                     .then((value) => setState(() {
-                          if (value["response_code"] == 200) {
-                            _nameOfDriver = value["name"];
-                            _taxiNo = value["taxi_no"];
+                      print("Active Request ");
+                      print(value);
+                          if (value[0]["response_code"] == 200) {
+                            _nameOfDriver = value[0]["name"];
+                            _taxiNo = value[0]["taxi_no"];
                             _showDriverAcceptedRequestNotification();
                             _setDialogShownTo(true);
                             t.cancel();
