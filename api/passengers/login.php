@@ -22,11 +22,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $phone = $json_obj->phone;
   $password = $json_obj->password;
 
+  
+
 
   $usersLoginQuery = "SELECT  u_id,name,phone,current_loc,gender,review_id from users where phone='$phone' AND password= '$password'";
 
   $loginResult = mysqli_query($conn, $usersLoginQuery);
 
+  $rows = array();
   while($r = mysqli_fetch_assoc($loginResult)) {
     $rows[] = $r;
   }

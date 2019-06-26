@@ -26,7 +26,7 @@ class LoginPassengerUI extends StatefulWidget {
 }
 
 class _LoginPassengerUIState extends State<LoginPassengerUI> {
-  String _phoneNo;
+  int _phoneNo;
   String _password;
 
   final _loginFormKey = GlobalKey<FormState>();
@@ -50,8 +50,9 @@ class _LoginPassengerUIState extends State<LoginPassengerUI> {
               decoration: InputDecoration(
                 labelText: 'Phone',
               ),
+              keyboardType: TextInputType.number,
               onSaved: (String value) {
-                _phoneNo = value;
+                _phoneNo = int.parse(value);
               },
               validator: (value) {
                 if (value.isEmpty) {
@@ -137,7 +138,11 @@ class _LoginPassengerUIState extends State<LoginPassengerUI> {
   checkIfCanLoginAndRedirect(context) {
     String url = "/passengers/login.php";
 
-    Object loginData = {"phone": _phoneNo, "password": _password};
+    Object loginData = {"phone": _phoneNo, "password": _password.toString()};
+
+    print("login");
+    print(loginData);
+
 
     HttpHelper().post(url, body: loginData).then((value) => setState(() {
           if (value["response_code"] == 200) {
