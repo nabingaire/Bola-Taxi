@@ -4,6 +4,7 @@ import 'package:bola_taxi/Pages/LoginChoice.dart';
 import 'package:bola_taxi/Pages/LoginDriver.dart';
 import 'package:bola_taxi/Pages/LoginPassenger.dart';
 import 'package:bola_taxi/Pages/PassengersHome.dart';
+import 'package:bola_taxi/Pages/PaymentPage.dart';
 import 'package:bola_taxi/Pages/RequestAcceptedPage.dart';
 import 'package:bola_taxi/Pages/SignUpPassenger.dart';
 import 'package:bola_taxi/Pages/SignupChoice.dart';
@@ -76,6 +77,11 @@ class NavigationHelper {
   goToSignUpChoice({args}) {
     Navigator.push(
         context, MaterialPageRoute(builder: (context) => SignUpChoice()));
+  }
+
+  goToPaymentOptions({args}) {
+    Navigator.push(
+        context, MaterialPageRoute(builder: (context) => PaymentPage()));
   }
 
   // goToMain({args}){

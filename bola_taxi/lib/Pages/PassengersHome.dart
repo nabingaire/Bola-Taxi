@@ -5,6 +5,7 @@ import 'package:bola_taxi/Helper/fare-helper.dart';
 import 'package:bola_taxi/Helper/http-helper.dart';
 import 'package:bola_taxi/Helper/lat-lng-helper.dart';
 import 'package:bola_taxi/Helper/location.helper.dart';
+import 'package:bola_taxi/Helper/navigation-helper.dart';
 import 'package:bola_taxi/Helper/shared-preferences-helper.dart';
 import 'package:bola_taxi/Helper/widgets-generator-helper.dart';
 import 'package:bola_taxi/Widgets/menu_drawer.dart';
@@ -87,7 +88,9 @@ class _PassengerHomeUIState extends State<PassengerHomeUI> {
     Colors.indigo,
     Colors.green,
     Colors.red,
-    Colors.deepPurpleAccent[400],
+    Colors.red,
+    Colors.blue,
+    Colors.blue
   ];
 
   //Icon
@@ -96,7 +99,9 @@ class _PassengerHomeUIState extends State<PassengerHomeUI> {
     Icons.arrow_downward,
     Icons.thumb_up,
     Icons.cancel,
-    Icons.arrow_upward
+    Icons.cancel,
+    Icons.check_circle_outline,
+    Icons.check_circle_outline
   ];
 
   //Text
@@ -105,7 +110,9 @@ class _PassengerHomeUIState extends State<PassengerHomeUI> {
     "Drop me here",
     "Confirm",
     "Cancel Pickup ",
-    "Pick me up"
+    "Cancel Pickup ",
+    "Completed Ride",
+    "Completed Ride"
   ];
 
   //Markers
@@ -121,7 +128,7 @@ class _PassengerHomeUIState extends State<PassengerHomeUI> {
       const pollingTime = Duration(seconds: 5);
       const String activeRequestsAPIUrl =
           "/request/getAcceptedRequestDataByRequestId.php";
-      Object activeRequestsAPIObj = {"request_id": _requestId};
+      Object activeRequestsAPIObj = {"request_id": 1};
       Timer.periodic(
           pollingTime,
           (Timer t) => {
@@ -134,6 +141,7 @@ class _PassengerHomeUIState extends State<PassengerHomeUI> {
                             _showDriverAcceptedRequestNotification();
                             _setDialogShownTo(true);
                             t.cancel();
+                            _tapCount = 5;
                           }
                         }))
               });
@@ -217,7 +225,7 @@ class _PassengerHomeUIState extends State<PassengerHomeUI> {
                       ),
                       onPressed: () {
                         setState(() {
-                          if (_tapCount != 4) {
+                          if (_tapCount != 6) {
                             _tapCount++;
                           }
 
@@ -248,6 +256,11 @@ class _PassengerHomeUIState extends State<PassengerHomeUI> {
                             _showRequestHasBeenCancelledToast(context);
                             _showPriceContainer = false;
                           }
+
+                          if(_tapCount==6){
+                            NavigationHelper(context).goToPaymentOptions();
+                          }
+
                         });
                       },
                       label: Text(
