@@ -15,8 +15,23 @@ class _LoginDriverState extends State<LoginDriver> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: LoginDriverUI(),
-    );
+        home: Scaffold(
+      appBar: AppBar(
+        title: new Center(
+          child: new Text("Login as Driver"),
+        ),
+        leading: new IconButton(
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+          icon: new Icon(Icons.arrow_back),
+          iconSize: 35,
+          color: Colors.white,
+        ),
+        backgroundColor: Colors.deepPurpleAccent[400],
+      ),
+      body: LoginDriverUI(),
+    ));
   }
 }
 
@@ -107,26 +122,7 @@ class _LoginDriverUIState extends State<LoginDriverUI> {
               ]),
               padding: EdgeInsets.fromLTRB(0, 20, 0, 0),
             ),
-            Container(
-              alignment: Alignment.bottomCenter,
-              child: Column(children: <Widget>[
-                Text(
-                  "New Here?",
-                  style: TextStyle(fontSize: 15, color: Colors.black),
-                ),
-              ]),
-              padding: EdgeInsets.fromLTRB(0, 80, 0, 0),
-            ),
-            Container(
-              alignment: Alignment.bottomCenter,
-              child: Column(children: <Widget>[
-                Text(
-                  "Sign Up",
-                  style: TextStyle(fontSize: 15, color: Colors.black),
-                ),
-              ]),
-              padding: EdgeInsets.fromLTRB(0, 20, 0, 0),
-            ),
+            
           ],
         ),
       ),

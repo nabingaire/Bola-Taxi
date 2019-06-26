@@ -80,9 +80,17 @@ class _SignUpChoiceState extends State<SignUpChoice> {
                 ),
                 padding: EdgeInsets.fromLTRB(0, 0, 0, 20),
               ),
+              InkWell(child: Text("Already have an account?",
+              style: TextStyle(
+                color: Colors.red
+              ),),
+              onTap: () {
+                NavigationHelper(context).goToLoginChoice();
+              },)
             ],
           ),
-          padding: EdgeInsets.fromLTRB(10, 130, 10, 0)),
+          padding: EdgeInsets.fromLTRB(10, 130, 10, 0),),
+
     );
     }
   }

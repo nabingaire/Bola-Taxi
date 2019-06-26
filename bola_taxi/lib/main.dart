@@ -38,7 +38,7 @@ class _HomePageState extends State<HomePage> {
 
     return MaterialApp(
       home: Scaffold(
-        body: PaymentPage(),        
+        body: SignUpChoice(),        
       ),
     );
   }
