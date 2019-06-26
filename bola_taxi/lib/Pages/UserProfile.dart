@@ -26,8 +26,13 @@ class _UserProfileUI extends StatelessWidget {
             child: new Text("User Profile"),
           ),
           leading: new IconButton(
-            icon: new Icon(Icons.arrow_back),
-          ),
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+          icon: new Icon(Icons.arrow_back),
+          iconSize: 35,
+          color: Colors.white,
+        ),
         ),
         body: new Stack(
           children: <Widget>[

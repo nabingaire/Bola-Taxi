@@ -13,13 +13,16 @@ class _LoginChoiceState extends State<LoginChoice> {
       home: Scaffold(
         appBar: AppBar(
           title: new Center(
-            child: new Text("Login"),
+            child: new Text("Login Choice"),
           ),
-          leading: new IconButton(
-            icon: new Icon(Icons.arrow_back),
-            iconSize: 35,
-            color: Colors.white,
-          ),
+           leading: new IconButton(
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+          icon: new Icon(Icons.arrow_back),
+          iconSize: 35,
+          color: Colors.white,
+        ),
           backgroundColor: Colors.deepPurpleAccent[400],
         ),
         body: _LoginChoiceUI(),

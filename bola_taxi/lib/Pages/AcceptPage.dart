@@ -22,7 +22,7 @@ class _AcceptPageState extends State<AcceptPage> {
     return Scaffold(
       appBar: AppBar(
         title: new Center(
-          child: new Text("Bola Taxi"),
+          child: new Text("Accept Ride"),
         ),
         leading: new IconButton(
           onPressed: () {

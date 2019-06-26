@@ -18,13 +18,16 @@ class _SignUpDriverState extends State<SignUpDriver> {
       home: Scaffold(
         appBar: AppBar(
           title: new Center(
-            child: new Text("Sign Up"),
+            child: new Text("Sign Up Driver"),
           ),
           leading: new IconButton(
-            icon: new Icon(Icons.arrow_back),
-            iconSize: 35,
-            color: Colors.white,
-          ),
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+          icon: new Icon(Icons.arrow_back),
+          iconSize: 35,
+          color: Colors.white,
+        ),
           backgroundColor: Colors.deepPurpleAccent[400],
         ),
         body: SignUpDriverUI(),

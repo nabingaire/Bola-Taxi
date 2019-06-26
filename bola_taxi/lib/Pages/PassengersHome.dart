@@ -142,6 +142,14 @@ class _PassengerHomeUIState extends State<PassengerHomeUI> {
     return Scaffold(
       appBar: AppBar(
         title: Text(locationName),
+         leading: new IconButton(
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+          icon: new Icon(Icons.arrow_back),
+          iconSize: 35,
+          color: Colors.white,
+        ),
         backgroundColor: _buttonBackgroundColorsList[_tapCount],
       ),
       drawer: MenuDrawer(),
