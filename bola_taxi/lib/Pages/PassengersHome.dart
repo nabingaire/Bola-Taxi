@@ -47,7 +47,6 @@ class PassengerHomeUI extends StatefulWidget {
 }
 
 class _PassengerHomeUIState extends State<PassengerHomeUI> {
-
   double currentLocationLat;
   double currentLocationLong;
   var passangerData;
@@ -67,6 +66,9 @@ class _PassengerHomeUIState extends State<PassengerHomeUI> {
   bool _requestSent = false;
   //Dialog has been shown
   bool _dialogShown = false;
+
+  //Pin Location Name
+  String locationName = "Bola Taxi";
 
   //Color
   List<Color> _buttonBackgroundColorsList = [
@@ -128,7 +130,7 @@ class _PassengerHomeUIState extends State<PassengerHomeUI> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text("Bola Taxi"),
+        title: Text(locationName),
         backgroundColor: _buttonBackgroundColorsList[_tapCount],
       ),
       drawer: MenuDrawer(),
@@ -141,6 +143,9 @@ class _PassengerHomeUIState extends State<PassengerHomeUI> {
               onTap: (LatLng point) {
                 // currentLocationLat = LatLngHelper(point.t).getLatitude();
                 _handleTap(point, context);
+                setState(() {
+                  _setLocationName(point);
+                });
               },
             ),
             layers: [
@@ -341,5 +346,14 @@ class _PassengerHomeUIState extends State<PassengerHomeUI> {
     Vibration.hasVibrator().then((value) {
       Vibration.vibrate();
     });
+  }
+
+  String _setLocationName(LatLng point) {
+    double lat = point.latitude;
+    double lon = point.longitude;
+    LocationHelper().getLocationNameFromLatLng(lat, lon).then((value) {
+      locationName = value;
+    });
+    return locationName;
   }
 }
