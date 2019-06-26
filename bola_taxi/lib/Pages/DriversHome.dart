@@ -79,6 +79,15 @@ class _DriversHomeUIState extends State<DriversHomeUI> {
         title: Text(
           "Active Requests",
         ),
+      leading: IconButton(
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+          icon: Icon(
+            Icons.arrow_back,
+            color: Colors.black,
+          ),
+        ),
         backgroundColor: Colors.deepPurpleAccent[400],
       ),
       drawer: MenuDrawer(),
