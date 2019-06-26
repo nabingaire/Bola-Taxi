@@ -34,7 +34,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
     if(mysqli_query($conn,$driversSignupQuery)){
         if(mysqli_query($conn,$taxiQuery)){
                
-        $this->responseArray = array('response_code'=>STATUS_OK,'message'=>'Signup Successfull');
+        $responseArray = array('response_code'=>STATUS_OK,'message'=>'Signup Successfull');
         }
     }else{
        $responseArray = array('response_code'=>NOT_FOUND,'message'=>mysqli_error($conn));
