@@ -15,8 +15,23 @@ class _LoginPassengerState extends State<LoginPassenger> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: LoginPassengerUI(),
-    );
+      home: Scaffold(
+      appBar: AppBar(
+        title: new Center(
+          child: new Text("Login as Passanger"),
+        ),
+        leading: new IconButton(
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+          icon: new Icon(Icons.arrow_back),
+          iconSize: 35,
+          color: Colors.white,
+        ),
+        backgroundColor: Colors.deepPurpleAccent[400],
+      ),
+      body: LoginPassengerUI(),
+    ));
   }
 }
 
@@ -108,26 +123,7 @@ class _LoginPassengerUIState extends State<LoginPassengerUI> {
               ]),
               padding: EdgeInsets.fromLTRB(0, 20, 0, 0),
             ),
-            Container(
-              alignment: Alignment.bottomCenter,
-              child: Column(children: <Widget>[
-                Text(
-                  "New Here?",
-                  style: TextStyle(fontSize: 15, color: Colors.black),
-                ),
-              ]),
-              padding: EdgeInsets.fromLTRB(0, 80, 0, 0),
-            ),
-            Container(
-              alignment: Alignment.bottomCenter,
-              child: Column(children: <Widget>[
-                Text(
-                  "Sign Up",
-                  style: TextStyle(fontSize: 15, color: Colors.black),
-                ),
-              ]),
-              padding: EdgeInsets.fromLTRB(0, 20, 0, 0),
-            ),
+           
           ],
         ),
       ),

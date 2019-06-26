@@ -142,7 +142,7 @@ class _PassengerHomeUIState extends State<PassengerHomeUI> {
     return Scaffold(
       appBar: AppBar(
         title: Text(locationName),
-         leading: new IconButton(
+        leading: new IconButton(
           onPressed: () {
             Navigator.of(context).pop();
           },
