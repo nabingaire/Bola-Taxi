@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 23, 2019 at 06:18 PM
+-- Generation Time: Jun 26, 2019 at 08:07 PM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 7.3.0
 
@@ -48,21 +48,6 @@ CREATE TABLE `completed_request` (
   `completed_time` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `completed_request`
---
-
-INSERT INTO `completed_request` (`completed_request_id`, `t_id`, `u_id`, `origin`, `destination`, `completed_time`) VALUES
-(1, 5, 3, 'Kathmandu', 'Bhaktapur', '2019-06-21 00:00:00'),
-(2, 5, 3, 'Bhaktapur', 'Kathmandu', '2019-06-19 00:00:00'),
-(3, 5, 3, 'Bhaktapur', 'Kathmandu', '2019-06-19 00:00:00'),
-(4, 5, 3, 'Bhaktapur', 'Kathmandu', '2019-06-19 00:00:00'),
-(5, 5, 3, 'Bhaktapur', 'Kathmandu', '2019-06-19 00:00:00'),
-(6, 5, 3, 'Bhaktapur', 'Kathmandu', '2019-06-19 00:00:00'),
-(7, 5, 3, 'Bhaktapur', 'Kathmandu', '2019-06-19 00:00:00'),
-(8, 5, 3, 'Bhaktapur', 'Kathmandu', '2019-06-19 00:00:00'),
-(9, 5, 3, 'Bhaktapur', 'Kathmandu', '2019-06-19 00:00:00');
-
 -- --------------------------------------------------------
 
 --
@@ -79,13 +64,6 @@ CREATE TABLE `drivers` (
   `gender` varchar(20) DEFAULT NULL,
   `review_id` int(10) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `drivers`
---
-
-INSERT INTO `drivers` (`d_id`, `name`, `phone`, `password`, `current_loc`, `taxi_id`, `gender`, `review_id`) VALUES
-(5, 'Roshan', '9843418330', 'asdf', NULL, NULL, 'Male', NULL);
 
 -- --------------------------------------------------------
 
@@ -111,7 +89,9 @@ CREATE TABLE `request` (
   `origin` varchar(30) DEFAULT NULL,
   `destination` varchar(30) DEFAULT NULL,
   `request_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `status` varchar(15) DEFAULT NULL
+  `status` varchar(15) DEFAULT NULL,
+  `origin_name` varchar(200) DEFAULT NULL,
+  `destination_name` varchar(200) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -156,13 +136,6 @@ CREATE TABLE `taxi_info` (
   `status` varchar(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `taxi_info`
---
-
-INSERT INTO `taxi_info` (`t_id`, `taxi_no`, `status`) VALUES
-(5, '2312', NULL);
-
 -- --------------------------------------------------------
 
 --
@@ -178,13 +151,6 @@ CREATE TABLE `users` (
   `gender` varchar(20) DEFAULT NULL,
   `review_id` int(10) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `users`
---
-
-INSERT INTO `users` (`u_id`, `name`, `phone`, `password`, `current_loc`, `gender`, `review_id`) VALUES
-(3, 'asd', 'asd', 'asd', NULL, 'asd', NULL);
 
 --
 -- Indexes for dumped tables
@@ -263,19 +229,19 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `completed_request`
 --
 ALTER TABLE `completed_request`
-  MODIFY `completed_request_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `completed_request_id` int(10) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `drivers`
 --
 ALTER TABLE `drivers`
-  MODIFY `d_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `d_id` int(10) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `request`
 --
 ALTER TABLE `request`
-  MODIFY `request_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `request_id` int(10) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `review`
@@ -293,13 +259,13 @@ ALTER TABLE `ride`
 -- AUTO_INCREMENT for table `taxi_info`
 --
 ALTER TABLE `taxi_info`
-  MODIFY `t_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `t_id` int(5) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `u_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `u_id` int(10) NOT NULL AUTO_INCREMENT;
 
 --
 -- Constraints for dumped tables

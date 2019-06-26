@@ -26,14 +26,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   where acr.request_id='$request_id'";
 
   $acceptedRequestResult = mysqli_query($conn, $acceptedRequestQuery);
-
+  $rows;
   while($r = mysqli_fetch_assoc($acceptedRequestResult)) {
     $rows[] = $r;
   }
 
   $responseArray = array();
   if (mysqli_num_rows($acceptedRequestResult) == 0) {
-    $responseArray = array('response_code' => NOT_FOUND, 'message' => mysqli_error($conn));
+    $rows = array('response_code' => NOT_FOUND, 'message' => mysqli_error($conn));
   } else {
     $rows[0]["response_code"] = 200;
     $rows[0]["message"] = "Request Accepted!";
