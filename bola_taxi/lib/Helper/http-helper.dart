@@ -7,7 +7,7 @@ class HttpHelper {
   // final _baseURL = "http://192.168.1.64/bola-taxi/api";
 
   //Nabin's base url
-  final _baseURL = "http://192.168.43.208/bola_taxi/api";
+  final _baseURL = "http://192.168.1.67/bola_taxi/api";
 
   static HttpHelper _instance = new HttpHelper.internal();
 
